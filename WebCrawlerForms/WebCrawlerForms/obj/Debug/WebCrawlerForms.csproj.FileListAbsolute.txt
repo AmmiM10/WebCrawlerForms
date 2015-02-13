@@ -12,3 +12,8 @@ C:\Users\Gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCraw
 C:\Users\Gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\obj\Debug\Interop.WMPLib.dll
 C:\Users\Gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\Gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.ResolveComReference.cache
+C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\Interop.WMPLib.dll
+C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.ResolveComReference.cache
+C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.exe
+C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.pdb
