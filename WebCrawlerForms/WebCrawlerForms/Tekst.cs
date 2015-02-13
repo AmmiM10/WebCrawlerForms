@@ -34,6 +34,7 @@ namespace WebCrawlerForms
                 foreach (Match m in m1)
                 {
                     string score = m.Groups[1].Value;
+                    //Encoding ddd = UTF8Encoding.GetEncoding(score);
                     score = HttpUtility.HtmlDecode(score);
                     score = Regex.Replace(score, "<.*?>", string.Empty);
                     webtekst += score;
