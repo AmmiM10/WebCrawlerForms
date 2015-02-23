@@ -15,7 +15,7 @@ namespace WebCrawlerForms
     public partial class Form1 : Form
     {
         public List<string> ItemsLink;
-        public NOSAdapter nosAdapter;
+        public BronInterface adapter;
 
         public Form1()
         {
@@ -29,24 +29,24 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
-            nosAdapter = new NOSAdapter();
-            nosAdapter.PropLink = "http://www.nos.nl"+listBox2.Items[listBox3.SelectedIndex].ToString();
+            adapter = new NOSAdapter();
+            adapter.PropLink = "http://www.nos.nl"+listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
             checkBox1.Checked = false;
-            textBox1.Text = nosAdapter.GetTekst();
+            textBox1.Text = adapter.GetTekst();
             List<string> VideoList = new List<string>();
-            VideoList = nosAdapter.GetVideos();
+            VideoList = adapter.GetVideos();
             if (VideoList.Count == 0)
                 NullVideo();
             else
-                HasVideo(nosAdapter, VideoList);
+                HasVideo(adapter, VideoList);
 
             label2.Visible = true;
             checkBox1.Visible = true;
             pictureBox2.Visible = true;
         }
 
-        private void HasVideo(NOSAdapter nosAdapter, List<string> VideoList)
+        private void HasVideo(BronInterface nosAdapter, List<string> VideoList)
         {
             axWindowsMediaPlayer1.URL = nosAdapter.GetVideo(); 
             Width = 1106;

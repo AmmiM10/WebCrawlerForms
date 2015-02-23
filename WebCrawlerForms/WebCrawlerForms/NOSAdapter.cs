@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WebCrawlerForms
 {
-    public class NOSAdapter
+    public class NOSAdapter: BronInterface
     {
         private string _link;
         public string PropLink { get { return _link; } set { _link = value; } }
