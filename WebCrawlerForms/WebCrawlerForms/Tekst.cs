@@ -67,5 +67,27 @@ namespace WebCrawlerForms
 
             return webitems;
         }
+
+        public string getLinkVideo(string urlArtikel, string _tags)
+        {
+            string link = null;
+
+            WebClient wc = new WebClient();
+            String html = wc.DownloadString(urlArtikel);
+            MatchCollection m1 = Regex.Matches(html, _tags, RegexOptions.Singleline);
+            List<string> webitems = new List<string>();
+            if (m1.Count > 0)
+            {
+                foreach (Match m in m1)
+                {
+                    string score = m.Groups[1].Value;
+                    score = HttpUtility.HtmlDecode(score);
+                    score = Regex.Replace(score, "<.*?>", string.Empty);
+                    link = score;
+                }
+            }
+
+            return link;
+        }
     }
 }

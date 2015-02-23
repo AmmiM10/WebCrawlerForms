@@ -22,18 +22,20 @@ namespace WebCrawlerForms
 
         public List<string> GetVideos()
         {
-            return new Tekst().getItems(_link, "preload=\"metadata\"><source src=\"(.+?)type=\"360p\" data-label");
+            return new Tekst().getItems(_link, "<div class=\"video-play\"><a href=(.+?) class=\"video-play__link js-ajax\" ");
         }
         
         public string GetVideo()
         {
-            //
-            return new Video().getVideo(_link, "<a href=\"/video/\\s*(.+?)\" class=\"video");
+            string link = new Tekst().getLinkVideo(_link, "<div class=\"video-play\"><a href=\"(.+?)\" class=\"video-play__link js-ajax\" ");
+            return new Video().getVideo(link, "data-label=\"Laag - 360p\"  /><source src=\"(.+?)\" type=\"480p\" data-label=\"");
         }
 
         public string GetTekst()
         {
-            return new Tekst().GetTekst(_link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div></div></section><footer class=\"container\">");
+            //return new Tekst().GetTekst(_link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div></div></section><footer class=\"container\">");
+            //return new Tekst().GetTekst(_link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div></div><div class=\"article_block\">");
+            return new Tekst().GetTekst(_link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div></div>");
         }
     }
 }

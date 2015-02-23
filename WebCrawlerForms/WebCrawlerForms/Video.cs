@@ -23,7 +23,7 @@ namespace WebCrawlerForms
             this._url = url;
             this._tags = tags;
             WebClient wc = new WebClient();
-            String html = wc.DownloadString("http://www.nos.nl/video/" + _url);
+            String html = wc.DownloadString("http://www.nos.nl" + _url);
             MatchCollection m1 = Regex.Matches(html, _tags, RegexOptions.Singleline);
             string webstring = "";
             if (m1.Count > 0)
