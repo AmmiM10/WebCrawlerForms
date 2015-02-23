@@ -36,8 +36,12 @@ namespace WebCrawlerForms
                     string score = m.Groups[1].Value;
                     //Encoding ddd = UTF8Encoding.GetEncoding(score);
                     score = HttpUtility.HtmlDecode(score);
+                    score = Regex.Replace(score, "<p>", Environment.NewLine);
+                    score = Regex.Replace(score, "</p>", Environment.NewLine);
                     score = Regex.Replace(score, "<.*?>", string.Empty);
-                    webtekst += score;
+
+                    byte[] bytes = Encoding.Default.GetBytes(score);
+                    webtekst = Encoding.UTF8.GetString(bytes);
                 }
             }
 

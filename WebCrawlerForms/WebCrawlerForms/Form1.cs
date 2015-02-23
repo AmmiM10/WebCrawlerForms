@@ -29,6 +29,7 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
+            axWindowsMediaPlayer1.Ctlcontrols.stop();
             adapter = new NOSAdapter();
             adapter.PropLink = "http://www.nos.nl"+listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
@@ -39,7 +40,10 @@ namespace WebCrawlerForms
             if (VideoList.Count == 0)
                 NullVideo();
             else
+            {
                 HasVideo(adapter, VideoList);
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
+            }
 
             label2.Visible = true;
             checkBox1.Visible = true;
@@ -71,7 +75,7 @@ namespace WebCrawlerForms
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
-                Width = 460;
+                Width = 456;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -90,23 +94,18 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //</span><time datetime=\"
             var nosAdapter = new NOSAdapter();
             listBox3.DataSource = nosAdapter.GetHeadlines();
             listBox2.DataSource = nosAdapter.GetHeadlineLinks();
-            axWindowsMediaPlayer1.uiMode = "none";
-            axWindowsMediaPlayer1.Ctlcontrols.stop();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.uiMode = "mini";
             axWindowsMediaPlayer1.Ctlcontrols.play();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.uiMode = "none";
             axWindowsMediaPlayer1.Ctlcontrols.stop();
         }
     }
