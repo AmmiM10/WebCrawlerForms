@@ -65,6 +65,9 @@ namespace WebCrawlerForms
                     string score = m.Groups[1].Value;
                     score = HttpUtility.HtmlDecode(score);
                     score = Regex.Replace(score, "<.*?>", string.Empty);
+
+                    byte[] bytes = Encoding.Default.GetBytes(score);
+                    score = Encoding.UTF8.GetString(bytes);
                     webitems.Add(score);
                 }
             }

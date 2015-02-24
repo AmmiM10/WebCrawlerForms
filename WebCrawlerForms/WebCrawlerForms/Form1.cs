@@ -20,6 +20,7 @@ namespace WebCrawlerForms
         public Form1()
         {
             InitializeComponent();
+            adapter = new NOSAdapter();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -30,8 +31,7 @@ namespace WebCrawlerForms
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.stop();
-            adapter = new NOSAdapter();
-            adapter.PropLink = "http://www.nos.nl"+listBox2.Items[listBox3.SelectedIndex].ToString();
+            adapter.PropLink = listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
             checkBox1.Checked = false;
             textBox1.Text = adapter.GetTekst();
@@ -44,7 +44,7 @@ namespace WebCrawlerForms
                 HasVideo(adapter, VideoList);
                 axWindowsMediaPlayer1.Ctlcontrols.stop();
             }
-
+            
             label2.Visible = true;
             checkBox1.Visible = true;
             pictureBox2.Visible = true;
@@ -75,7 +75,10 @@ namespace WebCrawlerForms
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
                 Width = 456;
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -94,11 +97,10 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var nosAdapter = new NOSAdapter();
-            listBox3.DataSource = nosAdapter.GetHeadlines();
-            listBox2.DataSource = nosAdapter.GetHeadlineLinks();
+            listBox3.DataSource = adapter.GetHeadlines();
+            listBox2.DataSource = adapter.GetHeadlineLinks();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.play();
@@ -107,6 +109,25 @@ namespace WebCrawlerForms
         private void button4_Click_1(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Ctlcontrols.stop();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox3.Font = new Font(listBox3.Text, 15);
+            listBox3.DataSource = new List<string>{"Maikel is gay"};
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            adapter = new NOSAdapter();
+            Form1_Load(sender, e);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            adapter = new NuAdapter();
+            Form1_Load(sender, e);
+
         }
     }
 }

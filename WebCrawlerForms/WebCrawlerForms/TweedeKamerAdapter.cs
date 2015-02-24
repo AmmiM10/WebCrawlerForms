@@ -7,14 +7,27 @@ namespace WebCrawlerForms
 {
     public class TweedeKamerAdapter: BronInterface
     {
+        private string _link;
+        public string PropLink
+        {
+            get
+            {
+                return _link;
+            }
+            set
+            {
+                _link = value;
+            }
+        }
+
         public List<string> GetHeadlines()
         {
-            throw new NotImplementedException();
+            return new Tekst().getItems("http://www.tweedekamer.nl/nieuws/kamernieuws/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
         }
 
         public List<string> GetHeadlineLinks()
         {
-            throw new NotImplementedException();
+            return new Tekst().getItems("http://www.tweedekamer.nl/nieuws/kamernieuws/", "<h2><a href=\"(.+?)\">");
         }
 
         public List<string> GetVideos()
@@ -30,18 +43,6 @@ namespace WebCrawlerForms
         public string GetTekst()
         {
             throw new NotImplementedException();
-        }
-
-        public string PropLink
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

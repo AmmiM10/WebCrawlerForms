@@ -10,30 +10,39 @@ namespace WebCrawlerForms
 {
     public class Video
     {
-        private string _url;
-        private string _tags;
-
         public Video()
         {
 
         }
 
-        public string getVideo(string url, string tags)
+        public string getVideo(string url, List<string> tags)
         {
-            this._url = url;
-            this._tags = tags;
             WebClient wc = new WebClient();
-            String html = wc.DownloadString("http://www.nos.nl" + _url);
-            MatchCollection m1 = Regex.Matches(html, _tags, RegexOptions.Singleline);
+            String html = wc.DownloadString("http://www.nos.nl" + url);
+            MatchCollection m1 = Regex.Matches(html, tags[0], RegexOptions.Singleline);
             string webstring = "";
-            if (m1.Count > 0)
+            foreach (var item in tags)
             {
-                foreach (Match m in m1)
+                if (m1.Count > 0)
                 {
-                    string score = m.Groups[1].Value;
-                    score = HttpUtility.HtmlDecode(score);
-                    score = Regex.Replace(score, "<.*?>", string.Empty);
-                    webstring = score;
+                    foreach (Match m in m1)
+                    {
+                        string score = m.Groups[1].Value;
+                        score = HttpUtility.HtmlDecode(score);
+                        score = Regex.Replace(score, "<.*?>", string.Empty);
+                        webstring = score;
+                    }
+                }
+                else
+                {
+                    m1 = Regex.Matches(html, item, RegexOptions.Singleline);
+                    foreach (Match m in m1)
+                    {
+                        string score = m.Groups[1].Value;
+                        score = HttpUtility.HtmlDecode(score);
+                        score = Regex.Replace(score, "<.*?>", string.Empty);
+                        webstring = score;
+                    }
                 }
             }
 

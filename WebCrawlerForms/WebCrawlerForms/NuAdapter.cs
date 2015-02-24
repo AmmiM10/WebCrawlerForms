@@ -7,41 +7,45 @@ namespace WebCrawlerForms
 {
     public class NuAdapter: BronInterface
     {
+        private string _link;
         public string PropLink
         {
             get
             {
-                throw new NotImplementedException();
+                return _link;
             }
             set
             {
-                throw new NotImplementedException();
+                _link = value;
             }
         }
 
         public List<string> GetHeadlines()
         {
-            throw new NotImplementedException();
+            return new Tekst().getItems("http://www.nu.nl/rss/politiek", "<description>(.+?)</description>");
         }
 
         public List<string> GetHeadlineLinks()
         {
-            throw new NotImplementedException();
+            return new Tekst().getItems("http://www.nu.nl/rss/politiek", "</title><link>(.+?)</link>");
         }
 
         public List<string> GetVideos()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return null;
         }
 
         public string GetVideo()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            return null;
         }
 
         public string GetTekst()
         {
-            throw new NotImplementedException();
+            return new Tekst().GetTekst(_link, "<div class=\"block-content\">\\s*(.+?)<p><a href");
         }
     }
 }
