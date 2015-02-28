@@ -7,17 +7,27 @@ namespace WebCrawlerForms
 {
     public class NOSAdapter: BronInterface
     {
+        private string _naam;
+        public string Naam { get { return _naam; } set { _naam = value; } }
         private string _link;
         public string PropLink { get { return _link; } set { _link = value; } }
 
         public List<string> GetHeadlines()
         {
-            return new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
+            List<string> Headlines =  new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
+            //Dit is voor laatste headline maar lukt niet want is het zelfde begin maar ander einde </ul>
+            //Headlines.Add(new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">"));
+            return Headlines;
         }
 
         public List<string> GetHeadlineLinks()
         {
             return new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "<li class=\"list-time__item\"><a href=\"(.+?)\" class=\"link-block\">");
+        }
+
+        public List<string> GetTime(List<string> Links)
+        {
+            return new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "<time datetime=\"(.+?)\">");
         }
 
         public List<string> GetVideos()

@@ -16,11 +16,15 @@ namespace WebCrawlerForms
     {
         public List<string> ItemsLink;
         public BronInterface adapter;
+        public SQL sql;
+        public bool zoek_vvd;
+        public bool zoek_pvda;
 
         public Form1()
         {
             InitializeComponent();
-            adapter = new NOSAdapter();
+            adapter = new BNRAdapter();
+            sql = new SQL();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -97,8 +101,15 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBox3.DataSource = adapter.GetHeadlines();
-            listBox2.DataSource = adapter.GetHeadlineLinks();
+            List<string> Titels = adapter.GetHeadlines();
+            listBox3.DataSource = Titels;
+            List<string> Links = adapter.GetHeadlineLinks();
+            List<string> time = adapter.GetTime(Links);
+            for (int i = 1; i < time.Count; i++)
+            {
+                //time[i] = time[i].Split("2015")[0];
+            }
+            listBox2.DataSource = Links;
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -123,11 +134,86 @@ namespace WebCrawlerForms
             Form1_Load(sender, e);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            adapter = new NuAdapter();
-            Form1_Load(sender, e);
+            //BackupOffline(new NOSAdapter());
 
+            //DataTable dt = sql.Select("SELECT * FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
+        }
+
+        private void BackupOffline(BronInterface adapter)
+        {
+            List<string> Titels = adapter.GetHeadlines();
+            List<string> Links = adapter.GetHeadlineLinks();
+            List<string> dag = adapter.GetTime(Links);
+            List<string> tijd = new List<string>();
+            for (int i = 0; i < Titels.Count; i++)
+            {
+                DataTable dt = sql.Select("SELECT Titel FROM PolitiekNieuws WHERE Titel = '" + Titels[i].Replace("'", "`") + "'");
+                if (dt.Rows.Count == 0)
+                {
+                    tijd.Add(dag[i].Split('T')[1]);
+                    tijd[i] = tijd[i].Split('+')[0];
+                    dag[i] = dag[i].Split('T')[0];
+
+                    sql.Insert("insert into PolitiekNieuws (Titel, Tijd, Dag, Link, Bron) values ('" + Titels[i].Replace("'", "`") + "', '" + tijd[i] + "', '" + dag[i] + "', '"+ Links[i] +"', '"+ adapter.Naam +"') ");
+                }
+            }
+        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                zoek_vvd = true;
+            }
+            else
+            {
+                zoek_vvd = false;
+            }
+            FilterNieuws();
+        }
+        public void FilterNieuws()
+        {
+            DataTable dt = new DataTable();
+
+            if (zoek_pvda && zoek_vvd)
+            {
+                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws");
+            }
+            else if (!zoek_pvda && !zoek_vvd)
+            {
+                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws");
+            }
+            else if (zoek_vvd)
+            {
+                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws WHERE Titel LIKE '%vvd%'");
+            }
+            else if (zoek_pvda)
+            {
+                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws WHERE Titel LIKE '%PvdA%'");
+            }
+
+            List<string> Nieuws = new List<string>();
+            List<string> Links = new List<string>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Nieuws.Add(dt.Rows[i][0].ToString());
+                Links.Add(dt.Rows[i][1].ToString());
+            }
+            listBox2.DataSource = Links;
+            listBox3.DataSource = Nieuws;
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                zoek_pvda = true;
+            }
+            else
+            {
+                zoek_pvda = false;
+            }
+            FilterNieuws();
         }
     }
 }
