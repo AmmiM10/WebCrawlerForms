@@ -19,12 +19,15 @@ namespace WebCrawlerForms
         public SQL sql;
         public bool zoek_vvd;
         public bool zoek_pvda;
+        public int teller;
+        public int tijdteller;
 
         public Form1()
         {
             InitializeComponent();
             adapter = new BNRAdapter();
             sql = new SQL();
+            tijdteller = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -34,7 +37,8 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.stop();
+            adapter = new NOSAdapter();
+            axWindowsMediaPlayer2.Ctlcontrols.stop();
             adapter.PropLink = listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
             checkBox1.Checked = false;
@@ -46,7 +50,7 @@ namespace WebCrawlerForms
             else
             {
                 HasVideo(adapter, VideoList);
-                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                axWindowsMediaPlayer2.Ctlcontrols.stop();
             }
             
             label2.Visible = true;
@@ -56,16 +60,16 @@ namespace WebCrawlerForms
 
         private void HasVideo(BronInterface nosAdapter, List<string> VideoList)
         {
-            axWindowsMediaPlayer1.URL = nosAdapter.GetVideo(); 
+            axWindowsMediaPlayer2.URL = nosAdapter.GetVideo(); 
             Width = 1106;
-            axWindowsMediaPlayer1.Visible = true;
+            axWindowsMediaPlayer2.Visible = true;
             button1.Visible = true;
             button4.Visible = true;
         }
 
         private void NullVideo()
         {
-            axWindowsMediaPlayer1.Visible = false;
+            axWindowsMediaPlayer2.Visible = false;
             button1.Visible = false;
             button4.Visible = false;
             Width = 761;
@@ -80,7 +84,7 @@ namespace WebCrawlerForms
         {
             if (checkBox1.Checked)
             {
-                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                axWindowsMediaPlayer2.Ctlcontrols.stop();
                 Width = 456;
             }
         }
@@ -101,33 +105,31 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<string> Titels = adapter.GetHeadlines();
-            listBox3.DataSource = Titels;
-            List<string> Links = adapter.GetHeadlineLinks();
-            List<string> time = adapter.GetTime(Links);
-            for (int i = 1; i < time.Count; i++)
+            DataTable dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
+            List<string> Titel = new List<string>();
+            List<string> Link = new List<string>();
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                //time[i] = time[i].Split("2015")[0];
+                Titel.Add(dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
+                Link.Add(dt.Rows[i][1].ToString());
             }
-            listBox2.DataSource = Links;
+            listBox2.DataSource = Link;
+            listBox3.DataSource = Titel;
         }
         
         private void button1_Click(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            axWindowsMediaPlayer2.Ctlcontrols.play();
         }
-
         private void button4_Click_1(object sender, EventArgs e)
         {
-            axWindowsMediaPlayer1.Ctlcontrols.stop();
+            axWindowsMediaPlayer2.Ctlcontrols.stop();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             listBox3.Font = new Font(listBox3.Text, 15);
             listBox3.DataSource = new List<string>{"Maikel is gay"};
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             adapter = new NOSAdapter();
@@ -136,13 +138,19 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //BackupOffline(new NOSAdapter());
-
+            timer1.Start();
+            NOSBackupOffline();
+            BNRBackup();
+            timer1.Stop();
             //DataTable dt = sql.Select("SELECT * FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
         }
 
-        private void BackupOffline(BronInterface adapter)
+        private void NOSBackupOffline()
         {
+            teller = 0;
+            tijdteller = 0;
+            adapter = new NOSAdapter();
+            adapter.Naam = "NOS";
             List<string> Titels = adapter.GetHeadlines();
             List<string> Links = adapter.GetHeadlineLinks();
             List<string> dag = adapter.GetTime(Links);
@@ -157,9 +165,49 @@ namespace WebCrawlerForms
                     dag[i] = dag[i].Split('T')[0];
 
                     sql.Insert("insert into PolitiekNieuws (Titel, Tijd, Dag, Link, Bron) values ('" + Titels[i].Replace("'", "`") + "', '" + tijd[i] + "', '" + dag[i] + "', '"+ Links[i] +"', '"+ adapter.Naam +"') ");
+                    teller++;
                 }
             }
+            MessageBox.Show("NOS backup is klaar aantal nieuwe:" + teller.ToString() + " tijd: " + tijdteller.ToString());
         }
+        public void BNRBackup()
+        {
+            teller = 0;
+            tijdteller = 0;
+            adapter = new BNRAdapter();
+            adapter.Naam = "BNR";
+            List<string> Titels = adapter.GetHeadlines();
+            listBox3.DataSource = Titels;
+            List<string> Links = adapter.GetHeadlineLinks();
+            List<string> time = adapter.GetTime(Links);
+            List<string> tijd_split = new List<string>();
+            List<string> dag_split = new List<string>();
+            for (int i = 0; i < time.Count - 1; i++)
+            {
+                string maand = "01";
+                //Sat, 28 Feb 2015 12:43:46 +0100
+                if (time[i + 1].Split(' ')[2] == "Feb")
+                {
+                    maand = "02";
+                } 
+                else if (time[i + 1].Split(' ')[2] == "Mar")
+                {
+                    maand = "03";
+                }
+                dag_split.Add(time[i + 1].Split(' ')[3] + "-" + maand + "-" + time[i + 1].Split(' ')[1]);
+                tijd_split.Add(time[i + 1].Split(' ')[4]);
+                //time[i] = time[i].Split("2015")[0];                
+                DataTable dt = sql.Select("SELECT Titel FROM PolitiekNieuws WHERE Titel = '" + Titels[i].Replace("'", "`") + "'");
+                if (dt.Rows.Count == 0)
+                {
+                    sql.Insert("insert into PolitiekNieuws (Titel, Tijd, Dag, Link, Bron) values ('" + Titels[i].Replace("'", "`") + "', '" + tijd_split[i] + "', '" + dag_split[i] + "', '" + Links[i + 1] + "', '" + adapter.Naam + "') ");
+                    teller++;
+                }
+            }
+            MessageBox.Show("BNR backup is klaar aantal nieuwe:" + teller.ToString() + " tijd: " + tijdteller.ToString());
+            listBox2.DataSource = Links;
+        }
+
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked)
@@ -214,6 +262,11 @@ namespace WebCrawlerForms
                 zoek_pvda = false;
             }
             FilterNieuws();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            tijdteller++;
         }
     }
 }

@@ -27,4 +27,3 @@ C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.GenerateResource.Cache
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Database1.sdf
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe.config
-C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
