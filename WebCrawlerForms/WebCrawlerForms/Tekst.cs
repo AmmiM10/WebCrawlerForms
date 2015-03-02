@@ -71,7 +71,6 @@ namespace WebCrawlerForms
                     webitems.Add(score);
                 }
             }
-
             return webitems;
         }
 

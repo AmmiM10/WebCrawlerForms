@@ -22,10 +22,10 @@ namespace WebCrawlerForms
             List<string> links = new Tekst().getItems("http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456", "</title>\\s*<link>(.+?)</link>");
             return links;
         }
-
+         
         public List<string> GetVideos()
         {
-            throw new NotImplementedException();
+            return new Tekst().getItems(_link, "mb6\" onclick=\"window.open('(.+?)',");
         }
 
         public List<string> GetTime(List<string> Links)
@@ -35,12 +35,13 @@ namespace WebCrawlerForms
 
         public string GetVideo()
         {
-            throw new NotImplementedException();
+            string link = new Tekst().getLinkVideo(_link, "mb6\" onclick=\"window.open('(.+?)'");
+            return new Video().getVideo(link, new List<string> { "data-label=\"Laag - 360p\"  /><source src=\"(.+?)\" type=\"480p\" data-label=\"", "data-label=\"Normaal - 480p\"  /><source src=\"(.+?)\" type=\"360p\" data-label=\"" });
         }
 
         public string GetTekst()
         {
-            throw new NotImplementedException();
+            return new Tekst().GetTekst(_link, "itemprop=\"articleBody\">\\s*(.+?)</span");
         }
     }
 }

@@ -37,7 +37,10 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
-            adapter = new NOSAdapter();
+            if (listBox3.SelectedValue.ToString().StartsWith("NOS"))
+                adapter = new NOSAdapter();
+            else if (listBox3.SelectedValue.ToString().StartsWith("BNR"))
+                adapter = new BNRAdapter();
             axWindowsMediaPlayer2.Ctlcontrols.stop();
             adapter.PropLink = listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
@@ -116,7 +119,7 @@ namespace WebCrawlerForms
             listBox3.DataSource = Titel;
         }
         
-        private void button1_Click(object sender, EventArgs e)
+         private void button1_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer2.Ctlcontrols.play();
         }
@@ -132,7 +135,7 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackupOffline().ToString()));
+            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
             MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
             Form1_Load(sender, e);
         }
@@ -149,17 +152,11 @@ namespace WebCrawlerForms
             string query = "SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%%'";
 
             if (zoek_vvd)
-            {
                 query = string.Format("{0} AND Titel LIKE '%vvd%'", query);
-            }
             if (zoek_pvda)
-            {
                 query = string.Format("{0} AND Titel LIKE '%pvda%'", query);
-            }
             if (zoek_pvv)
-            {
                 query = string.Format("{0} AND Titel LIKE '%pvv%'", query);
-            }
 
             query = string.Format("{0} ORDER BY Dag DESC, Tijd DESC", query);
 

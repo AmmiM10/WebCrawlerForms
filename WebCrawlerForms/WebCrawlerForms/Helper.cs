@@ -9,7 +9,6 @@ namespace WebCrawlerForms
     public class Helper
     {
         private BronInterface adapter;
-        private int teller;
         private SQL sql;
 
         public Helper()
@@ -17,7 +16,7 @@ namespace WebCrawlerForms
             sql = new SQL();
         }
 
-        public int NOSBackupOffline()
+        public int NOSBackup()
         {
             int teller = 0;
             DataTable dt = null;
