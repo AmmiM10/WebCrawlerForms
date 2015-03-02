@@ -19,15 +19,15 @@ namespace WebCrawlerForms
         public SQL sql;
         public bool zoek_vvd;
         public bool zoek_pvda;
-        public int teller;
-        public int tijdteller;
+        public bool zoek_pvv;
+        public Helper helper;
 
         public Form1()
         {
             InitializeComponent();
             adapter = new BNRAdapter();
             sql = new SQL();
-            tijdteller = 0;
+            helper = new Helper();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -66,7 +66,6 @@ namespace WebCrawlerForms
             button1.Visible = true;
             button4.Visible = true;
         }
-
         private void NullVideo()
         {
             axWindowsMediaPlayer2.Visible = false;
@@ -133,74 +132,9 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            timer1.Start();
-            NOSBackupOffline();
-            BNRBackup();
-            timer1.Stop();
-            //DataTable dt = sql.Select("SELECT * FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
-        }
-
-        private void NOSBackupOffline()
-        {
-            teller = 0;
-            tijdteller = 0;
-            adapter = new NOSAdapter();
-            adapter.Naam = "NOS";
-            List<string> Titels = adapter.GetHeadlines();
-            List<string> Links = adapter.GetHeadlineLinks();
-            List<string> dag = adapter.GetTime(Links);
-            List<string> tijd = new List<string>();
-            for (int i = 0; i < Titels.Count; i++)
-            {
-                DataTable dt = sql.Select("SELECT Titel FROM PolitiekNieuws WHERE Titel = '" + Titels[i].Replace("'", "`") + "'");
-                if (dt.Rows.Count == 0)
-                {
-                    tijd.Add(dag[i].Split('T')[1]);
-                    tijd[i] = tijd[i].Split('+')[0];
-                    dag[i] = dag[i].Split('T')[0];
-
-                    sql.Insert("insert into PolitiekNieuws (Titel, Tijd, Dag, Link, Bron) values ('" + Titels[i].Replace("'", "`") + "', '" + tijd[i] + "', '" + dag[i] + "', '"+ Links[i] +"', '"+ adapter.Naam +"') ");
-                    teller++;
-                }
-            }
-            MessageBox.Show("NOS backup is klaar aantal nieuwe:" + teller.ToString());
-        }
-        public void BNRBackup()
-        {
-            teller = 0;
-            tijdteller = 0;
-            adapter = new BNRAdapter();
-            adapter.Naam = "BNR";
-            List<string> Titels = adapter.GetHeadlines();
-            listBox3.DataSource = Titels;
-            List<string> Links = adapter.GetHeadlineLinks();
-            List<string> time = adapter.GetTime(Links);
-            List<string> tijd_split = new List<string>();
-            List<string> dag_split = new List<string>();
-            for (int i = 0; i < time.Count - 1; i++)
-            {
-                string maand = "01";
-                //Sat, 28 Feb 2015 12:43:46 +0100
-                if (time[i + 1].Split(' ')[2] == "Feb")
-                {
-                    maand = "02";
-                } 
-                else if (time[i + 1].Split(' ')[2] == "Mar")
-                {
-                    maand = "03";
-                }
-                dag_split.Add(time[i + 1].Split(' ')[3] + "-" + maand + "-" + time[i + 1].Split(' ')[1]);
-                tijd_split.Add(time[i + 1].Split(' ')[4]);
-                //time[i] = time[i].Split("2015")[0];                
-                DataTable dt = sql.Select("SELECT Titel FROM PolitiekNieuws WHERE Titel = '" + Titels[i].Replace("'", "`") + "'");
-                if (dt.Rows.Count == 0)
-                {
-                    sql.Insert("insert into PolitiekNieuws (Titel, Tijd, Dag, Link, Bron) values ('" + Titels[i].Replace("'", "`") + "', '" + tijd_split[i] + "', '" + dag_split[i] + "', '" + Links[i + 1] + "', '" + adapter.Naam + "') ");
-                    teller++;
-                }
-            }
-            MessageBox.Show("BNR backup is klaar aantal nieuwe:" + teller.ToString());
-            listBox2.DataSource = Links;
+            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackupOffline().ToString()));
+            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            Form1_Load(sender, e);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -222,31 +156,14 @@ namespace WebCrawlerForms
             {
                 query = string.Format("{0} AND Titel LIKE '%pvda%'", query);
             }
+            if (zoek_pvv)
+            {
+                query = string.Format("{0} AND Titel LIKE '%pvv%'", query);
+            }
+
+            query = string.Format("{0} ORDER BY Dag DESC, Tijd DESC", query);
 
             dt = sql.Select(query);
-
-            /*
-            if (zoek_pvda && zoek_vvd)
-            {
-                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws");
-            }
-            else if (!zoek_pvda && !zoek_vvd)
-            {
-                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws");
-            }
-            else if (zoek_vvd)
-            {
-                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%vvd%'");
-            }
-            else if (zoek_pvda)
-            {
-                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%PvdA%' AND Titel LIKE '%"+ zoek_vvd +"%'");
-            }
-            string alles = null;
-            if (checkBox2.Checked)
-            {
-               alles += "AND Titel LIKE '%"+ zoek_vvd +"%' AND Titel LIKE '%"+ zoek_vvd +"%'";
-            }*/
 
             List<string> Nieuws = new List<string>();
             List<string> Links = new List<string>();
@@ -262,6 +179,12 @@ namespace WebCrawlerForms
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             zoek_pvda = checkBox3.Checked;
+            FilterNieuws();
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            zoek_pvv = checkBox4.Checked;
             FilterNieuws();
         }
     }

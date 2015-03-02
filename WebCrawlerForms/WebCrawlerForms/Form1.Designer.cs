@@ -46,6 +46,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             this.SuspendLayout();
@@ -206,12 +207,24 @@
             this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(343, 263);
             this.axWindowsMediaPlayer2.TabIndex = 33;
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(115, 98);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(47, 17);
+            this.checkBox4.TabIndex = 34;
+            this.checkBox4.Text = "PVV";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(440, 325);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.axWindowsMediaPlayer2);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -257,6 +270,7 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Timer timer1;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
+        private System.Windows.Forms.CheckBox checkBox4;
 
     }
 }
