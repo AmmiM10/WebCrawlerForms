@@ -17,7 +17,11 @@ namespace WebCrawlerForms
             @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
             @"data source=../../Database1.sdf";
 
-        public DataTable Select(string select_string) // Select Methode
+        /// <summary>
+        /// Select methode
+        /// </summary>
+        /// <param name="insert_string">Select query</param>
+        public DataTable Select(string select_string)
         {
             DataTable table = new DataTable();
             try
@@ -30,12 +34,15 @@ namespace WebCrawlerForms
             return table;
         }
 
-        public void Insert(string insert_string) // Insert Methode
+        /// <summary>
+        /// Insert methode
+        /// </summary>
+        /// <param name="insert_string">Insert query</param>
+        public void Insert(string insert_string)
         {
             connection = new OleDbConnection(connectionstring);
             command = new OleDbCommand();
             adapter = new OleDbDataAdapter();
-
             try
             {
                 connection.Open();
@@ -50,7 +57,11 @@ namespace WebCrawlerForms
             }
         }
 
-        public void Update(string update_string)// Update Methode
+        /// <summary>
+        /// Update methode
+        /// </summary>
+        /// <param name="update_string">Update query</param>
+        public void Update(string update_string)
         {
             connection = new OleDbConnection(connectionstring);
             command = new OleDbCommand();

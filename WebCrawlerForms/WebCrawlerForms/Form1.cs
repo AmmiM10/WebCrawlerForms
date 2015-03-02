@@ -130,11 +130,6 @@ namespace WebCrawlerForms
             listBox3.Font = new Font(listBox3.Text, 15);
             listBox3.DataSource = new List<string>{"Maikel is gay"};
         }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            adapter = new NOSAdapter();
-            Form1_Load(sender, e);
-        }
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -168,7 +163,7 @@ namespace WebCrawlerForms
                     teller++;
                 }
             }
-            MessageBox.Show("NOS backup is klaar aantal nieuwe:" + teller.ToString() + " tijd: " + tijdteller.ToString());
+            MessageBox.Show("NOS backup is klaar aantal nieuwe:" + teller.ToString());
         }
         public void BNRBackup()
         {
@@ -204,69 +199,70 @@ namespace WebCrawlerForms
                     teller++;
                 }
             }
-            MessageBox.Show("BNR backup is klaar aantal nieuwe:" + teller.ToString() + " tijd: " + tijdteller.ToString());
+            MessageBox.Show("BNR backup is klaar aantal nieuwe:" + teller.ToString());
             listBox2.DataSource = Links;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
-            {
-                zoek_vvd = true;
-            }
-            else
-            {
-                zoek_vvd = false;
-            }
+            zoek_vvd = checkBox2.Checked;
             FilterNieuws();
         }
+
         public void FilterNieuws()
         {
             DataTable dt = new DataTable();
+            string query = "SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%%'";
 
+            if (zoek_vvd)
+            {
+                query = string.Format("{0} AND Titel LIKE '%vvd%'", query);
+            }
+            if (zoek_pvda)
+            {
+                query = string.Format("{0} AND Titel LIKE '%pvda%'", query);
+            }
+
+            dt = sql.Select(query);
+
+            /*
             if (zoek_pvda && zoek_vvd)
             {
-                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws");
+                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws");
             }
             else if (!zoek_pvda && !zoek_vvd)
             {
-                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws");
+                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws");
             }
             else if (zoek_vvd)
             {
-                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws WHERE Titel LIKE '%vvd%'");
+                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%vvd%'");
             }
             else if (zoek_pvda)
             {
-                dt = sql.Select("SELECT Titel, Link FROM PolitiekNieuws WHERE Titel LIKE '%PvdA%'");
+                dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%PvdA%' AND Titel LIKE '%"+ zoek_vvd +"%'");
             }
+            string alles = null;
+            if (checkBox2.Checked)
+            {
+               alles += "AND Titel LIKE '%"+ zoek_vvd +"%' AND Titel LIKE '%"+ zoek_vvd +"%'";
+            }*/
 
             List<string> Nieuws = new List<string>();
             List<string> Links = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                Nieuws.Add(dt.Rows[i][0].ToString());
+                Nieuws.Add(string.Format("{0} | {1}", dt.Rows[i][2], dt.Rows[i][0].ToString()));
                 Links.Add(dt.Rows[i][1].ToString());
             }
             listBox2.DataSource = Links;
             listBox3.DataSource = Nieuws;
         }
+
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox3.Checked)
-            {
-                zoek_pvda = true;
-            }
-            else
-            {
-                zoek_pvda = false;
-            }
+            zoek_pvda = checkBox3.Checked;
             FilterNieuws();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            tijdteller++;
         }
     }
 }
