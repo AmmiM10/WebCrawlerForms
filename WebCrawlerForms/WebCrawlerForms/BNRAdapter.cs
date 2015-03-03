@@ -25,7 +25,18 @@ namespace WebCrawlerForms
          
         public List<string> GetVideos()
         {
-            return new Tekst().getItems(_link, "mb6\" onclick=\"window.open('(.+?)',");
+            List<string> videoUrls = new Tekst().getItems(_link, "service=player&type=fragment&articleId=(.+?)',");
+            for (int i = 0; i < videoUrls.Count; i++)
+            {
+                if (videoUrls[i].Length > 23)
+                {
+                    videoUrls.RemoveAt(i);
+                    i--;
+                }
+                else
+                    videoUrls[i] = "http://www.bnr.nl/?service=player&type=fragment&articleId=" + videoUrls[i];
+            }
+            return videoUrls;
         }
 
         public List<string> GetTime(List<string> Links)
@@ -33,10 +44,12 @@ namespace WebCrawlerForms
             return new Tekst().getItems("http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456", "<pubDate>(.+?)</pubDate>");
         }
 
-        public string GetVideo()
+        public string GetVideo(string url)
         {
-            string link = new Tekst().getLinkVideo(_link, "mb6\" onclick=\"window.open('(.+?)'");
-            return new Video().getVideo(link, new List<string> { "data-label=\"Laag - 360p\"  /><source src=\"(.+?)\" type=\"480p\" data-label=\"", "data-label=\"Normaal - 480p\"  /><source src=\"(.+?)\" type=\"360p\" data-label=\"" });
+            string returnurl = new Video().getVideo(url, new List<string> { "http://www.bnr.nl/feeds/audio/(.+?).mp3" });
+
+            returnurl = "http://www.bnr.nl/feeds/audio/" + returnurl + ".mp3";
+            return returnurl;
         }
 
         public string GetTekst()

@@ -47,6 +47,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             this.SuspendLayout();
@@ -65,9 +68,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(158, 55);
+            this.button2.Location = new System.Drawing.Point(6, 87);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 30);
+            this.button2.Size = new System.Drawing.Size(155, 25);
             this.button2.TabIndex = 13;
             this.button2.Text = "Ophalen";
             this.button2.UseVisualStyleBackColor = true;
@@ -129,11 +132,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(182, 19);
+            this.label1.Location = new System.Drawing.Point(72, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 33);
+            this.label1.Size = new System.Drawing.Size(177, 55);
             this.label1.TabIndex = 16;
             this.label1.Text = "Politiek";
             // 
@@ -168,9 +171,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(330, 87);
+            this.button7.Location = new System.Drawing.Point(332, 87);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(104, 30);
+            this.button7.Size = new System.Drawing.Size(104, 25);
             this.button7.TabIndex = 29;
             this.button7.Text = "Offline plaatsen";
             this.button7.UseVisualStyleBackColor = true;
@@ -179,7 +182,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(168, 98);
+            this.checkBox2.Location = new System.Drawing.Point(220, 95);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(48, 17);
             this.checkBox2.TabIndex = 30;
@@ -190,7 +193,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(222, 98);
+            this.checkBox3.Location = new System.Drawing.Point(274, 95);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(52, 17);
             this.checkBox3.TabIndex = 31;
@@ -210,7 +213,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(115, 98);
+            this.checkBox4.Location = new System.Drawing.Point(167, 95);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(47, 17);
             this.checkBox4.TabIndex = 34;
@@ -218,12 +221,46 @@
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(911, 299);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(101, 20);
+            this.button5.TabIndex = 35;
+            this.button5.Text = "Volgende";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(6, 325);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 23);
+            this.button6.TabIndex = 36;
+            this.button6.Text = "Zetel verdeling";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(103, 325);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(91, 23);
+            this.button8.TabIndex = 37;
+            this.button8.Text = "Wetsvoorstellen";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
-            this.ClientSize = new System.Drawing.Size(440, 325);
+            this.ClientSize = new System.Drawing.Size(437, 349);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.axWindowsMediaPlayer2);
             this.Controls.Add(this.checkBox3);
@@ -270,6 +307,9 @@
         private System.Windows.Forms.Timer timer1;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button8;
 
     }
 }

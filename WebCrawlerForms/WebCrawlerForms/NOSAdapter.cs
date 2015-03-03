@@ -32,13 +32,12 @@ namespace WebCrawlerForms
 
         public List<string> GetVideos()
         {
-            return new Tekst().getItems("http://www.nos.nl" + _link, "<div class=\"video-play\"><a href=(.+?) class=\"video-play__link js-ajax\" ");
+            return new Tekst().getItems("http://www.nos.nl" + _link, "<div class=\"video-play\"><a href=\"(.+?)\" class=\"video-play__link js-ajax\" ");
         }
         
-        public string GetVideo()
+        public string GetVideo(string url)
         {
-            string link = new Tekst().getLinkVideo("http://www.nos.nl" + _link, "<div class=\"video-play\"><a href=\"(.+?)\" class=\"video-play__link js-ajax\" ");
-            return new Video().getVideo(link, new List<string> { "data-label=\"Laag - 360p\"  /><source src=\"(.+?)\" type=\"480p\" data-label=\"", "data-label=\"Normaal - 480p\"  /><source src=\"(.+?)\" type=\"360p\" data-label=\"" });
+            return new Video().getVideo("http://www.nos.nl" + url, new List<string> { "data-label=\"Laag - 360p\"  /><source\\s*src=\"(.+?)\" type=\"480p\" data-label=\"", "data-label=\"Normaal - 480p\"  /><source src=\"(.+?)\" type=\"360p\" data-label=\"" });
         }
 
         public string GetTekst()

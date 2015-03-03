@@ -18,7 +18,7 @@ namespace WebCrawlerForms
         public string getVideo(string url, List<string> tags)
         {
             WebClient wc = new WebClient();
-            String html = wc.DownloadString("http://www.nos.nl" + url);
+            String html = wc.DownloadString(url);
             MatchCollection m1 = Regex.Matches(html, tags[0], RegexOptions.Singleline);
             string webstring = "";
             foreach (var item in tags)

@@ -21,6 +21,7 @@ namespace WebCrawlerForms
         public bool zoek_pvda;
         public bool zoek_pvv;
         public Helper helper;
+        public List<string> urls;
 
         public Form1()
         {
@@ -28,6 +29,7 @@ namespace WebCrawlerForms
             adapter = new BNRAdapter();
             sql = new SQL();
             helper = new Helper();
+            urls = new List<string>();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -37,6 +39,7 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
+            urls.RemoveRange(0, urls.Count);
             if (listBox3.SelectedValue.ToString().StartsWith("NOS"))
                 adapter = new NOSAdapter();
             else if (listBox3.SelectedValue.ToString().StartsWith("BNR"))
@@ -63,7 +66,21 @@ namespace WebCrawlerForms
 
         private void HasVideo(BronInterface nosAdapter, List<string> VideoList)
         {
-            axWindowsMediaPlayer2.URL = nosAdapter.GetVideo(); 
+            button5.Visible = false;
+            urls.Add(nosAdapter.GetVideo(VideoList[0]));
+            axWindowsMediaPlayer2.URL = urls[0];
+            if (VideoList.Count > 1)
+            {
+                for (int i = 1; i < VideoList.Count; i++)
+                {
+                    urls.Add(nosAdapter.GetVideo(VideoList[i]));
+                }
+            }
+            if (urls.Count > 1)
+            {
+                button5.Visible = true;
+                button5.Text = "Volgende " +"1/" + urls.Count.ToString();
+            }
             Width = 1106;
             axWindowsMediaPlayer2.Visible = true;
             button1.Visible = true;
@@ -107,12 +124,12 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable dt = sql.Select("SELECT Titel, Link, Bron FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
+            DataTable dt = sql.Select("SELECT Titel, Link, Bron, Tijd, Dag FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
             List<string> Titel = new List<string>();
             List<string> Link = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                Titel.Add(dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
+                Titel.Add(dt.Rows[i][4] + "-" + dt.Rows[i][3] + "}" + dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
                 Link.Add(dt.Rows[i][1].ToString());
             }
             listBox2.DataSource = Link;
@@ -135,8 +152,10 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
-            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            //MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
+            //MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            //MessageBox.Show(helper.ZetelsBackup()); 
+            //MessageBox.Show(helper.WetsvoorstellenBackup());
             Form1_Load(sender, e);
         }
 
@@ -183,6 +202,38 @@ namespace WebCrawlerForms
         {
             zoek_pvv = checkBox4.Checked;
             FilterNieuws();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int bepaalInt = 0;
+            for (int i = 0; i < urls.Count; i++)
+            {
+                if (urls[i] == axWindowsMediaPlayer2.URL)
+                {
+                    if (i == urls.Count-1)
+                    {
+                        bepaalInt = 0;
+                    }
+                    else
+                        bepaalInt = i+1;
+                }
+            }
+            axWindowsMediaPlayer2.URL = urls[bepaalInt];
+            button5.Text = "Volgende " + (bepaalInt+1).ToString() + "/" + urls.Count.ToString();
+            axWindowsMediaPlayer2.Ctlcontrols.play();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form2 zetelsform = new Form2();
+            zetelsform.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Form3 wetsvoorstellen = new Form3();
+            wetsvoorstellen.Show();
         }
     }
 }

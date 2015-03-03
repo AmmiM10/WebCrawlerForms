@@ -13,7 +13,7 @@ namespace WebCrawlerForms
         List<string> GetHeadlineLinks();
         List<string> GetVideos();
         List<string> GetTime(List<string> Links);
-        string GetVideo();
+        string GetVideo(string url);
         string GetTekst();
     }
 }
