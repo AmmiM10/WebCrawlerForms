@@ -58,7 +58,7 @@ namespace WebCrawlerForms
                 HasVideo(adapter, VideoList);
                 axWindowsMediaPlayer2.Ctlcontrols.stop();
             }
-            
+
             label2.Visible = true;
             checkBox1.Visible = true;
             pictureBox2.Visible = true;
@@ -79,7 +79,7 @@ namespace WebCrawlerForms
             if (urls.Count > 1)
             {
                 button5.Visible = true;
-                button5.Text = "Volgende " +"1/" + urls.Count.ToString();
+                button5.Text = "Volgende " + "1/" + urls.Count.ToString();
             }
             Width = 1106;
             axWindowsMediaPlayer2.Visible = true;
@@ -129,14 +129,15 @@ namespace WebCrawlerForms
             List<string> Link = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                Titel.Add(dt.Rows[i][4] + "-" + dt.Rows[i][3] + "}" + dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
+                //dt.Rows[i][4] + "-" + dt.Rows[i][3] + "}" + 
+                Titel.Add(dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
                 Link.Add(dt.Rows[i][1].ToString());
             }
             listBox2.DataSource = Link;
             listBox3.DataSource = Titel;
         }
-        
-         private void button1_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer2.Ctlcontrols.play();
         }
@@ -147,15 +148,15 @@ namespace WebCrawlerForms
         private void button3_Click(object sender, EventArgs e)
         {
             listBox3.Font = new Font(listBox3.Text, 15);
-            listBox3.DataSource = new List<string>{"Maikel is gay"};
+            listBox3.DataSource = new List<string> { "Maikel is gay" };
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
-            //MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
-            //MessageBox.Show(helper.ZetelsBackup()); 
-            //MessageBox.Show(helper.WetsvoorstellenBackup());
+            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
+            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            MessageBox.Show(helper.ZetelsBackup());
+            MessageBox.Show(helper.WetsvoorstellenBackup());
             Form1_Load(sender, e);
         }
 
@@ -211,16 +212,16 @@ namespace WebCrawlerForms
             {
                 if (urls[i] == axWindowsMediaPlayer2.URL)
                 {
-                    if (i == urls.Count-1)
+                    if (i == urls.Count - 1)
                     {
                         bepaalInt = 0;
                     }
                     else
-                        bepaalInt = i+1;
+                        bepaalInt = i + 1;
                 }
             }
             axWindowsMediaPlayer2.URL = urls[bepaalInt];
-            button5.Text = "Volgende " + (bepaalInt+1).ToString() + "/" + urls.Count.ToString();
+            button5.Text = "Volgende " + (bepaalInt + 1).ToString() + "/" + urls.Count.ToString();
             axWindowsMediaPlayer2.Ctlcontrols.play();
         }
 

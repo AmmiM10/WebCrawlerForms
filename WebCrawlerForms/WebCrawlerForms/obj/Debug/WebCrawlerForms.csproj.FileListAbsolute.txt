@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 c:\users\gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe
 c:\users\gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.pdb
 c:\users\gebruiker\documents\visual studio 2012\Projects\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
@@ -28,29 +27,19 @@ C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.GenerateResource.Cache
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Database1.sdf
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe.config
-C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
-=======
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form2.resources
 C:\Users\Gebruiker\Desktop\WebCrawler MIT3\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form3.resources
->>>>>>> bd6909072036f34598f1dcabf1acca431422576f
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe.config
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\Interop.WMPLib.dll
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\AxInterop.WMPLib.dll
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.ResolveComReference.cache
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.exe
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.pdb
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Artikel.resources
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form1.resources
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form2.resources
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form3.resources
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Properties.Resources.resources
-C:\Users\Mark\Documents\WebCrawlerForms\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.GenerateResource.Cache
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe.config
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\Interop.WMPLib.dll
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.ResolveComReference.cache
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.exe
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.pdb
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Database1.sdf
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.pdb
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Interop.WMPLib.dll
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\AxInterop.WMPLib.dll
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Artikel.resources
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form1.resources
@@ -58,9 +47,3 @@ C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerF
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form3.resources
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Properties.Resources.resources
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.GenerateResource.Cache
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.pdb
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Database1.sdf
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.exe
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebCrawlerForms.pdb
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\Interop.WMPLib.dll
-C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\AxInterop.WMPLib.dll

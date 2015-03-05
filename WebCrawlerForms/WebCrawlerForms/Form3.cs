@@ -12,11 +12,13 @@ namespace WebCrawlerForms
     public partial class Form3 : Form
     {
         private Wetsvoorstellen wv;
+        private bool status;
 
         public Form3()
         {
             InitializeComponent();
             wv = new Wetsvoorstellen();
+            status = false;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -26,8 +28,12 @@ namespace WebCrawlerForms
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<string> links = wv.DbLinks();
-            System.Diagnostics.Process.Start("http://www.tweedekamer.nl"+links[listBox1.SelectedIndex]);
+            if (status)
+            {
+                List<string> links = wv.DbLinks();
+                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + links[listBox1.SelectedIndex]);   
+            }
+            status = true;
         }
     }
 }

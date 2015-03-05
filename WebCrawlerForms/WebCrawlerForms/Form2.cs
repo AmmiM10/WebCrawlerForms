@@ -16,11 +16,21 @@ namespace WebCrawlerForms
         public Form2()
         {
             InitializeComponent();
-            zetels = new Zetels(pictureBox1.CreateGraphics());
+            //pictureBox1.Paint += pictureBox1_Paint;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            zetels = new Zetels(e.Graphics);
             zetels.TekenAs();
             label1.Text += zetels.DbDatum();
             List<string> zetels_aantallen = zetels.DbAantalZetels();
