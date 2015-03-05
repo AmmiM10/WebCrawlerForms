@@ -50,6 +50,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(6, 87);
+            this.button2.Location = new System.Drawing.Point(279, 24);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 25);
             this.button2.TabIndex = 13;
@@ -252,12 +253,24 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(82, 95);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(68, 17);
+            this.checkBox5.TabIndex = 38;
+            this.checkBox5.Text = "Anders...";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
             this.ClientSize = new System.Drawing.Size(437, 349);
+            this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -310,6 +323,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.CheckBox checkBox5;
 
     }
 }

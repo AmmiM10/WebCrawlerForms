@@ -16,7 +16,6 @@ namespace WebCrawlerForms
         public Form2()
         {
             InitializeComponent();
-            //pictureBox1.Paint += pictureBox1_Paint;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,7 +31,10 @@ namespace WebCrawlerForms
         {
             zetels = new Zetels(e.Graphics);
             zetels.TekenAs();
-            label1.Text += zetels.DbDatum();
+            if (!label1.Text.EndsWith("2015"))
+            {
+                label1.Text += zetels.DbDatum();
+            }
             List<string> zetels_aantallen = zetels.DbAantalZetels();
             List<string> partijen = zetels.DbPartijen();
             zetels.TekenLabels(partijen);

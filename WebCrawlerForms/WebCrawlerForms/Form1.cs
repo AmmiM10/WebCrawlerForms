@@ -20,6 +20,8 @@ namespace WebCrawlerForms
         public bool zoek_vvd;
         public bool zoek_pvda;
         public bool zoek_pvv;
+        public bool zoek_anders;
+        public string andersText;
         public Helper helper;
         public List<string> urls;
 
@@ -153,7 +155,7 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
+            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
             MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
             MessageBox.Show(helper.ZetelsBackup());
             MessageBox.Show(helper.WetsvoorstellenBackup());
@@ -177,6 +179,8 @@ namespace WebCrawlerForms
                 query = string.Format("{0} AND Titel LIKE '%pvda%'", query);
             if (zoek_pvv)
                 query = string.Format("{0} AND Titel LIKE '%pvv%'", query);
+            if (zoek_anders)
+                query = string.Format("{0} AND Titel LIKE '%{1}%'", query, andersText);
 
             query = string.Format("{0} ORDER BY Dag DESC, Tijd DESC", query);
 
@@ -235,6 +239,17 @@ namespace WebCrawlerForms
         {
             Form3 wetsvoorstellen = new Form3();
             wetsvoorstellen.Show();
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked)
+            {
+                andersText = Microsoft.VisualBasic.Interaction.InputBox("Vul een woord in om op te filteren:", "Filter", "Politiek");
+                checkBox5.Text = andersText;
+            }
+            zoek_anders = checkBox5.Checked;
+            FilterNieuws();
         }
     }
 }
