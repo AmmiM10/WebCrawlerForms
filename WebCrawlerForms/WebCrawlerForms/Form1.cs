@@ -16,7 +16,6 @@ namespace WebCrawlerForms
     {
         public List<string> ItemsLink;
         public BronInterface adapter;
-        public SQL sql;
         public bool zoek_vvd;
         public bool zoek_pvda;
         public bool zoek_pvv;
@@ -29,7 +28,6 @@ namespace WebCrawlerForms
         {
             InitializeComponent();
             adapter = new BNRAdapter();
-            sql = new SQL();
             helper = new Helper();
             urls = new List<string>();
         }
@@ -126,7 +124,7 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable dt = sql.Select("SELECT Titel, Link, Bron, Tijd, Dag FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
+            DataTable dt = SQL.Select("SELECT TOP 20 Titel, Link, Bron, Tijd, Dag FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
             List<string> Titel = new List<string>();
             List<string> Link = new List<string>();
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -184,7 +182,7 @@ namespace WebCrawlerForms
 
             query = string.Format("{0} ORDER BY Dag DESC, Tijd DESC", query);
 
-            dt = sql.Select(query);
+            dt = SQL.Select(query);
 
             List<string> Nieuws = new List<string>();
             List<string> Links = new List<string>();

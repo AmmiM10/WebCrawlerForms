@@ -8,21 +8,24 @@ using System.Data.Sql;
 
 namespace WebCrawlerForms
 {
-    public class SQL
+    public static class SQL
     {
-        private OleDbConnection connection;
-        private OleDbCommand command;
-        private OleDbDataAdapter adapter;
-        private string connectionstring =
-            @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
-            @"data source=../../Database1.sdf";
+        
 
         /// <summary>
         /// Select methode
         /// </summary>
         /// <param name="insert_string">Select query</param>
-        public DataTable Select(string select_string)
+        public static DataTable Select(string select_string)
         {
+            string connectionstring =
+            @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
+            @"data source=../../Database1.sdf";
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand command = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
             DataTable table = new DataTable();
             try
             {
@@ -38,11 +41,18 @@ namespace WebCrawlerForms
         /// Insert methode
         /// </summary>
         /// <param name="insert_string">Insert query</param>
-        public void Insert(string insert_string)
+        public static void Insert(string insert_string)
         {
-            connection = new OleDbConnection(connectionstring);
-            command = new OleDbCommand();
-            adapter = new OleDbDataAdapter();
+
+            string connectionstring =
+            @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
+            @"data source=../../Database1.sdf";
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand command = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+            
             try
             {
                 connection.Open();
@@ -61,10 +71,18 @@ namespace WebCrawlerForms
         /// Update methode
         /// </summary>
         /// <param name="update_string">Update query</param>
-        public void Update(string update_string)
+        public static void Update(string update_string)
         {
-            connection = new OleDbConnection(connectionstring);
-            command = new OleDbCommand();
+            string connectionstring =
+            @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
+            @"data source=../../Database1.sdf";
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand command = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            
+
+            
             try
             {
                 connection.Open();

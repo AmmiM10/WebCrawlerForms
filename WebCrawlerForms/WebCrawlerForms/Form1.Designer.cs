@@ -183,23 +183,27 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox2.ForeColor = System.Drawing.Color.White;
             this.checkBox2.Location = new System.Drawing.Point(220, 95);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(48, 17);
             this.checkBox2.TabIndex = 30;
             this.checkBox2.Text = "VVD";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.UseVisualStyleBackColor = false;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
+            this.checkBox3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox3.ForeColor = System.Drawing.Color.White;
             this.checkBox3.Location = new System.Drawing.Point(274, 95);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(52, 17);
             this.checkBox3.TabIndex = 31;
             this.checkBox3.Text = "PvdA";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.UseVisualStyleBackColor = false;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // axWindowsMediaPlayer2
@@ -214,12 +218,14 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox4.ForeColor = System.Drawing.Color.White;
             this.checkBox4.Location = new System.Drawing.Point(167, 95);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(47, 17);
             this.checkBox4.TabIndex = 34;
             this.checkBox4.Text = "PVV";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.UseVisualStyleBackColor = false;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // button5
@@ -256,12 +262,14 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
+            this.checkBox5.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox5.ForeColor = System.Drawing.Color.White;
             this.checkBox5.Location = new System.Drawing.Point(82, 95);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(68, 17);
             this.checkBox5.TabIndex = 38;
             this.checkBox5.Text = "Anders...";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.UseVisualStyleBackColor = false;
             this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // Form1

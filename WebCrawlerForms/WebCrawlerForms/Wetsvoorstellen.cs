@@ -8,11 +8,8 @@ namespace WebCrawlerForms
 {
     public class Wetsvoorstellen
     {
-        private SQL sql;
-
         public Wetsvoorstellen()
         {
-            sql = new SQL();
         }
 
         public List<string> HaalTitelOp()
@@ -35,7 +32,7 @@ namespace WebCrawlerForms
         public List<string> DbTitels()
         {
             List<string> titels = new List<string>();
-            DataTable dt = sql.Select("SELECT Titel FROM Wetsvoorstellen ORDER BY Id");
+            DataTable dt = SQL.Select("SELECT Titel FROM Wetsvoorstellen ORDER BY Id"); 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 titels.Add(dt.Rows[i][0].ToString());
@@ -44,10 +41,11 @@ namespace WebCrawlerForms
             return titels;
         }
 
+
         public List<string> DbLinks()
         {
             List<string> links = new List<string>();
-            DataTable dt = sql.Select("SELECT Link FROM Wetsvoorstellen ORDER BY Id ");
+            DataTable dt = SQL.Select("SELECT Link FROM Wetsvoorstellen ORDER BY Id ");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 links.Add(dt.Rows[i][0].ToString());

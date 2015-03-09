@@ -13,7 +13,6 @@ namespace WebCrawlerForms
     public class Zetels
     {
         public Graphics paper;
-        public SQL sql;
 
         public Zetels(Graphics paper)
         {
@@ -88,8 +87,7 @@ namespace WebCrawlerForms
         public string DbDatum()
         {
             string datum = null;
-            sql = new SQL();
-            DataTable dt = sql.Select("SELECT PeilingDatum FROM Zetels WHERE Id = '2'");
+            DataTable dt = SQL.Select("SELECT PeilingDatum FROM Zetels WHERE Id = '2'");
             datum = dt.Rows[0][0].ToString();
             return datum;
         }
@@ -97,8 +95,7 @@ namespace WebCrawlerForms
         public List<string> DbPartijen()
         {
             List<string> partijen = new List<string>();
-            sql = new SQL();
-            DataTable dt = sql.Select("SELECT Partij, Aantal FROM Zetels ORDER BY Aantal DESC");
+            DataTable dt = SQL.Select("SELECT Partij, Aantal FROM Zetels ORDER BY Aantal DESC");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 partijen.Add(dt.Rows[i][0].ToString());
@@ -109,8 +106,7 @@ namespace WebCrawlerForms
         public List<string> DbAantalZetels()
         {
             List<string> aantal = new List<string>();
-            sql = new SQL();
-            DataTable dt = sql.Select("SELECT Aantal FROM Zetels WHERE Id != '2' ORDER BY Aantal DESC");
+            DataTable dt = SQL.Select("SELECT Aantal FROM Zetels WHERE Id != '2' ORDER BY Aantal DESC");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 aantal.Add(dt.Rows[i][0].ToString());
