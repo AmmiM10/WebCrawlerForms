@@ -46,7 +46,7 @@ namespace WebCrawlerForms
 
         public string GetVideo(string url)
         {
-            string returnurl = new Video().getVideo(url, new List<string> { "http://www.bnr.nl/feeds/audio/(.+?).mp3" });
+            string returnurl = new Media().getVideo(url, new List<string> { "http://www.bnr.nl/feeds/audio/(.+?).mp3" });
 
             returnurl = "http://www.bnr.nl/feeds/audio/" + returnurl + ".mp3";
             return returnurl;

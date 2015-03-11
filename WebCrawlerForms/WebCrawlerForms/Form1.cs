@@ -153,10 +153,11 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
-            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
-            MessageBox.Show(helper.ZetelsBackup());
-            MessageBox.Show(helper.WetsvoorstellenBackup());
+            //MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
+            //MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            //MessageBox.Show(helper.ZetelsBackup());
+            //MessageBox.Show(helper.WetsvoorstellenBackup());
+            MessageBox.Show(helper.AgendaBackup());
             Form1_Load(sender, e);
         }
 
@@ -248,6 +249,12 @@ namespace WebCrawlerForms
             }
             zoek_anders = checkBox5.Checked;
             FilterNieuws();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Form4 agenda = new Form4();
+            agenda.Show();
         }
     }
 }

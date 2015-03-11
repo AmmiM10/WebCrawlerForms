@@ -8,9 +8,9 @@ using System.Web;
 
 namespace WebCrawlerForms
 {
-    public class Video
+    public class Media
     {
-        public Video()
+        public Media()
         {
 
         }

@@ -12,6 +12,7 @@ namespace WebCrawlerForms
         private BronInterface adapter;
         private Zetels zetels;
         private Wetsvoorstellen wv;
+        private Agenda ag;
 
         public Helper()
         {
@@ -127,6 +128,17 @@ namespace WebCrawlerForms
                     else
                         messagereturn = "Wetsvoorstellen zijn niet bijgewerkt";
                 }
+            return messagereturn;
+        }
+
+        public string AgendaBackup()
+        {
+            string messagereturn = null;
+            ag = new Agenda();
+            List<string> titels = ag.HaalTitelOp();
+            List<string> links = ag.HaalLinkOp();
+            List<string> tijden = ag.HaalTijdOp();
+            List<string> typen = ag.HaalTypeOp();
             return messagereturn;
         }
     }
