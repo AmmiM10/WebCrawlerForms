@@ -10,8 +10,6 @@ namespace WebCrawlerForms
 {
     public static class SQL
     {
-        
-
         /// <summary>
         /// Select methode
         /// </summary>

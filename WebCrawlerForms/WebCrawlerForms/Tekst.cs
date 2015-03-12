@@ -24,9 +24,7 @@ namespace WebCrawlerForms
             this._url = url;
             this._tags = tags;
             WebClient wc = new WebClient();
-            // url = http://nos.nl/nieuws/politiek/
             String html = wc.DownloadString(_url);
-            // voorbeeld = "</li>\\s*<li>\\s*<a href=\"(.+?)\">\\s*<article id="
             MatchCollection m1 = Regex.Matches(html, _tags, RegexOptions.Singleline);
             string webtekst = null;
             if (m1.Count > 0)
@@ -34,7 +32,6 @@ namespace WebCrawlerForms
                 foreach (Match m in m1)
                 {
                     string score = m.Groups[1].Value;
-                    //Encoding ddd = UTF8Encoding.GetEncoding(score);
                     score = HttpUtility.HtmlDecode(score);
                     score = Regex.Replace(score, "<p>", Environment.NewLine);
                     score = Regex.Replace(score, "</p>", Environment.NewLine);

@@ -153,11 +153,11 @@ namespace WebCrawlerForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
-            //MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
-            //MessageBox.Show(helper.ZetelsBackup());
-            //MessageBox.Show(helper.WetsvoorstellenBackup());
-            MessageBox.Show(helper.AgendaBackup());
+            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
+            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
+            MessageBox.Show(helper.ZetelsBackup());
+            MessageBox.Show(helper.WetsvoorstellenBackup());
+            //MessageBox.Show(helper.AgendaBackup());
             Form1_Load(sender, e);
         }
 

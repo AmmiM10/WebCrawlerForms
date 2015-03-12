@@ -14,11 +14,14 @@ namespace WebCrawlerForms
             List<string> titels = new Tekst().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"subject\">(.+?)\\s*</p>");
             for (int i = 0; i < titels.Count; i++)
             {
-                string pattern = "\\s*";
-                string replacement = " ";
-                Regex rgx = new Regex(pattern);
-                string result = rgx.Replace(titels[i], replacement);
-                //titels[i] = titels[i].Replace('/n',' ');
+                if (titels[i].Contains("    "))
+                {
+                    string pattern = "     ";
+                    string replacement = " ";
+                    Regex rgx = new Regex(pattern);
+                    string result = rgx.Replace(titels[i], replacement);
+                    //titels[i] = titels[i].Replace('/n',' ');
+                }
             }
             return titels;
         }

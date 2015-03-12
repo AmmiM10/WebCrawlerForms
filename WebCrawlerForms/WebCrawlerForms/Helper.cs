@@ -12,7 +12,7 @@ namespace WebCrawlerForms
         private BronInterface adapter;
         private Zetels zetels;
         private Wetsvoorstellen wv;
-        private Agenda ag;
+        //private Agenda ag;
 
         public Helper()
         {
@@ -91,7 +91,7 @@ namespace WebCrawlerForms
             string messagereturn = null;
             zetels = new Zetels();
             string datum = zetels.HaalDatumOp();
-            DataTable dt = SQL.Select("SELECT PeilingDatum FROM Zetels WHERE PeilingDatum = '" + datum + "'");
+            DataTable dt = SQL.Select("SELECT * FROM Zetels WHERE PeilingDatum = '" + datum + "'");
             if (dt.Rows.Count == 0)
             {
                 SQL.Update("UPDATE Zetels SET PeilingDatum = '" + datum + "' WHERE Id = '2'");
@@ -99,8 +99,8 @@ namespace WebCrawlerForms
                 List<string> aantalzetels = zetels.HaalZetelsOp();
                 for (int i = 0; i < partijen.Count; i++)
                 {
-                    SQL.Update("UPDATE Zetels SET Aantal = '" + Convert.ToInt32(aantalzetels[i]) + "' WHERE Partij = '" + partijen[i] + "'");
-                    //sql.Insert("INSERT INTO Zetels (Partij, Aantal) VALUES ('"+ partijen[i] +"', '"+ Convert.ToInt32(aantalzetels[i]) +"')");
+                    //SQL.Update("UPDATE Zetels SET Aantal = '" + Convert.ToInt32(aantalzetels[i]) + "', PeilingDatum = '"+ datum +"' WHERE Partij = '" + partijen[i] + "'");
+                    SQL.Insert("INSERT INTO Zetels (Partij, Aantal, PeilingDatum) VALUES ('"+ partijen[i] +"', '"+ Convert.ToInt32(aantalzetels[i]) +"', '"+ datum +"')");
                 }
                 messagereturn = "Er zijn nieuwe peilingen";
             }
@@ -131,7 +131,7 @@ namespace WebCrawlerForms
             return messagereturn;
         }
 
-        public string AgendaBackup()
+        /*public string AgendaBackup()
         {
             string messagereturn = null;
             ag = new Agenda();
@@ -140,6 +140,6 @@ namespace WebCrawlerForms
             List<string> tijden = ag.HaalTijdOp();
             List<string> typen = ag.HaalTypeOp();
             return messagereturn;
-        }
+        }*/
     }
 }

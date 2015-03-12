@@ -37,8 +37,10 @@ namespace WebCrawlerForms
             }
             List<string> zetels_aantallen = zetels.DbAantalZetels();
             List<string> partijen = zetels.DbPartijen();
+            List<string> verkiezingen2012 = zetels.DbAantalZetels2012();
             zetels.TekenLabels(partijen);
-            zetels.TekenZetels(zetels_aantallen);
+            zetels.TekenZetels2012(verkiezingen2012);
+            zetels.TekenZetels(zetels_aantallen,verkiezingen2012);
         }
     }
 }

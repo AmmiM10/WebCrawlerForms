@@ -34,13 +34,37 @@ namespace WebCrawlerForms
             }
         }
 
-        public void TekenZetels(List<string> zetels)
+        public void TekenZetels(List<string> zetels, List<string> zetels2012)
         {
             for (int i = 0; i < zetels.Count; i++)
             {
                 int cijfer = Convert.ToInt32(zetels[i]);
+                int cijfer2012 = Convert.ToInt32(zetels2012[i]);
                 paper.DrawLine(new Pen(new SolidBrush(Color.White),2), (i * 40) + 45, 195, (i * 40) + 45, 195 - (cijfer*5));
                 paper.DrawString(zetels[i], new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i * 40) + 40, 10);
+
+                int verschil = cijfer - cijfer2012;
+                if (cijfer > cijfer2012)
+                {
+                    paper.DrawString("+"+Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.Green), (i * 40) + 52, 10);
+                }
+                else if (cijfer < cijfer2012)
+                {
+                    paper.DrawString(Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.Red), (i * 40) + 52, 10);
+                }
+                else
+                {
+                    paper.DrawString(Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i * 40) + 52, 10);    
+                }
+            }
+        }
+
+        public void TekenZetels2012(List<string> zetels)
+        {
+            for (int i = 0; i < zetels.Count; i++)
+            {
+                int cijfer = Convert.ToInt32(zetels[i]);
+                paper.DrawLine(new Pen(new SolidBrush(Color.Red), 2), (i * 40) + 50, 195, (i * 40) + 50, 195 - (cijfer * 5));
             }
         }
 
@@ -87,7 +111,7 @@ namespace WebCrawlerForms
         public string DbDatum()
         {
             string datum = null;
-            DataTable dt = SQL.Select("SELECT PeilingDatum FROM Zetels WHERE Id = '2'");
+            DataTable dt = SQL.Select("SELECT PeilingDatum FROM Zetels WHERE Id = '15'");
             datum = dt.Rows[0][0].ToString();
             return datum;
         }
@@ -106,7 +130,18 @@ namespace WebCrawlerForms
         public List<string> DbAantalZetels()
         {
             List<string> aantal = new List<string>();
-            DataTable dt = SQL.Select("SELECT Aantal FROM Zetels WHERE Id != '2' ORDER BY Aantal DESC");
+            DataTable dt = SQL.Select("SELECT Aantal FROM Zetels ORDER BY Aantal DESC");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                aantal.Add(dt.Rows[i][0].ToString());
+            }
+            return aantal;
+        }
+
+        public List<string> DbAantalZetels2012()
+        {
+            List<string> aantal = new List<string>();
+            DataTable dt = SQL.Select("SELECT Verkiezingen2012 FROM Zetels ORDER BY Aantal DESC");
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 aantal.Add(dt.Rows[i][0].ToString());
