@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -44,7 +42,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -72,23 +69,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(279, 24);
+            this.button2.Location = new System.Drawing.Point(279, 56);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 25);
             this.button2.TabIndex = 13;
             this.button2.Text = "Ophalen";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(330, 55);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(104, 30);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "Widget";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox2
             // 
@@ -316,7 +303,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
@@ -337,7 +323,6 @@
 
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -349,7 +334,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Timer timer1;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Button button5;

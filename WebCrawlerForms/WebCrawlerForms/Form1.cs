@@ -145,11 +145,6 @@ namespace WebCrawlerForms
         {
             axWindowsMediaPlayer2.Ctlcontrols.stop();
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            listBox3.Font = new Font(listBox3.Text, 15);
-            listBox3.DataSource = new List<string> { "Maikel is gay" };
-        }
 
         private void button7_Click(object sender, EventArgs e)
         {
