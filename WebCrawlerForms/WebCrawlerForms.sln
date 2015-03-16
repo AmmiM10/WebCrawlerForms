@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCrawlerForms", "WebCrawlerForms\WebCrawlerForms.csproj", "{A1CF7056-4E45-4C28-B67F-498C219F73E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcrawlerService", "WebcrawlerService\WebcrawlerService.csproj", "{9F7BED18-3FE1-460B-9F92-CE38E8A4B344}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{A1CF7056-4E45-4C28-B67F-498C219F73E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1CF7056-4E45-4C28-B67F-498C219F73E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1CF7056-4E45-4C28-B67F-498C219F73E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7BED18-3FE1-460B-9F92-CE38E8A4B344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7BED18-3FE1-460B-9F92-CE38E8A4B344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7BED18-3FE1-460B-9F92-CE38E8A4B344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7BED18-3FE1-460B-9F92-CE38E8A4B344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
