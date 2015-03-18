@@ -8,6 +8,5 @@ namespace WebcrawlerService
     public class Webcrawler
     {
         GenericInterface<NOSNieuwsCrawler> titel = new GenericInterface<NOSNieuwsCrawler>();
-
     }
 }
