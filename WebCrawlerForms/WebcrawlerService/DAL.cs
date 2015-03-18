@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Web;
 
-namespace WebcrawlerService
+namespace WebcrawlerMyNewService
 {
     public static class DAL
     {
@@ -38,9 +38,8 @@ namespace WebcrawlerService
         /// Insert methode
         /// </summary>
         /// <param name="insert_string">Insert query</param>
-        public static void Insert(string insert_string)
+        public static void Insert(GenericClassObject classObject)
         {
-
             string connectionstring =
             @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
             @"data source=../../Database1.sdf";
@@ -49,6 +48,9 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
+            DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '"+ classObject.CategorieProp +"'");
+
+            string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.TitelProp + "', '" + classObject.BeschrijvingProp + "', '" + classObject.LinkProp + "', '" + classObject.MediaProp + "', '" + classObject.BronProp + "', '" + classObject.DatumProp + "')");
 
             try
             {

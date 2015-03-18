@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebcrawlerService
+namespace WebcrawlerMyNewService
 {
-    public class NOSNieuwsCrawler: GenericInterface<NOSNieuwsCrawler>
+    public class NOSNieuwsCrawler
     {
         private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; } }
@@ -25,7 +25,7 @@ namespace WebcrawlerService
             return new CrawlContent().getItems("http://nos.nl/nieuws/politiek/archief/", "<li class=\"list-time__item\"><a href=\"(.+?)\" class=\"link-block\">");
         }
 
-        public List<string> GetTime(List<string> Links)
+        public List<string> GetTime()
         {
             return new CrawlContent().getItems("http://nos.nl/nieuws/politiek/archief/", "<time datetime=\"(.+?)\">");
         }
@@ -43,6 +43,32 @@ namespace WebcrawlerService
         public string GetTekst()
         {
             return new CrawlContent().GetTekst("http://www.nos.nl" + _link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div>");
+        }
+
+        public GenericClassObject getEverything()
+        {
+            GenericClassObject all = new GenericClassObject();
+            List<string> ListHeadlines = GetHeadlines();
+            List<string> ListHeadlinesLink = GetHeadlineLinks();
+            List<string> ListTime = GetTime();
+            List<string> ListVideo = GetVideos();
+            for (int i = 0; i < ListHeadlines.Count; i++)
+            {
+                all.TitelProp = ListHeadlines[i];
+                PropLink = ListHeadlinesLink[i];
+                all.BeschrijvingProp = GetTekst();
+                all.BronProp = "NOS";
+                all.DatumProp = ListTime[i];
+                all.LinkProp = ListHeadlinesLink[i];
+
+                for (int j = 0; j < ListVideo.Count; j++)
+                {
+                    all.MediaProp += ListVideo[i] + ";";
+                }
+                all.CategorieProp = Categorie.Nieuws;
+            }
+
+            return all;
         }
     }
 }

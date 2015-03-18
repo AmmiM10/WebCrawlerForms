@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebcrawlerService
+namespace WebcrawlerMyNewService
 {
     public class BNRNieuwsCrawler
     {
@@ -25,7 +25,7 @@ namespace WebcrawlerService
 
         public List<string> GetVideos()
         {
-            List<string> videoUrls = new CrawlContent().getItems(_link, "service=player&type=fragment&articleId=(.+?)',");
+            List<string> videoUrls = new CrawlContent().getItems(_link, "MyNewService=player&type=fragment&articleId=(.+?)',");
             for (int i = 0; i < videoUrls.Count; i++)
             {
                 if (videoUrls[i].Length > 23)
@@ -34,7 +34,7 @@ namespace WebcrawlerService
                     i--;
                 }
                 else
-                    videoUrls[i] = "http://www.bnr.nl/?service=player&type=fragment&articleId=" + videoUrls[i];
+                    videoUrls[i] = "http://www.bnr.nl/?MyNewService=player&type=fragment&articleId=" + videoUrls[i];
             }
             return videoUrls;
         }

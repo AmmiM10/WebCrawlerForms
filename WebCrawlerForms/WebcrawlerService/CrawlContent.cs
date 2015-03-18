@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace WebcrawlerService
+namespace WebcrawlerMyNewService
 {
     public class CrawlContent
     {
