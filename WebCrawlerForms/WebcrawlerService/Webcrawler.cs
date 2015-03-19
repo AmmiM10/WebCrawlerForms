@@ -5,8 +5,15 @@ using System.Web;
 
 namespace WebcrawlerService
 {
+    public enum Categorie
+    { 
+        Nieuws, Zetels, Agendapunten, Wetsvoorstellen
+    }
+
     public class Webcrawler
     {
+
+
         public void GetEverything()
         {
             //List<List<WebCrawlerForms.GenericClassObject>> everything = new AbstractBron().geteverything();
