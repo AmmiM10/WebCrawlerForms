@@ -23,6 +23,8 @@ namespace WebCrawlerForms
         public string andersText;
         public Helper helper;
         public List<string> urls;
+        public NieuwsItemsController NIC;
+        public List<GenericObject> NieuwsItems;
 
         public Form1()
         {
@@ -30,6 +32,8 @@ namespace WebCrawlerForms
             adapter = new BNRAdapter();
             helper = new Helper();
             urls = new List<string>();
+            NIC = new NieuwsItemsController();
+            NieuwsItems = NIC.GetNieuwsItems();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -39,6 +43,8 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
+            textBox1.Text = NieuwsItems[listBox3.SelectedIndex].BeschrijvingProp;
+            /*
             urls.RemoveRange(0, urls.Count);
             if (listBox3.SelectedValue.ToString().StartsWith("NOS"))
                 adapter = new NOSAdapter();
@@ -61,7 +67,7 @@ namespace WebCrawlerForms
 
             label2.Visible = true;
             checkBox1.Visible = true;
-            pictureBox2.Visible = true;
+            pictureBox2.Visible = true;*/
         }
 
         private void HasVideo(BronInterface nosAdapter, List<string> VideoList)
@@ -124,17 +130,19 @@ namespace WebCrawlerForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable dt = SQL.Select("SELECT TOP 20 Titel, Link, Bron, Tijd, Dag FROM PolitiekNieuws ORDER BY Dag DESC, Tijd DESC");
             List<string> Titel = new List<string>();
             List<string> Link = new List<string>();
-            for (int i = 0; i < dt.Rows.Count; i++)
+
+            if (NieuwsItems.Count > 0)
             {
-                //dt.Rows[i][4] + "-" + dt.Rows[i][3] + "}" + 
-                Titel.Add(dt.Rows[i][2].ToString() + " | " + dt.Rows[i][0].ToString());
-                Link.Add(dt.Rows[i][1].ToString());
+                for (int i = 0; i < NieuwsItems.Count; i++)
+                {
+                    Titel.Add(NieuwsItems[i].BronProp + "|" + NieuwsItems[i].TitelProp);
+                    Link.Add(NieuwsItems[i].LinkProp);
+                }
+                listBox2.DataSource = Link;
+                listBox3.DataSource = Titel;
             }
-            listBox2.DataSource = Link;
-            listBox3.DataSource = Titel;
         }
 
         private void button1_Click(object sender, EventArgs e)

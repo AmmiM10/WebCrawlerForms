@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebcrawlerMyNewService
+namespace WebcrawlerService
 {
-    public class NOSNieuwsCrawler
+    public class NOSNieuwsCrawler: IGenericObject
     {
         private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; } }
@@ -45,9 +45,9 @@ namespace WebcrawlerMyNewService
             return new CrawlContent().GetTekst("http://www.nos.nl" + _link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div>");
         }
 
-        public GenericClassObject getEverything()
+        public WebCrawlerForms.GenericObject getEverything()
         {
-            GenericClassObject all = new GenericClassObject();
+            WebCrawlerForms.GenericObject all = new WebCrawlerForms.GenericObject();
             List<string> ListHeadlines = GetHeadlines();
             List<string> ListHeadlinesLink = GetHeadlineLinks();
             List<string> ListTime = GetTime();
@@ -65,7 +65,7 @@ namespace WebcrawlerMyNewService
                 {
                     all.MediaProp += ListVideo[i] + ";";
                 }
-                all.CategorieProp = Categorie.Nieuws;
+                //all.CategorieProp = Categorie.Nieuws;
             }
 
             return all;

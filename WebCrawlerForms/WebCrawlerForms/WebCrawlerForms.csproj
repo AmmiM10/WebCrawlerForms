@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="BNRAdapter.cs" />
     <Compile Include="BronInterface.cs" />
+    <Compile Include="DAL.cs" />
     <Compile Include="DBPolitiekNieuws.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,7 +102,9 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenericObject.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="NieuwsItemsController.cs" />
     <Compile Include="NOSAdapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
