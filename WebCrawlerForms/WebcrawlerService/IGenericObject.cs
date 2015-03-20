@@ -7,12 +7,14 @@ namespace WebcrawlerService
 {
     public interface IGenericObject
     {
-        string titel { get; set; }
-        string beschrijving { get; set; }
-        string bron { get; set; }
-        string media { get; set; }
-        string link { get; set; }
-        string datum { get; set; }
-        Categorie categorie { get; set; }
+        string GetTitel { get; set; }
+        string GetBeschrijving { get; set; }
+        string GetBron { get; set; }
+        string GetMedia { get; set; }
+        string GetLink { get; set; }
+        string GetDatum { get; set; }
+        Categorie GetCategorie { get; set; }
+
+        IGenericObject GetEverything();
     }
 }

@@ -12,18 +12,16 @@ namespace WebcrawlerService
 
     public class Webcrawler
     {
-
-
         public void GetEverything()
         {
-            //List<List<WebCrawlerForms.GenericClassObject>> everything = new AbstractBron().geteverything();
-            //for (int i = 0; i < everything.Count; i++)
-            //{
-            //    for (int j = 0; j < everything[i].Count; j++)
-            //    {
-            //        DAL.Insert(everything[i][j]);
-            //    }
-            //}
+            List<List<IGenericObject>> everything = new GenericBron().getEverything();
+            for (int i = 0; i < everything.Count; i++)
+            {
+                for (int j = 0; j < everything[i].Count; j++)
+                {
+                    DAL.Insert(everything[i][j]);
+                }
+            }
         }
     }
 }

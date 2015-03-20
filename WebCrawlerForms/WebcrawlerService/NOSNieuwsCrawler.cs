@@ -12,6 +12,21 @@ namespace WebcrawlerService
         private string _link;
         public string PropLink { get { return _link; } set { _link = value; } }
 
+        private string titel;
+        public string GetTitel { get { return titel; } set { titel = value; } }
+        private string beschrijving;
+        public string GetBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
+        private string bron;
+        public string GetBron { get { return bron; } set { bron = value; } }
+        private string media;
+        public string GetMedia { get { return media; } set { media = value; } }
+        private string link;
+        public string GetLink { get { return link; } set { link = value; } }
+        private string datum;
+        public string GetDatum { get { return datum; } set { datum = value; } }
+        private Categorie categorie;
+        public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
+
         public List<string> GetHeadlines()
         {
             List<string> Headlines = new CrawlContent().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
@@ -45,30 +60,30 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst("http://www.nos.nl" + _link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div>");
         }
 
-        public WebCrawlerForms.GenericObject getEverything()
+        public IGenericObject GetEverything()
         {
-            WebCrawlerForms.GenericObject all = new WebCrawlerForms.GenericObject();
             List<string> ListHeadlines = GetHeadlines();
             List<string> ListHeadlinesLink = GetHeadlineLinks();
             List<string> ListTime = GetTime();
             List<string> ListVideo = GetVideos();
+
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                all.TitelProp = ListHeadlines[i];
+                this.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
-                all.BeschrijvingProp = GetTekst();
-                all.BronProp = "NOS";
-                all.DatumProp = ListTime[i];
-                all.LinkProp = ListHeadlinesLink[i];
+                this.GetBeschrijving = GetTekst();
+                this.GetBron = "NOS";
+                this.GetDatum = ListTime[i];
+                this.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)
                 {
-                    all.MediaProp += ListVideo[i] + ";";
+                    this.GetMedia += ListVideo[i] + ";";
                 }
-                //all.CategorieProp = Categorie.Nieuws;
+                this.GetCategorie = Categorie.Nieuws;
             }
 
-            return all;
+            return this;
         }
     }
 }

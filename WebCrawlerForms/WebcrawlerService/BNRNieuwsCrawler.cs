@@ -5,12 +5,27 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class BNRNieuwsCrawler
+    public class BNRNieuwsCrawler: IGenericObject
     {
         private string _link;
         private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; } }
         public string PropLink { get { return _link; } set { _link = value; } }
+
+        private string titel;
+        public string GetTitel { get { return titel; } set { titel = value; } }
+        private string beschrijving;
+        public string GetBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
+        private string bron;
+        public string GetBron { get { return bron; } set { bron = value; } }
+        private string media;
+        public string GetMedia { get { return media; } set { media = value; } }
+        private string link;
+        public string GetLink { get { return link; } set { link = value; } }
+        private string datum;
+        public string GetDatum { get { return datum; } set { datum = value; } }
+        private Categorie categorie;
+        public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
         public List<string> GetHeadlines()
         {
@@ -39,7 +54,7 @@ namespace WebcrawlerService
             return videoUrls;
         }
 
-        public List<string> GetTime(List<string> Links)
+        public List<string> GetTime()
         {
             return new CrawlContent().getItems("http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456", "<pubDate>(.+?)</pubDate>");
         }
@@ -55,6 +70,32 @@ namespace WebcrawlerService
         public string GetTekst()
         {
             return new CrawlContent().GetTekst(_link, "itemprop=\"articleBody\">\\s*(.+?)</span");
+        }
+
+        public IGenericObject GetEverything()
+        {
+            List<string> ListHeadlines = GetHeadlines();
+            List<string> ListHeadlinesLink = GetHeadlineLinks();
+            List<string> ListTime = GetTime();
+            List<string> ListVideo = GetVideos();
+
+            for (int i = 0; i < ListHeadlines.Count; i++)
+            {
+                this.GetTitel = ListHeadlines[i];
+                PropLink = ListHeadlinesLink[i];
+                this.GetBeschrijving = GetTekst();
+                this.GetBron = "BNR";
+                this.GetDatum = ListTime[i];
+                this.GetLink = ListHeadlinesLink[i];
+
+                for (int j = 0; j < ListVideo.Count; j++)
+                {
+                    this.GetMedia += ListVideo[i] + ";";
+                }
+                this.GetCategorie = Categorie.Nieuws;
+            }
+
+            return this;
         }
     }
 }
