@@ -15,6 +15,6 @@ namespace WebcrawlerService
         string GetDatum { get; set; }
         Categorie GetCategorie { get; set; }
 
-        IGenericObject GetEverything();
+        List<IGenericObject> GetAllSources();
     }
 }

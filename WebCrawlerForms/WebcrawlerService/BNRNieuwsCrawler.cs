@@ -72,30 +72,38 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst(_link, "itemprop=\"articleBody\">\\s*(.+?)</span");
         }
 
-        public IGenericObject GetEverything()
+        public List<IGenericObject> GetAllSources()
         {
+            List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
+
             List<string> ListHeadlines = GetHeadlines();
             List<string> ListHeadlinesLink = GetHeadlineLinks();
-            List<string> ListTime = GetTime();
-            List<string> ListVideo = GetVideos();
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                this.GetTitel = ListHeadlines[i];
+                IGenericObject go = new BNRNieuwsCrawler();
+                go.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
-                this.GetBeschrijving = GetTekst();
-                this.GetBron = "BNR";
-                this.GetDatum = ListTime[i];
-                this.GetLink = ListHeadlinesLink[i];
-
-                for (int j = 0; j < ListVideo.Count; j++)
+                List<string> ListVideo = GetVideos();
+                List<string> ListTime = GetTime();
+                go.GetBeschrijving = GetTekst();
+                if (go.GetBeschrijving == null)
                 {
-                    this.GetMedia += ListVideo[i] + ";";
+                    go.GetBeschrijving = "";
                 }
-                this.GetCategorie = Categorie.Nieuws;
+                go.GetBron = "BNR";
+                go.GetDatum = ListTime[i];
+                go.GetLink = ListHeadlinesLink[i];
+
+                //for (int j = 0; j < ListVideo.Count; j++)
+                //{
+                //    go.GetMedia += ListVideo[j] + ";";
+                //}
+                go.GetCategorie = Categorie.Nieuws;
+                ListAllObjecten.Add(go);
             }
 
-            return this;
+            return ListAllObjecten;
         }
     }
 }

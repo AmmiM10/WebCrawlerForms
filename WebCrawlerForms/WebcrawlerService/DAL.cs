@@ -48,15 +48,15 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
-            //DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '"+ classObject.CategorieProp +"'");
+            DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '" + classObject.GetCategorie + "'");
 
-            //string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.TitelProp + "', '" + classObject.BeschrijvingProp + "', '" + classObject.LinkProp + "', '" + classObject.MediaProp + "', '" + classObject.BronProp + "', '" + classObject.DatumProp + "')");
+            string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`") + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetMedia + "', '" + classObject.GetBron + "', '" + classObject.GetDatum + "')");
 
             try
             {
                 connection.Open();
                 command.Connection = connection;
-                //command.CommandText = insert_string;
+                command.CommandText = insert_string;
                 adapter.InsertCommand = command;
                 adapter.InsertCommand.ExecuteNonQuery();
             }

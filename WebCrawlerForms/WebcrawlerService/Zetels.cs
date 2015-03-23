@@ -47,8 +47,10 @@ namespace WebcrawlerService
             return datum;
         }
 
-        public IGenericObject GetEverything()
+        public List<IGenericObject> GetAllSources()
         {
+            List<IGenericObject> ListObjecten = new List<IGenericObject>();
+
             List<string> ListInhoud = HaalZetelsOp();
             List<string> ListHeadlines = HaalPartijenOp();
             //List<string> ListHeadlinesLink = GetHeadlineLinks();
@@ -67,9 +69,10 @@ namespace WebcrawlerService
                 //    this.GetMedia += ListVideo[i] + ";";
                 //}
                 this.GetCategorie = Categorie.Zetels;
+                ListObjecten.Add(this);
             }
 
-            return this;
+            return ListObjecten;
         }
     }
 }
