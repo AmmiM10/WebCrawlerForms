@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
+using WebcrawlerService;
 
 namespace WebCrawlerForms
 {
@@ -38,7 +39,10 @@ namespace WebCrawlerForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1_Load(sender, e);
+            WebcrawlerService.Webcrawler test = new WebcrawlerService.Webcrawler();
+            test.CrawlContent();
+            MessageBox.Show("Klaar");
+            //Form1_Load(sender, e);
         }
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
