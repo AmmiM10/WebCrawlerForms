@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -50,7 +51,7 @@ namespace WebcrawlerService
 
             DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '" + classObject.GetCategorie + "'");
 
-            string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`") + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetMedia + "', '" + classObject.GetBron + "', '" + classObject.GetDatum + "')");
+            string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`").Replace('"', '`') + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetMedia + "', '" + classObject.GetBron + "', '" + classObject.GetDatum + "')");
 
             try
             {

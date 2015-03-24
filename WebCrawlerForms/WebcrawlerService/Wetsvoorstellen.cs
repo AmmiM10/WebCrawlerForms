@@ -49,18 +49,13 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                this.GetTitel = ListHeadlines[i];
-                //this.GetBeschrijving = GetTekst();
-                this.GetBron = "2e kamer";
-                //this.GetDatum = ListTime[i];
-                this.GetLink = ListHeadlinesLink[i];
-
-                //for (int j = 0; j < ListVideo.Count; j++)
-                //{
-                //    this.GetMedia += ListVideo[i] + ";";
-                //}
-                this.GetCategorie = Categorie.Wetsvoorstellen;
-                ListObjecten.Add(this);
+                IGenericObject newObject = new Wetsvoorstellen();
+                newObject.GetTitel = ListHeadlines[i];
+                newObject.GetBron = "2e kamer";
+                newObject.GetLink = ListHeadlinesLink[i];
+                newObject.GetBeschrijving = "";
+                newObject.GetCategorie = Categorie.Wetsvoorstellen;
+                ListObjecten.Add(newObject);
             }
 
 

@@ -75,6 +75,10 @@ namespace WebcrawlerService
                 go.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
                 go.GetBeschrijving = GetTekst();
+                if (go.GetBeschrijving.Length > 999)
+                {
+                    go.GetBeschrijving.Substring(0, 999);
+                }
                 if (go.GetBeschrijving == null)
                 {
                     go.GetBeschrijving = "";

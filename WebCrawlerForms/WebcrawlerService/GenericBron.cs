@@ -12,10 +12,16 @@ namespace WebcrawlerService
             var Objecten = new List<List<IGenericObject>>();
             Objecten.Add(CrawlNOS());
             Objecten.Add(CrawlBNR());
-            //Objecten.Add(CrawlWetsvoorstellen());
-            //Objecten.Add(CrawlZetels());
+            Objecten.Add(CrawlWetsvoorstellen());
+            Objecten.Add(CrawlZetels());
+            Objecten.Add(CrawlAgenda());
 
             return Objecten;
+        }
+
+        private List<IGenericObject> CrawlAgenda()
+        {
+            return new Agendapunten().GetAllSources();
         }
 
         private List<IGenericObject> CrawlNOS()

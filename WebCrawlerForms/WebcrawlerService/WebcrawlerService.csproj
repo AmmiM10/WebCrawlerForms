@@ -63,6 +63,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agendapunten.cs" />
     <Compile Include="BNRNieuwsCrawler.cs" />
     <Compile Include="CrawlContent.cs" />
     <Compile Include="DAL.cs" />

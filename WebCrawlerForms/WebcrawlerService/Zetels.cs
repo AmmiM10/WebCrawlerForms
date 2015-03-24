@@ -42,7 +42,7 @@ namespace WebcrawlerService
 
         public string HaalDatumOp()
         {
-            string datum = new CrawlContent().GetTekst("http://frontbencher.nl/peilingen/", "Maurice de Hond<span> (.+?)</span>");
+            string datum = new CrawlContent().GetTekst("http://frontbencher.nl/peilingen/", "Maurice de Hond<span>(.+?)</span>");
 
             return datum;
         }
@@ -59,17 +59,18 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                this.GetTitel = ListHeadlines[i];
-                this.GetBeschrijving = ListInhoud[i];
-                this.GetBron = "Maurice de Hond";
-                this.GetDatum = ListTime;
+                IGenericObject newObject = new Zetels();
+                newObject.GetTitel = ListHeadlines[i];
+                newObject.GetBeschrijving = ListInhoud[i];
+                newObject.GetBron = "Maurice de Hond";
+                newObject.GetDatum = ListTime;
 
                 //for (int j = 0; j < ListVideo.Count; j++)
                 //{
                 //    this.GetMedia += ListVideo[i] + ";";
                 //}
-                this.GetCategorie = Categorie.Zetels;
-                ListObjecten.Add(this);
+                newObject.GetCategorie = Categorie.Zetels;
+                ListObjecten.Add(newObject);
             }
 
             return ListObjecten;
