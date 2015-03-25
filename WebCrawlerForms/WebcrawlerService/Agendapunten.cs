@@ -18,8 +18,11 @@ namespace WebcrawlerService
         public string GetMedia { get { return media; } set { media = value; } }
         private string link;
         public string GetLink { get { return link; } set { link = value; } }
-        private string datum;
-        public string GetDatum { get { return datum; } set { datum = value; } }
+        private string dag;
+        public string GetDag { get { return dag; } set { dag = value; } }
+        private string tijd;
+        public string GetTijd { get { return tijd; } set { tijd = value; } }
+
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -78,7 +81,7 @@ namespace WebcrawlerService
 
                 newObject.GetBron = "2e kamer";
                 newObject.GetMedia = ListType[i];
-                newObject.GetDatum = ListTijd[i];
+                newObject.GetDag = ListTijd[i];
                 newObject.GetLink = ListLink[i];
                 newObject.GetBeschrijving = "";
 

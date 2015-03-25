@@ -22,8 +22,10 @@ namespace WebcrawlerService
         public string GetMedia { get { return media; } set { media = value; } }
         private string link;
         public string GetLink { get { return link; } set { link = value; } }
-        private string datum;
-        public string GetDatum { get { return datum; } set { datum = value; } }
+        private string dag;
+        public string GetDag { get { return dag; } set { dag = value; } }
+        private string tijd;
+        public string GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -67,30 +69,32 @@ namespace WebcrawlerService
             List<string> ListHeadlines = GetHeadlines();
             List<string> ListHeadlinesLink = GetHeadlineLinks();
             List<string> ListTime = GetTime();
-            List<string> ListVideo = GetVideos();
+            List<string> Tijd = new List<string>();
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
                 IGenericObject go = new NOSNieuwsCrawler();
                 go.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
+                List<string> ListVideo = GetVideos();
                 go.GetBeschrijving = GetTekst();
-                if (go.GetBeschrijving.Length > 999)
-                {
-                    go.GetBeschrijving.Substring(0, 999);
-                }
                 if (go.GetBeschrijving == null)
                 {
                     go.GetBeschrijving = "";
                 }
                 go.GetBron = "NOS";
-                go.GetDatum = ListTime[i];
+                Tijd.Add(ListTime[i].Split('T')[1]);
+                Tijd[i] = Tijd[i].Split('+')[0];
+                ListTime[i] = ListTime[i].Split('T')[0];
+
+                go.GetTijd = Tijd[i];
+                go.GetDag = ListTime[i];
                 go.GetLink = ListHeadlinesLink[i];
 
-                //for (int j = 0; j < ListVideo.Count; j++)
-                //{
-                //    go.GetMedia += ListVideo[j] + ";";
-                //}
+                for (int j = 0; j < ListVideo.Count; j++)
+                {
+                    go.GetMedia += GetVideo(ListVideo[j]) + ";";
+                }
                 go.GetCategorie = Categorie.Nieuws;
                 ListAllObjecten.Add(go);
             }

@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="GenericObject.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="IGenericObject.cs" />
     <Compile Include="NieuwsItemsController.cs" />
     <Compile Include="NOSAdapter.cs" />
     <Compile Include="Program.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Media.cs" />
     <Compile Include="Wetsvoorstellen.cs" />
     <Compile Include="Zetels.cs" />
+    <Compile Include="ZetelsController.cs" />
     <EmbeddedResource Include="Artikel.resx">
       <DependentUpon>Artikel.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,7 +213,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WebcrawlerService\WebcrawlerService.csproj">
+      <Project>{9f7bed18-3fe1-460b-9f92-ce38e8a4b344}</Project>
+      <Name>WebcrawlerService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

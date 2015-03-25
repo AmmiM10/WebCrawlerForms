@@ -26,6 +26,7 @@ namespace WebCrawlerForms
         public List<string> urls;
         public NieuwsItemsController NIC;
         public List<GenericObject> NieuwsItems;
+        public string[] videos;
 
         public Form1()
         {
@@ -35,6 +36,7 @@ namespace WebCrawlerForms
             urls = new List<string>();
             NIC = new NieuwsItemsController();
             NieuwsItems = NIC.GetNieuwsItems();
+            videos = new string[0];
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -42,54 +44,45 @@ namespace WebCrawlerForms
             WebcrawlerService.Webcrawler test = new WebcrawlerService.Webcrawler();
             test.CrawlContent();
             MessageBox.Show("Klaar");
-            //Form1_Load(sender, e);
         }
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
             textBox1.Text = NieuwsItems[listBox3.SelectedIndex].BeschrijvingProp;
-            /*
-            urls.RemoveRange(0, urls.Count);
-            if (listBox3.SelectedValue.ToString().StartsWith("NOS"))
-                adapter = new NOSAdapter();
-            else if (listBox3.SelectedValue.ToString().StartsWith("BNR"))
-                adapter = new BNRAdapter();
-            axWindowsMediaPlayer2.Ctlcontrols.stop();
-            adapter.PropLink = listBox2.Items[listBox3.SelectedIndex].ToString();
             Width = 762;
             checkBox1.Checked = false;
-            textBox1.Text = adapter.GetTekst();
-            List<string> VideoList = new List<string>();
-            VideoList = adapter.GetVideos();
-            if (VideoList.Count == 0)
+            axWindowsMediaPlayer2.Ctlcontrols.stop();
+
+            string videos_string = NieuwsItems[listBox3.SelectedIndex].MediaProp;
+            if (videos_string.Contains(';'))
+            {
+                videos = NieuwsItems[listBox3.SelectedIndex].MediaProp.Split(';');
+                int videoscount = videos.Count();
+                videos = videos.Take(videos.Count() - 1).ToArray();
+            }
+            if (videos.Count() == 0)
+            {
                 NullVideo();
+            }
             else
             {
-                HasVideo(adapter, VideoList);
+                HasVideo(videos);
                 axWindowsMediaPlayer2.Ctlcontrols.stop();
             }
 
             label2.Visible = true;
             checkBox1.Visible = true;
-            pictureBox2.Visible = true;*/
+            pictureBox2.Visible = true;
         }
 
-        private void HasVideo(BronInterface nosAdapter, List<string> VideoList)
+        private void HasVideo(string[] VideoList)
         {
             button5.Visible = false;
-            urls.Add(nosAdapter.GetVideo(VideoList[0]));
-            axWindowsMediaPlayer2.URL = urls[0];
-            if (VideoList.Count > 1)
-            {
-                for (int i = 1; i < VideoList.Count; i++)
-                {
-                    urls.Add(nosAdapter.GetVideo(VideoList[i]));
-                }
-            }
-            if (urls.Count > 1)
+            axWindowsMediaPlayer2.URL = VideoList[0];
+            if (VideoList.Count() > 1)
             {
                 button5.Visible = true;
-                button5.Text = "Volgende " + "1/" + urls.Count.ToString();
+                button5.Text = "Volgende " + "1/" + VideoList.Count().ToString();
             }
             Width = 1106;
             axWindowsMediaPlayer2.Visible = true;
@@ -158,16 +151,6 @@ namespace WebCrawlerForms
             axWindowsMediaPlayer2.Ctlcontrols.stop();
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(string.Format("NOS gebackupt, {0} nieuwe items", helper.NOSBackup().ToString()));
-            MessageBox.Show(string.Format("BNR gebackupt, {0} nieuwe items", helper.BNRBackup().ToString()));
-            MessageBox.Show(helper.ZetelsBackup());
-            MessageBox.Show(helper.WetsvoorstellenBackup());
-            //MessageBox.Show(helper.AgendaBackup());
-            Form1_Load(sender, e);
-        }
-
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             zoek_vvd = checkBox2.Checked;
@@ -177,7 +160,7 @@ namespace WebCrawlerForms
         public void FilterNieuws()
         {
             DataTable dt = new DataTable();
-            string query = "SELECT Titel, Link, Bron FROM PolitiekNieuws WHERE Titel LIKE '%%'";
+            string query = "SELECT Titel, Link, Bron FROM Objecten WHERE Titel LIKE '%%' ORDER BY Dag DESC, Tijd DESC";
 
             if (zoek_vvd)
                 query = string.Format("{0} AND Titel LIKE '%vvd%'", query);
@@ -218,11 +201,11 @@ namespace WebCrawlerForms
         private void button5_Click(object sender, EventArgs e)
         {
             int bepaalInt = 0;
-            for (int i = 0; i < urls.Count; i++)
+            for (int i = 0; i < videos.Count(); i++)
             {
-                if (urls[i] == axWindowsMediaPlayer2.URL)
+                if (videos[i] == axWindowsMediaPlayer2.URL)
                 {
-                    if (i == urls.Count - 1)
+                    if (i == videos.Count() - 1)
                     {
                         bepaalInt = 0;
                     }
@@ -230,8 +213,8 @@ namespace WebCrawlerForms
                         bepaalInt = i + 1;
                 }
             }
-            axWindowsMediaPlayer2.URL = urls[bepaalInt];
-            button5.Text = "Volgende " + (bepaalInt + 1).ToString() + "/" + urls.Count.ToString();
+            axWindowsMediaPlayer2.URL = videos[bepaalInt];
+            button5.Text = "Volgende " + (bepaalInt + 1).ToString() + "/" + videos.Count().ToString();
             axWindowsMediaPlayer2.Ctlcontrols.play();
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.Sql;
+using WebcrawlerService;
 
 namespace WebCrawlerForms
 {
@@ -13,7 +14,7 @@ namespace WebCrawlerForms
         public List<GenericObject> GetNieuwsItems()
         { 
             List<GenericObject> NieuwsItems = new List<GenericObject>();
-            DataTable dt = DAL.Select("SELECT * FROM Objecten WHERE Categorie = '1' ORDER BY Id DESC");
+            DataTable dt = DAL.Select("SELECT * FROM Objecten WHERE Categorie = '1' ORDER BY Datum DESC, Tijd DESC");
 
             if (dt.Rows.Count > 0)
             {
@@ -32,5 +33,6 @@ namespace WebCrawlerForms
 
             return NieuwsItems;
         }
+
     }
 }

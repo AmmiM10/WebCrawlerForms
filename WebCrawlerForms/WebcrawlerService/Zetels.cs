@@ -17,8 +17,10 @@ namespace WebcrawlerService
         public string GetMedia { get { return media; } set { media = value; } }
         private string link;
         public string GetLink { get { return link; } set { link = value; } }
-        private string datum;
-        public string GetDatum { get { return datum; } set { datum = value; } }
+        private string dag;
+        public string GetDag { get { return dag; } set { dag = value; } }
+        private string tijd;
+        public string GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -63,7 +65,7 @@ namespace WebcrawlerService
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBeschrijving = ListInhoud[i];
                 newObject.GetBron = "Maurice de Hond";
-                newObject.GetDatum = ListTime;
+                newObject.GetDag = ListTime;
 
                 //for (int j = 0; j < ListVideo.Count; j++)
                 //{

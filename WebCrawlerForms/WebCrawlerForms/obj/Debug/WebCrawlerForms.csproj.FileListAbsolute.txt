@@ -47,3 +47,6 @@ C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerF
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Properties.Resources.resources
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csproj.GenerateResource.Cache
 C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.Form4.resources
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\obj\Debug\WebCrawlerForms.csprojResolveAssemblyReference.cache
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebcrawlerService.dll
+C:\Users\Gebruiker\Desktop\WebCrawlerForms.git\trunk\WebCrawlerForms\WebCrawlerForms\bin\Debug\WebcrawlerService.pdb

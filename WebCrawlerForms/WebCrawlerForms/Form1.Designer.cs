@@ -39,7 +39,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -164,16 +163,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(330, 87);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(104, 25);
-            this.button7.TabIndex = 29;
-            this.button7.Text = "Offline plaatsen";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
@@ -297,7 +286,6 @@
             this.Controls.Add(this.axWindowsMediaPlayer2);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.listBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
@@ -331,7 +319,6 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
