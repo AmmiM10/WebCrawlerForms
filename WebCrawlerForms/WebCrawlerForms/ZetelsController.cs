@@ -8,8 +8,23 @@ using WebcrawlerService;
 
 namespace WebCrawlerForms
 {
-    public class ZetelsController
+    public class ZetelsController: IGenericObject
     {
+        private string titel;
+        public string GetTitel { get { return titel; } set { titel = value; } }
+        private string beschrijving;
+        public string GetBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
+        private string bron;
+        public string GetBron { get { return bron; } set { bron = value; } }
+        private string media;
+        public string GetMedia { get { return media; } set { media = value; } }
+        private string link;
+        public string GetLink { get { return link; } set { link = value; } }
+        private string dag;
+        public string GetDag { get { return dag; } set { dag = value; } }
+        private string tijd;
+        public string GetTijd { get { return tijd; } set { tijd = value; } }
+
         public Graphics paper;
 
         public ZetelsController(Graphics paper)
@@ -106,16 +121,16 @@ namespace WebCrawlerForms
             return datum;
         }
 
-        public List<WebcrawlerService.IGenericObject> GetNieuwsItems()
+        public List<IGenericObject> GetNieuwsItems()
         { 
-            List<WebcrawlerService.IGenericObject> NieuwsItems = new List<WebcrawlerService.IGenericObject>();
+            List<IGenericObject> NieuwsItems = new List<IGenericObject>();
             DataTable dt = DAL.Select("SELECT * FROM Objecten WHERE Categorie = '2' ORDER BY Id");
 
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    var test = new IGenericObject;
+                    IGenericObject test = new ZetelsController();
                     test.GetTitel = dt.Rows[i][1].ToString();
                     test.GetBeschrijving = dt.Rows[i][2].ToString();
                     test.GetBron = dt.Rows[i][3].ToString();

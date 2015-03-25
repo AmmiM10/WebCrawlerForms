@@ -25,7 +25,7 @@ namespace WebCrawlerForms
         public Helper helper;
         public List<string> urls;
         public NieuwsItemsController NIC;
-        public List<GenericObject> NieuwsItems;
+        public List<IGenericObject> NieuwsItems;
         public string[] videos;
 
         public Form1()
@@ -48,15 +48,15 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
-            textBox1.Text = NieuwsItems[listBox3.SelectedIndex].BeschrijvingProp;
+            textBox1.Text = NieuwsItems[listBox3.SelectedIndex].GetBeschrijving;
             Width = 762;
             checkBox1.Checked = false;
             axWindowsMediaPlayer2.Ctlcontrols.stop();
 
-            string videos_string = NieuwsItems[listBox3.SelectedIndex].MediaProp;
+            string videos_string = NieuwsItems[listBox3.SelectedIndex].GetMedia;
             if (videos_string.Contains(';'))
             {
-                videos = NieuwsItems[listBox3.SelectedIndex].MediaProp.Split(';');
+                videos = NieuwsItems[listBox3.SelectedIndex].GetMedia.Split(';');
                 int videoscount = videos.Count();
                 videos = videos.Take(videos.Count() - 1).ToArray();
             }
@@ -134,8 +134,8 @@ namespace WebCrawlerForms
             {
                 for (int i = 0; i < NieuwsItems.Count; i++)
                 {
-                    Titel.Add(NieuwsItems[i].BronProp + "|" + NieuwsItems[i].TitelProp);
-                    Link.Add(NieuwsItems[i].LinkProp);
+                    Titel.Add(NieuwsItems[i].GetBron + "|" + NieuwsItems[i].GetTitel);
+                    Link.Add(NieuwsItems[i].GetLink);
                 }
                 listBox2.DataSource = Link;
                 listBox3.DataSource = Titel;
