@@ -37,47 +37,23 @@ namespace WebCrawlerForms
 
         }
 
-        public void TekenLabels(List<string> partijen)
+        public void TekenLabels(List<IGenericObject> partijen)
         {
             System.Drawing.StringFormat drawFormat = new System.Drawing.StringFormat();
             drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
             for (int i = 0; i < partijen.Count; i++)
             {
-                paper.DrawString(partijen[i], new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i*40)+ 40, 200, drawFormat);
+                paper.DrawString(partijen[i].GetTitel, new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i*40)+ 40, 200, drawFormat);
             }
         }
 
-        public void TekenZetels(List<string> zetels, List<string> zetels2012)
+        public void TekenZetels(List<IGenericObject> zetels)
         {
             for (int i = 0; i < zetels.Count; i++)
             {
-                int cijfer = Convert.ToInt32(zetels[i]);
-                int cijfer2012 = Convert.ToInt32(zetels2012[i]);
+                int cijfer = Convert.ToInt32(zetels[i].GetBeschrijving);
                 paper.DrawLine(new Pen(new SolidBrush(Color.White),2), (i * 40) + 45, 195, (i * 40) + 45, 195 - (cijfer*5));
-                paper.DrawString(zetels[i], new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i * 40) + 40, 10);
-
-                int verschil = cijfer - cijfer2012;
-                if (cijfer > cijfer2012)
-                {
-                    paper.DrawString("+"+Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.Green), (i * 40) + 52, 10);
-                }
-                else if (cijfer < cijfer2012)
-                {
-                    paper.DrawString(Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.Red), (i * 40) + 52, 10);
-                }
-                else
-                {
-                    paper.DrawString(Convert.ToString(verschil), new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i * 40) + 52, 10);    
-                }
-            }
-        }
-
-        public void TekenZetels2012(List<string> zetels)
-        {
-            for (int i = 0; i < zetels.Count; i++)
-            {
-                int cijfer = Convert.ToInt32(zetels[i]);
-                paper.DrawLine(new Pen(new SolidBrush(Color.Red), 2), (i * 40) + 50, 195, (i * 40) + 50, 195 - (cijfer * 5));
+                paper.DrawString(zetels[i].GetBeschrijving, new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), (i * 40) + 40, 10);
             }
         }
 
@@ -96,50 +72,24 @@ namespace WebCrawlerForms
             paper.DrawString("10", new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular), new SolidBrush(Color.White), 3, 187 - (10 * 5));
         }
 
-        public List<string> HaalZetelsOp()
+        public List<IGenericObject> GetZetelsItems()
         {
-            List<string> peilingen = new Tekst().getItems("http://frontbencher.nl/peilingen/", "<li class=\"dehond\"><div class=\"bar\" style=\"height:(.+?)</div>");
-            for (int i = 0; i < peilingen.Count; i++)
-            {
-                peilingen[i] = peilingen[i].Split('>')[1];
-            }
-            List<string> titels = new Tekst().getItems("http://frontbencher.nl/peilingen/", "title=\"Peilingen (.+?)\" alt");
-            return peilingen;
-        }
-
-        public List<string> HaalPartijenOp()
-        {
-            List<string> titels = new Tekst().getItems("http://frontbencher.nl/peilingen/", "title=\"Peilingen (.+?)\" alt");
-
-            return titels;
-        }
-
-        public string HaalDatumOp()
-        {
-            string datum = new Tekst().GetTekst("http://frontbencher.nl/peilingen/", "Maurice de Hond<span> (.+?)</span>");
-
-            return datum;
-        }
-
-        public List<IGenericObject> GetNieuwsItems()
-        { 
-            List<IGenericObject> NieuwsItems = new List<IGenericObject>();
-            DataTable dt = DAL.Select("SELECT * FROM Objecten WHERE Categorie = '2' ORDER BY Id");
+            List<IGenericObject> ZetelsItems = new List<IGenericObject>();
+            DataTable dt = DAL.Select("SELECT Titel, Beschrijving, Datum FROM Objecten WHERE Categorie = '2' ORDER BY Datum DESC, Tijd DESC");
 
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    IGenericObject test = new ZetelsController();
-                    test.GetTitel = dt.Rows[i][1].ToString();
-                    test.GetBeschrijving = dt.Rows[i][2].ToString();
-                    test.GetBron = dt.Rows[i][3].ToString();
-                    test.GetDag = dt.Rows[i][4].ToString();
-                    NieuwsItems.Add(test);
+                    IGenericObject newObject = new ZetelsController();
+                    newObject.GetTitel = dt.Rows[i][0].ToString();
+                    newObject.GetBeschrijving = dt.Rows[i][1].ToString();
+                    newObject.GetDag = dt.Rows[i][2].ToString();
+                    ZetelsItems.Add(newObject);
                 }
             }
 
-            return NieuwsItems;
+            return ZetelsItems;
         }
     }
 }

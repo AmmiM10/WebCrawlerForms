@@ -66,7 +66,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form2";
             this.Text = "Zetel verdeling";
-            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

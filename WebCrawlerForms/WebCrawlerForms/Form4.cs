@@ -11,27 +11,31 @@ namespace WebCrawlerForms
 {
     public partial class Form4 : Form
     {
-        private Agenda ag;
+        private AgendapuntenController ag;
         private bool status;
+        private List<IGenericObject> items;
 
         public Form4()
         {
             InitializeComponent();
-            ag = new Agenda();
+            ag = new AgendapuntenController();
             status = false;
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            List<string> titels = ag.HaalTitelOp();
-            List<string> tijd = ag.HaalTijdOp();
-            List<string> type = ag.HaalTypeOp();
-
+            items = ag.GetAgendapuntenItems();
+            List<string> titels = new List<string>();
+            List<string> tijd = new List<string>();
+            List<string> type = new List<string>();
             List<string> samen = new List<string>();
-            for (int i = 0; i < titels.Count; i++)
-			{
-			    samen.Add(tijd[i]+ " " +  type[i]+"|"+titels[i]);
-			}
+            for (int i = 0; i < items.Count; i++)
+            {
+                titels.Add(items[i].GetTitel);
+                tijd.Add(items[i].GetDag);
+                type.Add(items[i].GetMedia);
+                samen.Add(tijd[i] + " " + type[i] + "|" + titels[i]);
+            }
 
             listBox1.DataSource = samen;
         }
@@ -40,8 +44,7 @@ namespace WebCrawlerForms
         {
             if (status)
             {
-                List<string> links = ag.HaalLinkOp();
-                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + links[listBox1.SelectedIndex]);
+                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + items[listBox1.SelectedIndex].GetLink);
             }
             status = true;
         }

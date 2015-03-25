@@ -11,27 +11,33 @@ namespace WebCrawlerForms
 {
     public partial class Form3 : Form
     {
-        private Wetsvoorstellen wv;
+        private WetsvoorstellenController wv;
         private bool status;
+        private List<IGenericObject> items;
 
         public Form3()
         {
             InitializeComponent();
-            wv = new Wetsvoorstellen();
+            wv = new WetsvoorstellenController();
             status = false;
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            listBox1.DataSource = wv.DbTitels();
+            items = wv.GetWetsvoorstellenItems();
+            List<string> titels = new List<string>();
+            for (int i = 0; i < items.Count; i++)
+            {
+                titels.Add(items[i].GetTitel);
+            }
+            listBox1.DataSource = titels;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (status)
             {
-                List<string> links = wv.DbLinks();
-                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + links[listBox1.SelectedIndex]);   
+                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + items[listBox1.SelectedIndex].GetLink);   
             }
             status = true;
         }

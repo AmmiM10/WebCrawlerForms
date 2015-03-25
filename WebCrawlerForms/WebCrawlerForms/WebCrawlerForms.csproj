@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agenda.cs" />
+    <Compile Include="AgendapuntenController.cs" />
     <Compile Include="Artikel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +114,7 @@
     <Compile Include="Tekst.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Wetsvoorstellen.cs" />
+    <Compile Include="WetsvoorstellenController.cs" />
     <Compile Include="Zetels.cs" />
     <Compile Include="ZetelsController.cs" />
     <EmbeddedResource Include="Artikel.resx">
