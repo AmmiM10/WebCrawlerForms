@@ -154,48 +154,69 @@ namespace WebCrawlerForms
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             zoek_vvd = checkBox2.Checked;
-            FilterNieuws();
+            FilterNieuws(sender, e);
         }
 
-        public void FilterNieuws()
+        public void FilterNieuws(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            string query = "SELECT Titel, Link, Bron FROM Objecten WHERE Titel LIKE '%%' ORDER BY Dag DESC, Tijd DESC";
-
-            if (zoek_vvd)
-                query = string.Format("{0} AND Titel LIKE '%vvd%'", query);
-            if (zoek_pvda)
-                query = string.Format("{0} AND Titel LIKE '%pvda%'", query);
-            if (zoek_pvv)
-                query = string.Format("{0} AND Titel LIKE '%pvv%'", query);
-            if (zoek_anders)
-                query = string.Format("{0} AND Titel LIKE '%{1}%'", query, andersText);
-
-            query = string.Format("{0} ORDER BY Dag DESC, Tijd DESC", query);
-
-            dt = SQL.Select(query);
-
-            List<string> Nieuws = new List<string>();
-            List<string> Links = new List<string>();
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (checkBox2.Checked || checkBox3.Checked || checkBox4.Checked || checkBox5.Checked)
             {
-                Nieuws.Add(string.Format("{0} | {1}", dt.Rows[i][2], dt.Rows[i][0].ToString()));
-                Links.Add(dt.Rows[i][1].ToString());
+                List<string> nieuwsfilter = new List<string>();
+                List<string> linksfilter = new List<string>();
+                for (int i = 0; i < NieuwsItems.Count; i++)
+                {
+                    if (zoek_vvd)
+                    {
+                        if (NieuwsItems[i].GetTitel.Contains("VVD"))
+                        {
+                            nieuwsfilter.Add(NieuwsItems[i].GetBron + "|" + NieuwsItems[i].GetTitel);
+                            linksfilter.Add(NieuwsItems[i].GetLink);
+                        }
+                    }
+                    if (zoek_pvda)
+                    {
+                        if (NieuwsItems[i].GetTitel.Contains("PvdA"))
+                        {
+                            nieuwsfilter.Add(NieuwsItems[i].GetBron + "|" + NieuwsItems[i].GetTitel);
+                            linksfilter.Add(NieuwsItems[i].GetLink);
+                        }
+                    }
+                    if (zoek_pvv)
+                    {
+                        if (NieuwsItems[i].GetTitel.Contains("PVV"))
+                        {
+                            nieuwsfilter.Add(NieuwsItems[i].GetBron + "|" + NieuwsItems[i].GetTitel);
+                            linksfilter.Add(NieuwsItems[i].GetLink);
+                        }
+                    }
+                    if (zoek_anders)
+                    {
+                        if (NieuwsItems[i].GetTitel.Contains(andersText))
+                        {
+                            nieuwsfilter.Add(NieuwsItems[i].GetBron + "|" + NieuwsItems[i].GetTitel);
+                            linksfilter.Add(NieuwsItems[i].GetLink);
+                        }
+                    }
+                }
+                listBox2.DataSource = linksfilter;
+                listBox3.DataSource = nieuwsfilter;
             }
-            listBox2.DataSource = Links;
-            listBox3.DataSource = Nieuws;
+            else
+            {
+                Form1_Load(sender,e);
+            }
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             zoek_pvda = checkBox3.Checked;
-            FilterNieuws();
+            FilterNieuws(sender,e);
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             zoek_pvv = checkBox4.Checked;
-            FilterNieuws();
+            FilterNieuws(sender,e);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -238,7 +259,7 @@ namespace WebCrawlerForms
                 checkBox5.Text = andersText;
             }
             zoek_anders = checkBox5.Checked;
-            FilterNieuws();
+            FilterNieuws(sender,e);
         }
 
         private void button9_Click(object sender, EventArgs e)

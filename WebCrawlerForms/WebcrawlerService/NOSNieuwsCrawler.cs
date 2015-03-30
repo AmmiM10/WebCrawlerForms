@@ -24,8 +24,8 @@ namespace WebcrawlerService
         public string GetLink { get { return link; } set { link = value; } }
         private string dag;
         public string GetDag { get { return dag; } set { dag = value; } }
-        private string tijd;
-        public string GetTijd { get { return tijd; } set { tijd = value; } }
+        private DateTime tijd;
+        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -85,9 +85,10 @@ namespace WebcrawlerService
                 go.GetBron = "NOS";
                 Tijd.Add(ListTime[i].Split('T')[1]);
                 Tijd[i] = Tijd[i].Split('+')[0];
-                ListTime[i] = ListTime[i].Split('T')[0];
+                ListTime[i] = ListTime[i].Split('T')[0]+" "+Tijd[i]+",531";
 
-                go.GetTijd = Tijd[i];
+                go.GetTijd = DateTime.ParseExact(ListTime[i], "yyyy-MM-dd HH:mm:ss,fff",
+                                       System.Globalization.CultureInfo.InvariantCulture);
                 go.GetDag = ListTime[i];
                 go.GetLink = ListHeadlinesLink[i];
 

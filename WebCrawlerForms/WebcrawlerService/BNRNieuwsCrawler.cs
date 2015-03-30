@@ -26,8 +26,8 @@ namespace WebcrawlerService
         public string GetDatum { get { return datum; } set { datum = value; } }
         private string dag;
         public string GetDag { get { return dag; } set { dag = value; } }
-        private string tijd;
-        public string GetTijd { get { return tijd; } set { tijd = value; } }
+        private DateTime tijd;
+        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -125,11 +125,12 @@ namespace WebcrawlerService
                     maand = "05";
                 }
                 dag_split.Add(ListTime[i + 1].Split(' ')[3] + "-" + maand + "-" + ListTime[i + 1].Split(' ')[1]);
-                tijd_split.Add(ListTime[i + 1].Split(' ')[4]);
+                tijd_split.Add(dag_split[i]+" "+ListTime[i + 1].Split(' ')[4]+",531");
 
 
                 go.GetDag = dag_split[i];
-                go.GetTijd = tijd_split[i];
+                go.GetTijd = DateTime.ParseExact(tijd_split[i], "yyyy-MM-dd HH:mm:ss,fff",
+                                       System.Globalization.CultureInfo.InvariantCulture);
                 go.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)

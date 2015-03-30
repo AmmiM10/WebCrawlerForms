@@ -13,7 +13,7 @@ namespace WebcrawlerService
         string GetMedia { get; set; }
         string GetLink { get; set; }
         string GetDag { get; set; }
-        string GetTijd { get; set; }
+        DateTime GetTijd { get; set; }
         Categorie GetCategorie { get; set; }
 
         List<IGenericObject> GetAllSources();

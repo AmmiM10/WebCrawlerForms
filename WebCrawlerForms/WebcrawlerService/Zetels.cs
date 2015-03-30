@@ -19,8 +19,8 @@ namespace WebcrawlerService
         public string GetLink { get { return link; } set { link = value; } }
         private string dag;
         public string GetDag { get { return dag; } set { dag = value; } }
-        private string tijd;
-        public string GetTijd { get { return tijd; } set { tijd = value; } }
+        private DateTime tijd;
+        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
@@ -56,7 +56,8 @@ namespace WebcrawlerService
             List<string> ListInhoud = HaalZetelsOp();
             List<string> ListHeadlines = HaalPartijenOp();
             //List<string> ListHeadlinesLink = GetHeadlineLinks();
-            string ListTime = HaalDatumOp();
+            string ListTime = HaalDatumOp().Replace(".", "");
+            DateTime dtDatum = DateTime.ParseExact(ListTime, "dd MMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
             //List<string> ListVideo = GetVideos();
 
             for (int i = 0; i < ListHeadlines.Count; i++)
@@ -65,7 +66,7 @@ namespace WebcrawlerService
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBeschrijving = ListInhoud[i];
                 newObject.GetBron = "Maurice de Hond";
-                newObject.GetDag = ListTime;
+                newObject.GetTijd = dtDatum;
 
                 //for (int j = 0; j < ListVideo.Count; j++)
                 //{
