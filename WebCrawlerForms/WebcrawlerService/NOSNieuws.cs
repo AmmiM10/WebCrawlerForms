@@ -14,7 +14,7 @@ namespace WebcrawlerService
 
         public NOSNieuws()
         {
-            savedObjecten = GetAllSources();
+            GetAllSources();
         }
 
         private List<string> GetHeadlines()
@@ -50,7 +50,7 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst("http://www.nos.nl" + _link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div>");
         }
 
-        private List<IGenericObject> GetAllSources()
+        private void GetAllSources()
         {
             List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
 
@@ -88,7 +88,10 @@ namespace WebcrawlerService
                 ListAllObjecten.Add(go);
             }
 
-            return ListAllObjecten;
+            foreach (var item in ListAllObjecten)
+            {
+                DAL.Insert(item);
+            }
         }
     }
 }

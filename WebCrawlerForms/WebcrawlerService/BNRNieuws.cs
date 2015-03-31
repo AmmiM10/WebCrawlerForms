@@ -14,7 +14,7 @@ namespace WebcrawlerService
 
         public BNRNieuws()
         {
-            savedObjecten = GetAllSources();
+            GetAllSources();
         }
 
         private List<string> GetHeadlines()
@@ -71,7 +71,7 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst(_link, "itemprop=\"articleBody\">\\s*(.+?)</span");
         }
 
-        private List<IGenericObject> GetAllSources()
+        private void GetAllSources()
         {
             List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
 
@@ -127,7 +127,10 @@ namespace WebcrawlerService
                 ListAllObjecten.Add(go);
             }
 
-            return ListAllObjecten;
+            foreach (var item in ListAllObjecten)
+            {
+                DAL.Insert(item);
+            }
         }
     }
 }

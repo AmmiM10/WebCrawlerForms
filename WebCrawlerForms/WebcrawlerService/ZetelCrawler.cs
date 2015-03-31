@@ -7,10 +7,9 @@ namespace WebcrawlerService
 {
     public class ZetelCrawler: BaseCrawler
     {
-        public List<IGenericObject> Crawl()//IGenericObject igo)
+        public void Crawl()
         {
-            Zetels z = new Zetels();//igo);
-            return z.savedObjecten;
+            Zetels z = new Zetels();
         }
     }
 }

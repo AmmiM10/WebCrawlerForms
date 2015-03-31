@@ -7,8 +7,6 @@ namespace WebcrawlerService
 {
     public abstract class GenericObject: IGenericObject
     {
-        public List<IGenericObject> savedObjecten;
-
         private string titel;
         public string GetTitel { get { return titel; } set { titel = value; } }
 

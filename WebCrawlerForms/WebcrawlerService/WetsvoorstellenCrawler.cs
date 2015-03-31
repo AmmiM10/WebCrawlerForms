@@ -7,10 +7,9 @@ namespace WebcrawlerService
 {
     public class WetsvoorstellenCrawler: BaseCrawler
     {
-        public List<IGenericObject> Crawl()
+        public void Crawl()
         {
             Wetsvoorstellen wet = new Wetsvoorstellen();
-            return wet.savedObjecten;
         }
     }
 }

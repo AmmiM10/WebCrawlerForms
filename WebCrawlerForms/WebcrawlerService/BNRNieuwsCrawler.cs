@@ -7,10 +7,9 @@ namespace WebcrawlerService
 {
     public class BNRNieuwsCrawler: BaseCrawler
     {
-        public List<IGenericObject> Crawl()
+        public void Crawl()
         {
             BNRNieuws bnr = new BNRNieuws();
-            return bnr.savedObjecten;
         }
     }
 }

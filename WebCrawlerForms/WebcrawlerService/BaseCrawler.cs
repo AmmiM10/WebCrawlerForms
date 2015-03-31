@@ -7,6 +7,6 @@ namespace WebcrawlerService
 {
     public interface BaseCrawler
     {
-        List<IGenericObject> Crawl();//IGenericObject igo);
+        void Crawl();//IGenericObject igo);
     }
 }

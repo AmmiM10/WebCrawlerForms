@@ -7,10 +7,9 @@ namespace WebcrawlerService
 {
     public class NOSNieuwsCrawler: BaseCrawler
     {
-        public List<IGenericObject> Crawl()
+        public void Crawl()
         {
             NOSNieuws nos = new NOSNieuws();
-            return nos.savedObjecten;
         }
     }
 }

@@ -7,10 +7,9 @@ namespace WebcrawlerService
 {
     public class AgendapuntenCrawler: BaseCrawler
     {
-        public List<IGenericObject> Crawl()
+        public void Crawl()
         {
             Agendapunten agenda = new Agendapunten();
-            return agenda.savedObjecten;
         }
     }
 }

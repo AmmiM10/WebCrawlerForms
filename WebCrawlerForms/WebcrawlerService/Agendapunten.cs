@@ -10,7 +10,7 @@ namespace WebcrawlerService
     {
         public Agendapunten()
         {
-            savedObjecten = GetAllSources();
+            GetAllSources();
         }
 
         private List<string> HaalTitelOp()
@@ -52,7 +52,7 @@ namespace WebcrawlerService
             return Type;
         }
 
-        private List<IGenericObject> GetAllSources()
+        private void GetAllSources()
         {
             List<IGenericObject> ListObjecten = new List<IGenericObject>();
 
@@ -76,8 +76,10 @@ namespace WebcrawlerService
                 ListObjecten.Add(newObject);
             }
 
-
-            return ListObjecten;
+            foreach (var item in ListObjecten)
+            {
+                DAL.Insert(item);
+            }
         }
     }
 }

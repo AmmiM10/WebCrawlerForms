@@ -14,14 +14,17 @@ namespace WebcrawlerService
     {
         public void CrawlContent()
         {
-            List<List<IGenericObject>> content = new GenericBron().CrawlAllSources();
-            for (int i = 0; i < content.Count; i++)
-            {
-                for (int j = 0; j < content[i].Count; j++)
-                {
-                    DAL.Insert(content[i][j]);
-                }
-            }
+            var content = new GenericBron();
+            content.CrawlAllSources();
+
+            //List<List<IGenericObject>> content = new GenericBron().CrawlAllSources();
+            //for (int i = 0; i < content.Count; i++)
+            //{
+            //    for (int j = 0; j < content[i].Count; j++)
+            //    {
+            //        DAL.Insert(content[i][j]);
+            //    }
+            //}
         }
     }
 }

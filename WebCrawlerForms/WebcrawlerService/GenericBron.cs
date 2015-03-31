@@ -7,26 +7,22 @@ namespace WebcrawlerService
 {
     public class GenericBron
     {
-        public List<List<IGenericObject>> CrawlAllSources()
+        public void CrawlAllSources()
         {
-            var allObjecten = new List<List<IGenericObject>>();
-
             BaseCrawler ZetelObject = new ZetelCrawler();
-            allObjecten.Add(ZetelObject.Crawl());
+            ZetelObject.Crawl();
 
             BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
-            allObjecten.Add(NOSNieuwsObject.Crawl());
+            NOSNieuwsObject.Crawl();
 
             BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
-            allObjecten.Add(BNRNieuwsObject.Crawl());
+            BNRNieuwsObject.Crawl();
 
             BaseCrawler AgendaObject = new AgendapuntenCrawler();
-            allObjecten.Add(AgendaObject.Crawl());
+            AgendaObject.Crawl();
 
             BaseCrawler WetsvoorstellenObject = new WetsvoorstellenCrawler();
-            allObjecten.Add(WetsvoorstellenObject.Crawl());
-
-            return allObjecten;
+            WetsvoorstellenObject.Crawl();
         }
     }
 }
