@@ -6,27 +6,14 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class Agendapunten : IGenericObject
+    public class Agendapunten : GenericObject
     {
-        private string titel;
-        public string GetTitel { get { return titel; } set { titel = value; } }
-        private string beschrijving;
-        public string GetBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
-        private string bron;
-        public string GetBron { get { return bron; } set { bron = value; } }
-        private string media;
-        public string GetMedia { get { return media; } set { media = value; } }
-        private string link;
-        public string GetLink { get { return link; } set { link = value; } }
-        private string dag;
-        public string GetDag { get { return dag; } set { dag = value; } }
-        private DateTime tijd;
-        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
+        public Agendapunten()
+        {
+            savedObjecten = GetAllSources();
+        }
 
-        private Categorie categorie;
-        public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
-
-        public List<string> HaalTitelOp()
+        private List<string> HaalTitelOp()
         {
             List<string> titels = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"subject\">(.+?)\\s*</p>");
             for (int i = 0; i < titels.Count; i++)
@@ -43,21 +30,21 @@ namespace WebcrawlerService
             return titels;
         }
 
-        public List<string> HaalLinkOp()
+        private List<string> HaalLinkOp()
         {
             List<string> links = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<a class=\"goto-agenda\" href=\"(.+?)\"");
 
             return links;
         }
 
-        public List<string> HaalTijdOp()
+        private List<string> HaalTijdOp()
         {
             List<string> tijden = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"datetime\">(.+?)</p>");
 
             return tijden;
         }
 
-        public List<string> HaalTypeOp()
+        private List<string> HaalTypeOp()
         {
             //<h3><a href="/kamerleden/commissies/
             List<string> Type = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"type\">(.+?)</p>");
@@ -65,7 +52,7 @@ namespace WebcrawlerService
             return Type;
         }
 
-        public List<IGenericObject> GetAllSources()
+        private List<IGenericObject> GetAllSources()
         {
             List<IGenericObject> ListObjecten = new List<IGenericObject>();
 
@@ -76,7 +63,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                IGenericObject newObject = new Agendapunten();
+                GenericObject newObject = new Agendapunten();
                 newObject.GetTitel = ListHeadlines[i];
 
                 newObject.GetBron = "2e kamer";

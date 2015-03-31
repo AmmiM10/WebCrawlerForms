@@ -5,12 +5,12 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class NOSNieuwsCrawler: BaseCrawler
+    public class AgendapuntenCrawler: BaseCrawler
     {
         public List<IGenericObject> Crawl()
         {
-            NOSNieuws nos = new NOSNieuws();
-            return nos.savedObjecten;
+            Agendapunten agenda = new Agendapunten();
+            return agenda.savedObjecten;
         }
     }
 }

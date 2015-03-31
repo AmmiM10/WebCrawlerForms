@@ -5,26 +5,14 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class Wetsvoorstellen: IGenericObject
+    public class Wetsvoorstellen: GenericObject
     {
-        private string titel;
-        public string GetTitel { get { return titel; } set { titel = value; } }
-        private string beschrijving;
-        public string GetBeschrijving { get { return beschrijving; } set { beschrijving = value; } }
-        private string bron;
-        public string GetBron { get { return bron; } set { bron = value; } }
-        private string media;
-        public string GetMedia { get { return media; } set { media = value; } }
-        private string link;
-        public string GetLink { get { return link; } set { link = value; } }
-        private string dag;
-        public string GetDag { get { return dag; } set { dag = value; } }
-        private DateTime tijd;
-        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
-        private Categorie categorie;
-        public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
+        public Wetsvoorstellen()
+        {
+            savedObjecten = GetAllSources();
+        }
 
-        public List<string> HaalTitelOp()
+        private List<string> HaalTitelOp()
         {
             List<string> titels = new CrawlContent().getItems("http://www.tweedekamer.nl/kamerstukken/wetsvoorstellen?qry=%2A&fld_tk_categorie=Kamerstukken&fld_tk_subcategorie=Wetsvoorstellen&Type=Wetsvoorstellen&srt=date%3Adesc%3Adate&fld_prl_status=Aanhangig&fld_tk_subsubcategorie=Wetsvoorstellen+regering&dpp=15&clusterName=Wetsvoorstellen+regering", "<div class=\"search-result-content\">\\s*<h3><a href=\"(.+?)</a>");
             for (int i = 0; i < titels.Count; i++)
@@ -34,14 +22,14 @@ namespace WebcrawlerService
             return titels;
         }
 
-        public List<string> HaalLinkOp()
+        private List<string> HaalLinkOp()
         {
             List<string> links = new CrawlContent().getItems("http://www.tweedekamer.nl/kamerstukken/wetsvoorstellen?qry=%2A&fld_tk_categorie=Kamerstukken&fld_tk_subcategorie=Wetsvoorstellen&Type=Wetsvoorstellen&srt=date%3Adesc%3Adate&fld_prl_status=Aanhangig&fld_tk_subsubcategorie=Wetsvoorstellen+regering&dpp=15&clusterName=Wetsvoorstellen+regering", "<div class=\"search-result-content\">\\s*<h3><a href=\"(.+?)\"");
 
             return links;
         }
 
-        public List<IGenericObject> GetAllSources()
+        private List<IGenericObject> GetAllSources()
         {
             List<IGenericObject> ListObjecten = new List<IGenericObject>();
 
@@ -51,7 +39,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                IGenericObject newObject = new Wetsvoorstellen();
+                GenericObject newObject = new Wetsvoorstellen();
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBron = "2e kamer";
                 newObject.GetLink = ListHeadlinesLink[i];

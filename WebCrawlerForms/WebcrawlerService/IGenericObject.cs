@@ -16,6 +16,6 @@ namespace WebcrawlerService
         DateTime GetTijd { get; set; }
         Categorie GetCategorie { get; set; }
 
-        List<IGenericObject> GetAllSources();
+        //List<IGenericObject> GetAllSources();
     }
 }

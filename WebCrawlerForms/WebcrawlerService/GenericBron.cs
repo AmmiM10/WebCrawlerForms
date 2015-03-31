@@ -9,39 +9,24 @@ namespace WebcrawlerService
     {
         public List<List<IGenericObject>> CrawlAllSources()
         {
-            var Objecten = new List<List<IGenericObject>>();
-            //Objecten.Add(CrawlNOS());
-            //Objecten.Add(CrawlBNR());
-            //Objecten.Add(CrawlWetsvoorstellen());
-            Objecten.Add(CrawlZetels());
-            //Objecten.Add(CrawlAgenda());
+            var allObjecten = new List<List<IGenericObject>>();
 
-            return Objecten;
-        }
+            BaseCrawler ZetelObject = new ZetelCrawler();
+            allObjecten.Add(ZetelObject.Crawl());
 
-        private List<IGenericObject> CrawlAgenda()
-        {
-            return new Agendapunten().GetAllSources();
-        }
+            BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
+            allObjecten.Add(NOSNieuwsObject.Crawl());
 
-        private List<IGenericObject> CrawlNOS()
-        {
-            return new NOSNieuwsCrawler().GetAllSources();
-        }
+            BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
+            allObjecten.Add(BNRNieuwsObject.Crawl());
 
-        private List<IGenericObject> CrawlBNR()
-        {
-            return new BNRNieuwsCrawler().GetAllSources();
-        }
+            BaseCrawler AgendaObject = new AgendapuntenCrawler();
+            allObjecten.Add(AgendaObject.Crawl());
 
-        private List<IGenericObject> CrawlWetsvoorstellen()
-        {
-            return new Wetsvoorstellen().GetAllSources();
-        }
+            BaseCrawler WetsvoorstellenObject = new WetsvoorstellenCrawler();
+            allObjecten.Add(WetsvoorstellenObject.Crawl());
 
-        private List<IGenericObject> CrawlZetels()
-        {
-            return new Zetels().GetAllSources();
+            return allObjecten;
         }
     }
 }
