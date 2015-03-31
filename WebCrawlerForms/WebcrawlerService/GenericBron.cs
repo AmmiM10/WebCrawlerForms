@@ -9,11 +9,11 @@ namespace WebcrawlerService
     {
         public void CrawlAllSources()
         {
-            BaseCrawler ZetelObject = new ZetelCrawler();
-            ZetelObject.Crawl();
-
             BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
             NOSNieuwsObject.Crawl();
+
+            BaseCrawler ZetelObject = new ZetelCrawler();
+            ZetelObject.Crawl();
 
             BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
             BNRNieuwsObject.Crawl();
