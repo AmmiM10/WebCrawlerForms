@@ -10,6 +10,7 @@ namespace WebcrawlerService
         public void Crawl()
         {
             BNRNieuws bnr = new BNRNieuws();
+            bnr.GetAllSources();
         }
     }
 }

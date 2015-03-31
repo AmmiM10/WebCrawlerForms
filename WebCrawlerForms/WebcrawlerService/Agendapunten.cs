@@ -8,11 +8,6 @@ namespace WebcrawlerService
 {
     public class Agendapunten : GenericObject
     {
-        public Agendapunten()
-        {
-            GetAllSources();
-        }
-
         private List<string> HaalTitelOp()
         {
             List<string> titels = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"subject\">(.+?)\\s*</p>");
@@ -52,7 +47,7 @@ namespace WebcrawlerService
             return Type;
         }
 
-        private void GetAllSources()
+        public void GetAllSources()
         {
             List<IGenericObject> ListObjecten = new List<IGenericObject>();
 

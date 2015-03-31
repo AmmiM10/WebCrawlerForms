@@ -10,6 +10,7 @@ namespace WebcrawlerService
         public void Crawl()
         {
             Agendapunten agenda = new Agendapunten();
+            agenda.GetAllSources();
         }
     }
 }

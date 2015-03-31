@@ -10,6 +10,7 @@ namespace WebcrawlerService
         public void Crawl()
         {
             NOSNieuws nos = new NOSNieuws();
+            nos.GetAllSources();
         }
     }
 }

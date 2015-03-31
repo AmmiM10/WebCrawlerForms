@@ -7,11 +7,6 @@ namespace WebcrawlerService
 {
     public class Zetels: GenericObject
     {
-        public Zetels() 
-        {
-            GetAllSources();
-        }
-
         private List<string> HaalZetelsOp()
         {
             List<string> peilingen = new CrawlContent().getItems("http://frontbencher.nl/peilingen/", "<li class=\"dehond\"><div class=\"bar\" style=\"height:(.+?)</div>");
@@ -37,7 +32,7 @@ namespace WebcrawlerService
             return datum;
         }
 
-        private void GetAllSources()
+        public void GetAllSources()
         {
             List<IGenericObject> ListObjecten = new List<IGenericObject>();
 

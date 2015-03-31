@@ -10,6 +10,7 @@ namespace WebcrawlerService
         public void Crawl()
         {
             Zetels z = new Zetels();
+            z.GetAllSources();
         }
     }
 }

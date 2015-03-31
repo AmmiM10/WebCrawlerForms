@@ -12,11 +12,6 @@ namespace WebcrawlerService
         public string Naam { get { return _naam; } set { _naam = value; } }
         public string PropLink { get { return _link; } set { _link = value; } }
 
-        public BNRNieuws()
-        {
-            GetAllSources();
-        }
-
         private List<string> GetHeadlines()
         {
             return new CrawlContent().getItems("http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456", "<item>\\s*<title>(.+?)</title>");
@@ -71,7 +66,7 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst(_link, "itemprop=\"articleBody\">\\s*(.+?)</span");
         }
 
-        private void GetAllSources()
+        public void GetAllSources()
         {
             List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
 

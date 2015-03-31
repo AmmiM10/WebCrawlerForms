@@ -12,11 +12,6 @@ namespace WebcrawlerService
         private string _link;
         public string PropLink { get { return _link; } set { _link = value; } }
 
-        public NOSNieuws()
-        {
-            GetAllSources();
-        }
-
         private List<string> GetHeadlines()
         {
             List<string> Headlines = new CrawlContent().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
@@ -50,7 +45,7 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst("http://www.nos.nl" + _link, "<div class=\"article_textwrap\"><p>\\s*(.+?)</p></div>");
         }
 
-        private void GetAllSources()
+        public void GetAllSources()
         {
             List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
 

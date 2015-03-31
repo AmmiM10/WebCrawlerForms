@@ -10,6 +10,7 @@ namespace WebcrawlerService
         public void Crawl()
         {
             Wetsvoorstellen wet = new Wetsvoorstellen();
+            wet.GetAllSources();
         }
     }
 }
