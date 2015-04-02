@@ -21,10 +21,16 @@ namespace WebCrawlerForms
             InitializeComponent();
             ag = new AgendapuntenController();
             status = false;
-            dt  = DateTime.Now;
+            dt = DateTime.Now;
+            dt = dt.Date + new TimeSpan(0, 0, 0);
         }
 
         private void Form4_Load(object sender, EventArgs e)
+        {
+            Initializeren(DateTime.Now);
+        }
+
+        private void Initializeren(DateTime dt)
         {
             items = ag.GetAgendapuntenItems(dt);
             List<string> titels = new List<string>();
@@ -53,7 +59,9 @@ namespace WebCrawlerForms
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(dateTimePicker1.Text);
+            DateTime dt = Convert.ToDateTime(dateTimePicker1.Text);
+            dt = dt.Date + new TimeSpan(0,0,0);
+            Initializeren(dt);
         }
     }
 }

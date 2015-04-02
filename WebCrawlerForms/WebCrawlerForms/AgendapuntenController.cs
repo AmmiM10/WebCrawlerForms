@@ -23,10 +23,10 @@ namespace WebCrawlerForms
         private string tijd;
         public string GetTijd { get { return tijd; } set { tijd = value; } }
 
-        public List<IGenericObject> GetAgendapuntenItems(DateTime now)
+        public List<IGenericObject> GetAgendapuntenItems(DateTime dt2)
         {
             List<IGenericObject> AgendapuntenItems = new List<IGenericObject>();
-            DataTable dt = DAL.Select("SELECT Titel, Bron, Link, Media, Datum, Beschrijving FROM Objecten WHERE Categorie = '4' AND Tijd = '"+ now +"' ORDER BY Datum ASC");
+            DataTable dt = DAL.Select("SELECT Titel, Bron, Link, Media, Datum, Beschrijving FROM Objecten WHERE Categorie = '4' AND Tijd = '"+ dt2 +"' ORDER BY Datum ASC");
 
             if (dt.Rows.Count > 0)
             {

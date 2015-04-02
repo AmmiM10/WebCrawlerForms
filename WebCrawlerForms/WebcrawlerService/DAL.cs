@@ -85,7 +85,7 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
-            string delete_string = ("DELETE FROM Objecten WHERE Tijd > '"+ duur +"' ");
+            string delete_string = ("DELETE FROM Objecten WHERE Tijd > '"+ duur +"'");
 
             try
             {
@@ -134,7 +134,7 @@ namespace WebcrawlerService
         {
             bool BestaatAl = false;
 
-            DataTable dt = Select("SELECT * FROM Objecten WHERE Titel="+ text +"");
+            DataTable dt = Select("SELECT * FROM Objecten WHERE Categorie = '1' AND Titel="+ text +"");
             if (dt.Rows.Count > 0)
                 BestaatAl = true;
 

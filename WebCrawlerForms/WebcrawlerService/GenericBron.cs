@@ -11,23 +11,23 @@ namespace WebcrawlerService
     {
         public void CrawlAllSources()
         {
-            //BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
-            //NOSNieuwsObject.Crawl();
+            BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
+            NOSNieuwsObject.Crawl();
 
-            //BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
-            //BNRNieuwsObject.Crawl();
+            BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
+            BNRNieuwsObject.Crawl();
 
-            //BaseCrawler ZetelObject = new ZetelCrawler();
-            //ZetelObject.Crawl();
+            BaseCrawler ZetelObject = new ZetelCrawler();
+            ZetelObject.Crawl();
 
             BaseCrawler AgendaObject = new AgendapuntenCrawler();
             AgendaObject.Crawl();
 
-            //BaseCrawler WetsvoorstellenObject = new WetsvoorstellenCrawler();
-            //WetsvoorstellenObject.Crawl();
+            BaseCrawler WetsvoorstellenObject = new WetsvoorstellenCrawler();
+            WetsvoorstellenObject.Crawl();
 
             StringBuilder sb = new StringBuilder();
-            using (StreamReader sr = new StreamReader("C:/Users/Gebruiker/Desktop/WebCrawlerForms.git/trunk/WebCrawlerForms/Properties.txt"))
+            using (StreamReader sr = new StreamReader("C:/Users/Gebruiker/Desktop/WebCrawlerForms.git/trunk/WebCrawlerForms/WebcrawlerService/bin/Properties.txt"))
             {
                 while (sr.Peek() >= 0)
                 {

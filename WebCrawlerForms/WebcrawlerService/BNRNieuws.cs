@@ -94,6 +94,10 @@ namespace WebcrawlerService
 
                 for (int j = 0; j < ListVideo.Count; j++)
                 {
+                    if (j == 5)
+                    {
+                        j = ListVideo.Count-1;
+                    }
                     go.GetMedia += ListVideo[j] + ";";
                 }
                 go.GetCategorie = Categorie.Nieuws;
