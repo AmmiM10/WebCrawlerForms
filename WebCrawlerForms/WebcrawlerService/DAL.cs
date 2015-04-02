@@ -41,6 +41,42 @@ namespace WebcrawlerService
         /// <param name="insert_string">Insert query</param>
         public static void Insert(IGenericObject classObject)
         {
+            if (!CheckIfAlreadyExist(classObject.GetTitel))
+            {
+                string connectionstring =
+                @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
+                @"data source=../../Database1.sdf";
+
+                OleDbConnection connection = new OleDbConnection(connectionstring);
+                OleDbCommand command = new OleDbCommand();
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+                DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '" + classObject.GetCategorie + "'");
+
+                string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Bron, Tijd, Media) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`").Replace('"', '`') + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetBron + "', '"+ classObject.GetTijd +"', '"+ classObject.GetMedia +"')");
+
+                try
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = insert_string;
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Delete methode
+        /// </summary>
+        /// <param name="insert_string">Duur</param>
+        public static void Delete(DateTime duur)
+        {
             string connectionstring =
             @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
             @"data source=../../Database1.sdf";
@@ -49,17 +85,15 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
-            DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '" + classObject.GetCategorie + "'");
-
-            string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Media, Bron, Datum, Tijd) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`").Replace('"', '`') + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetMedia + "', '" + classObject.GetBron + "', '" + classObject.GetDag + "', '"+ classObject.GetTijd +"')");
+            string delete_string = ("DELETE FROM Objecten WHERE Tijd > '"+ duur +"' ");
 
             try
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = insert_string;
-                adapter.InsertCommand = command;
-                adapter.InsertCommand.ExecuteNonQuery();
+                command.CommandText = delete_string;
+                adapter.DeleteCommand = command;
+                adapter.DeleteCommand.ExecuteNonQuery();
             }
             finally
             {
@@ -81,8 +115,6 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
-
-
             try
             {
                 connection.Open();
@@ -96,6 +128,17 @@ namespace WebcrawlerService
             {
                 connection.Close();
             }
+        }
+
+        public static bool CheckIfAlreadyExist(string text)
+        {
+            bool BestaatAl = false;
+
+            DataTable dt = Select("SELECT * FROM Objecten WHERE Titel="+ text +"");
+            if (dt.Rows.Count > 0)
+                BestaatAl = true;
+
+            return BestaatAl;
         }
     }
 }

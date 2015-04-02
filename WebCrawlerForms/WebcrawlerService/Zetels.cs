@@ -38,13 +38,8 @@ namespace WebcrawlerService
 
             List<string> ListInhoud = HaalZetelsOp();
             List<string> ListHeadlines = HaalPartijenOp();
-            //List<string> ListHeadlinesLink = GetHeadlineLinks();
             string ListTime = HaalDatumOp().Replace(".", "");
-
-            //Maikel, kijk hier nog ff naar
-            //DateTime dtDatum = DateTime.ParseExact(ListTime, "dd MM yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-            //List<string> ListVideo = GetVideos();
+            ListTime = "1 apr 2015";
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
@@ -52,13 +47,8 @@ namespace WebcrawlerService
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBeschrijving = ListInhoud[i];
                 newObject.GetBron = "Maurice de Hond";
-                //newObject.GetTijd = dtDatum;
-
-                //for (int j = 0; j < ListVideo.Count; j++)
-                //{
-                //    this.GetMedia += ListVideo[i] + ";";
-                //}
                 newObject.GetCategorie = Categorie.Zetels;
+                newObject.GetTijd = Convert.ToDateTime(ListTime);
                 ListObjecten.Add(newObject);
             }
 

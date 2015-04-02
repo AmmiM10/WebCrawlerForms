@@ -48,6 +48,7 @@ namespace WebCrawlerForms
 
         private void listBox3_MouseClick(object sender, MouseEventArgs e)
         {
+            videos = new string[0];
             textBox1.Text = NieuwsItems[listBox3.SelectedIndex].GetBeschrijving;
             Width = 762;
             checkBox1.Checked = false;

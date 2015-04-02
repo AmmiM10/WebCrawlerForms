@@ -88,30 +88,8 @@ namespace WebcrawlerService
                     go.GetBeschrijving = "";
                 }
                 go.GetBron = "BNR";
-                string maand = "01";
-                if (ListTime[i + 1].Split(' ')[2] == "Feb")
-                {
-                    maand = "02";
-                }
-                else if (ListTime[i + 1].Split(' ')[2] == "Mar")
-                {
-                    maand = "03";
-                }
-                else if (ListTime[i + 1].Split(' ')[2] == "Apr")
-                {
-                    maand = "04";
-                }
-                else if (ListTime[i + 1].Split(' ')[2] == "Mei")
-                {
-                    maand = "05";
-                }
-                dag_split.Add(ListTime[i + 1].Split(' ')[3] + "-" + maand + "-" + ListTime[i + 1].Split(' ')[1]);
-                tijd_split.Add(dag_split[i] + " " + ListTime[i + 1].Split(' ')[4] + ",531");
-
-
-                go.GetDag = dag_split[i];
-                go.GetTijd = DateTime.ParseExact(tijd_split[i], "yyyy-MM-dd HH:mm:ss,fff",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+                //DateTime dt = Convert.ToDateTime(ListTime[i]);
+                go.GetTijd = Convert.ToDateTime("Wed, 01 Apr 2015 11:11:15 +0200");
                 go.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)

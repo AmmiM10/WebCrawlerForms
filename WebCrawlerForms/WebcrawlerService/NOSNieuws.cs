@@ -65,18 +65,21 @@ namespace WebcrawlerService
                 {
                     go.GetBeschrijving = "";
                 }
+
                 go.GetBron = "NOS";
                 Tijd.Add(ListTime[i].Split('T')[1]);
                 Tijd[i] = Tijd[i].Split('+')[0];
-                ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i] + ",531";
-
-                go.GetTijd = DateTime.ParseExact(ListTime[i], "yyyy-MM-dd HH:mm:ss,fff",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-                go.GetDag = ListTime[i];
+                ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i];
+                ListTime[i] = "2-3-2015 22:26:04";
+                go.GetTijd = Convert.ToDateTime(ListTime[i]);
                 go.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)
                 {
+                    if (j == 5)
+                    {
+                        j = ListVideo.Count;
+                    }
                     go.GetMedia += GetVideo(ListVideo[j]) + ";";
                 }
                 go.GetCategorie = Categorie.Nieuws;

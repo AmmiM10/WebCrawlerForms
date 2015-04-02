@@ -41,10 +41,17 @@ namespace WebcrawlerService
 
         private List<string> HaalTypeOp()
         {
-            //<h3><a href="/kamerleden/commissies/
             List<string> Type = new CrawlContent().getItems("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<p class=\"type\">(.+?)</p>");
-
             return Type;
+        }
+
+        private DateTime HaalDatumOp()
+        {
+            DateTime dt = new DateTime();
+            string type = new CrawlContent().GetTekst("http://www.tweedekamer.nl/vergaderingen/commissievergaderingen", "<h2>VANDAAG&nbsp;(.+?)</h2>");
+            dt = Convert.ToDateTime(type);
+            
+            return dt;
         }
 
         public void GetAllSources()
@@ -55,6 +62,7 @@ namespace WebcrawlerService
             List<string> ListLink = HaalLinkOp();
             List<string> ListType = HaalTypeOp();
             List<string> ListTijd = HaalTijdOp();
+            DateTime dt = HaalDatumOp();
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
@@ -63,8 +71,8 @@ namespace WebcrawlerService
 
                 newObject.GetBron = "2e kamer";
                 newObject.GetMedia = ListType[i];
-                newObject.GetDag = ListTijd[i];
                 newObject.GetLink = ListLink[i];
+                newObject.GetTijd = dt;
                 newObject.GetBeschrijving = ListTijd[i];
 
                 newObject.GetCategorie = Categorie.Agendapunten;
