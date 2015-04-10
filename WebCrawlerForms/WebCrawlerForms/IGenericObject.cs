@@ -5,9 +5,15 @@ using System.Text;
 
 namespace WebCrawlerForms
 {
+    public enum Categorie
+    {
+        Nieuws, Zetels, Agendapunten, Wetsvoorstellen
+    }
+
     public interface IGenericObject
     {
         string GetTitel { get; set; }
+        Categorie GetCategorie { get; set; }
         string GetBeschrijving { get; set; }
         string GetBron { get; set; }
         string GetMedia { get; set; }

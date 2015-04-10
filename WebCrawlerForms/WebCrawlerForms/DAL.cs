@@ -14,7 +14,7 @@ namespace WebCrawlerForms
         /// Select methode
         /// </summary>
         /// <param name="insert_string">Select query</param>
-        public static DataTable Select(string select_string)
+        public static DataTable Select(Categorie categorie)
         {
             string connectionstring =
             @"provider=microsoft.sqlserver.ce.oledb.4.0;" +
@@ -27,7 +27,8 @@ namespace WebCrawlerForms
             DataTable table = new DataTable();
             try
             {
-                adapter = new OleDbDataAdapter(select_string, connectionstring);
+                int x = Convert.ToInt32(categorie)+1;
+                adapter = new OleDbDataAdapter("SELECT * FROM Objecten WHERE Categorie = '"+ x +"' ORDER BY Tijd DESC", connectionstring);
                 adapter.Fill(table);
             }
             catch

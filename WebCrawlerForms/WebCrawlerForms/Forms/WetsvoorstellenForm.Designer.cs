@@ -1,6 +1,6 @@
 ﻿namespace WebCrawlerForms
 {
-    partial class Form3
+    partial class WetsvoorstellenForm
     {
         /// <summary>
         /// Required designer variable.

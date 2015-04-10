@@ -7,10 +7,10 @@ namespace WebcrawlerService
 {
     public class GenericController: BaseCrawler
     {
-        public void Crawl(string bron)
+        public void Crawl()
         {
-            GenericModel model = new GenericModel(bron);
-            model.GetAllSources();
+            GenericModel model = new GenericModel();
+            model.CrawlBestand();
         }
     }
 }

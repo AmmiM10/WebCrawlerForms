@@ -71,6 +71,8 @@
     <Compile Include="CrawlContent.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="GenericBron.cs" />
+    <Compile Include="GenericController.cs" />
+    <Compile Include="GenericModel.cs" />
     <Compile Include="GenericObject.cs" />
     <Compile Include="IGenericObject.cs" />
     <Compile Include="NOSNieuws.cs" />

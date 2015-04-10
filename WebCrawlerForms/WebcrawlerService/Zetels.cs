@@ -39,7 +39,6 @@ namespace WebcrawlerService
             List<string> ListInhoud = HaalZetelsOp();
             List<string> ListHeadlines = HaalPartijenOp();
             string ListTime = HaalDatumOp().Replace(".", "");
-            ListTime = "1 apr 2015";
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {

@@ -15,8 +15,6 @@ namespace WebcrawlerService
         private List<string> GetHeadlines()
         {
             List<string> Headlines = new CrawlContent().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">");
-            //Dit is voor laatste headline maar lukt niet want is het zelfde begin maar ander einde </ul>
-            //Headlines.Add(new Tekst().getItems("http://nos.nl/nieuws/politiek/archief/", "class=\"list-time__title link-hover\">(.+?)</div></a></li><li class=\"list-time__item\">"));
             return Headlines;
         }
 
@@ -70,7 +68,7 @@ namespace WebcrawlerService
                 Tijd.Add(ListTime[i].Split('T')[1]);
                 Tijd[i] = Tijd[i].Split('+')[0];
                 ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i];
-                ListTime[i] = "2-3-2015 22:26:04";
+                //ListTime[i] = "2-3-2015 22:26:04";
                 go.GetTijd = Convert.ToDateTime(ListTime[i]);
                 go.GetLink = ListHeadlinesLink[i];
 

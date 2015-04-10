@@ -22,25 +22,12 @@ namespace WebCrawlerForms
         public string GetDag { get { return dag; } set { dag = value; } }
         private string tijd;
         public string GetTijd { get { return tijd; } set { tijd = value; } }
+        private Categorie categorie;
+        public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 
         public List<IGenericObject> GetWetsvoorstellenItems()
         {
-            List<IGenericObject> WetsvoorstellenItems = new List<IGenericObject>();
-            DataTable dt = DAL.Select("SELECT Titel, Bron, Link FROM Objecten WHERE Categorie = '3' ORDER BY Datum DESC, Tijd DESC");
-
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    IGenericObject newObject = new NieuwsItemsController();
-                    newObject.GetTitel = dt.Rows[i][0].ToString();
-                    newObject.GetBron = dt.Rows[i][1].ToString();
-                    newObject.GetLink = dt.Rows[i][2].ToString();
-                    WetsvoorstellenItems.Add(newObject);
-                }
-            }
-
-            return WetsvoorstellenItems;
+            return new Converter().ConvertGenericObjects(Categorie.Wetsvoorstellen);
         }
     }
 }

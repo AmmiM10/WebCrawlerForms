@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace WebCrawlerForms
 {
-    public partial class Form4 : Form
+    public partial class AgendapuntenForm : Form
     {
         private AgendapuntenController ag;
         private bool status;
         private List<IGenericObject> items;
         private DateTime dt;
 
-        public Form4()
+        public AgendapuntenForm()
         {
             InitializeComponent();
             ag = new AgendapuntenController();
@@ -27,12 +27,11 @@ namespace WebCrawlerForms
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            Initializeren(DateTime.Now);
+            items = ag.GetAgendapuntenItems();
         }
 
         private void Initializeren(DateTime dt)
         {
-            items = ag.GetAgendapuntenItems(dt);
             List<string> titels = new List<string>();
             List<string> tijd = new List<string>();
             List<string> type = new List<string>();
@@ -48,7 +47,14 @@ namespace WebCrawlerForms
             listBox1.DataSource = samen;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = Convert.ToDateTime(dateTimePicker1.Text);
+            dt = dt.Date + new TimeSpan(0,0,0);
+            VeranderDatum(dt);
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (status)
             {
@@ -57,11 +63,23 @@ namespace WebCrawlerForms
             status = true;
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void VeranderDatum(DateTime dt)
         {
-            DateTime dt = Convert.ToDateTime(dateTimePicker1.Text);
-            dt = dt.Date + new TimeSpan(0,0,0);
-            Initializeren(dt);
+            List<string> titels = new List<string>();
+            List<string> tijd = new List<string>();
+            List<string> type = new List<string>();
+            List<string> samen = new List<string>();
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].GetTijd == dt.Date.ToString())
+                {
+                    titels.Add(items[i].GetTitel);
+                    tijd.Add(items[i].GetBeschrijving);
+                    type.Add(items[i].GetMedia);
+                    samen.Add(tijd[i] + " " + type[i] + "|" + titels[i]);
+                }
+            }
+            listBox1.DataSource = samen;
         }
     }
 }

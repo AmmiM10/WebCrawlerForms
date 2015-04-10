@@ -13,29 +13,23 @@ using WebcrawlerService;
 
 namespace WebCrawlerForms
 {
-    public partial class Form1 : Form
+    public partial class NieuwsForm : Form
     {
         public List<string> ItemsLink;
-        public BronInterface adapter;
         public bool zoek_vvd;
         public bool zoek_pvda;
         public bool zoek_pvv;
         public bool zoek_anders;
         public string andersText;
-        public Helper helper;
         public List<string> urls;
-        public NieuwsItemsController NIC;
         public List<IGenericObject> NieuwsItems;
         public string[] videos;
 
-        public Form1()
+        public NieuwsForm()
         {
             InitializeComponent();
-            adapter = new BNRAdapter();
-            helper = new Helper();
             urls = new List<string>();
-            NIC = new NieuwsItemsController();
-            NieuwsItems = NIC.GetNieuwsItems();
+            NieuwsItems = new NieuwsItemsController().GetNieuwsItems();
             videos = new string[0];
         }
 
@@ -242,13 +236,13 @@ namespace WebCrawlerForms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form2 zetelsform = new Form2();
+            ZetelsForm zetelsform = new ZetelsForm();
             zetelsform.Show();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Form3 wetsvoorstellen = new Form3();
+            WetsvoorstellenForm wetsvoorstellen = new WetsvoorstellenForm();
             wetsvoorstellen.Show();
         }
 
@@ -265,7 +259,7 @@ namespace WebCrawlerForms
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Form4 agenda = new Form4();
+            AgendapuntenForm agenda = new AgendapuntenForm();
             agenda.Show();
         }
     }

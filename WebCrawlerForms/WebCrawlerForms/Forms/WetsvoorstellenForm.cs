@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace WebCrawlerForms
 {
-    public partial class Form3 : Form
+    public partial class WetsvoorstellenForm : Form
     {
         private WetsvoorstellenController wv;
         private bool status;
         private List<IGenericObject> items;
 
-        public Form3()
+        public WetsvoorstellenForm()
         {
             InitializeComponent();
             wv = new WetsvoorstellenController();
@@ -37,7 +37,7 @@ namespace WebCrawlerForms
         {
             if (status)
             {
-                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + items[listBox1.SelectedIndex].GetLink);   
+                System.Diagnostics.Process.Start("http://www.tweedekamer.nl" + items[listBox1.SelectedIndex].GetLink);
             }
             status = true;
         }

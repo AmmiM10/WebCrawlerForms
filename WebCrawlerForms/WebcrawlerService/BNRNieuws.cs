@@ -76,7 +76,7 @@ namespace WebcrawlerService
             List<string> tijd_split = new List<string>();
             List<string> dag_split = new List<string>();
 
-            for (int i = 0; i < ListHeadlines.Count; i++)
+            for (int i = 1; i < ListHeadlines.Count; i++)
             {
                 GenericObject go = new BNRNieuws();
                 go.GetTitel = ListHeadlines[i];
@@ -88,16 +88,11 @@ namespace WebcrawlerService
                     go.GetBeschrijving = "";
                 }
                 go.GetBron = "BNR";
-                //DateTime dt = Convert.ToDateTime(ListTime[i]);
-                go.GetTijd = Convert.ToDateTime("Wed, 01 Apr 2015 11:11:15 +0200");
+                go.GetTijd = Convert.ToDateTime(ListTime[i]);
                 go.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)
                 {
-                    if (j == 5)
-                    {
-                        j = ListVideo.Count-1;
-                    }
                     go.GetMedia += ListVideo[j] + ";";
                 }
                 go.GetCategorie = Categorie.Nieuws;
