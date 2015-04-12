@@ -85,7 +85,7 @@ namespace WebcrawlerService
             OleDbCommand command = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
-            string delete_string = ("DELETE FROM Objecten WHERE Tijd > '"+ duur +"'");
+            string delete_string = string.Format("DELETE FROM Objecten WHERE Tijd < '{0}'", duur);
 
             try
             {
