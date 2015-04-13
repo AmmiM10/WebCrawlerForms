@@ -7,10 +7,15 @@ namespace WebcrawlerService
 {
     public class GenericController: BaseCrawler
     {
+        private List<string> allSources = new List<string> { "BNR.xml", "NOS.xml" };
+
         public void Crawl()
         {
-            GenericModel model = new GenericModel();
-            model.CrawlBestand();
+            foreach (var item in allSources)
+            {
+                GenericModel model = new GenericModel();
+                model.CrawlBestand(item);
+            }
         }
     }
 }

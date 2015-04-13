@@ -1,0 +1,12 @@
+<item>
+	<titel>NOS</titel>
+	<categorie>Nieuws</categorie>
+	<headlines>class="list-time__title link-hover">(.+?)</div></a></li><li class="list-time__item"></headlines>
+	<headlinesLinks><li class="list-time__item"><a href="(.+?)" class="link-block"></headlinesLinks>
+	<video>/><source src="(.+?)"</video>
+	<videoLinks><div class="video-play"><a href="(.+?)" class="video-play__link js-ajax" </videoLinks>
+	<tekst><div class="article_textwrap"><p>s*(.+?)</p></div></tekst>
+	<time><time datetime="(.+?)"></time>
+	<eigenLink>http://nos.nl/nieuws/politiek/archief/</eigenLinklink>
+	<siteLink>http://nos.nl</siteLink>
+</item>

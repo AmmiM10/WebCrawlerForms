@@ -27,10 +27,10 @@ namespace WebcrawlerService
         private string link;
         private string siteLink;
 
-        public void CrawlBestand()
+        public void CrawlBestand(string xmlFileName)
         {
             StringBuilder sb = new StringBuilder();
-            using (StreamReader sr = new StreamReader("C:/Users/Menno/Desktop/WebCrawlerForms2/trunk/WebCrawlerForms/WebCrawlerForms/bin/Debug/Bronnen.xml"))
+            using (StreamReader sr = new StreamReader(xmlFileName))
             {
                 while (sr.Peek() >= 0)
                 {
@@ -45,7 +45,7 @@ namespace WebcrawlerService
             videoLinks = Regex.Split(sb.ToString(), "<videoLinks>(.+?)</videoLinks>")[1];
             tekst = Regex.Split(sb.ToString(), "<tekst>(.+?)</tekst>")[1];
             time = Regex.Split(sb.ToString(), "<time>(.+?)</time>")[1];
-            link = Regex.Split(sb.ToString(), "<link>(.+?)</link>")[1];
+            link = Regex.Split(sb.ToString(), "<eigenLink>(.+?)</eigenLink>")[1];
             siteLink = Regex.Split(sb.ToString(), "<siteLink>(.+?)</siteLink>")[1];
 
             GetAllSources();
@@ -104,6 +104,7 @@ namespace WebcrawlerService
                 }
 
                 go.GetBron = titel;
+
                 Tijd.Add(ListTime[i].Split('T')[1]);
                 Tijd[i] = Tijd[i].Split('+')[0];
                 ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i];
@@ -118,7 +119,7 @@ namespace WebcrawlerService
                     }
                     go.GetMedia += GetVideo(ListVideo[j]) + ";";
                 }
-                go.GetCategorie = Categorie.Nieuws;
+                go.GetCategorie = ParseEnum<Categorie>(categorie);
                 ListAllObjecten.Add(go);
             }
 
@@ -126,6 +127,11 @@ namespace WebcrawlerService
             {
                 DAL.Insert(item);
             }
+        }
+
+        public static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
         }
     }
 }

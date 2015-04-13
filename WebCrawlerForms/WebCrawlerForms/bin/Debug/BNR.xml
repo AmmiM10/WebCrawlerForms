@@ -1,0 +1,12 @@
+<item>
+	<titel>BNR</titel>
+	<categorie>Nieuws</categorie>
+	<headlines><item>\s*<title>(.+?)</title></headlines>
+	<headlinesLinks></title>\s*<link>(.+?)</link></headlinesLinks>
+	<video>http://www.bnr.nl/feeds/audio/(.+?).mp3</video>
+	<videoLinks>articleId=(.+?)'</videoLinks>
+	<tekst>itemprop="articleBody">\s*(.+?)</span</tekst>
+	<time><pubDate>(.+?)</pubDate></time>
+	<eigenLink>http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456</eigenLink>
+	<siteLink> </siteLink>
+</item>
