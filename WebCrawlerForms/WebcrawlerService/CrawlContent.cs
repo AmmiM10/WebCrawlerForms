@@ -93,6 +93,7 @@ namespace WebcrawlerService
             String html = wc.DownloadString(url);
             MatchCollection m1 = Regex.Matches(html, tags[0], RegexOptions.Singleline);
             string webstring = "";
+            
             foreach (var item in tags)
             {
                 if (m1.Count > 0)
