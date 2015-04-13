@@ -5,12 +5,12 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class AgendapuntenCrawler: BaseCrawler
+    public class ZetelController: BaseCrawler
     {
         public void Crawl()
         {
-            Agendapunten agenda = new Agendapunten();
-            agenda.GetAllSources();
+            ZetelsModel z = new ZetelsModel();
+            z.GetAllSources();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class Agendapunten : GenericObject
+    public class AgendapuntenModel : GenericObject
     {
         private List<string> HaalTitelOp()
         {
@@ -66,7 +66,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                GenericObject newObject = new Agendapunten();
+                GenericObject newObject = new AgendapuntenModel();
                 newObject.GetTitel = ListHeadlines[i];
 
                 newObject.GetBron = "2e kamer";

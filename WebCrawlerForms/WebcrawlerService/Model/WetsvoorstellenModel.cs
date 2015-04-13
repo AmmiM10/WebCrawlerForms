@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class Wetsvoorstellen: GenericObject
+    public class WetsvoorstellenModel: GenericObject
     {
         private List<string> HaalTitelOp()
         {
@@ -47,7 +47,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                GenericObject newObject = new Wetsvoorstellen();
+                GenericObject newObject = new WetsvoorstellenModel();
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBron = "2e kamer";
                 newObject.GetLink = ListHeadlinesLink[i];

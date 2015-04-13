@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class Zetels: GenericObject
+    public class ZetelsModel: GenericObject
     {
         private List<string> HaalZetelsOp()
         {
@@ -42,7 +42,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                GenericObject newObject = new Zetels();
+                GenericObject newObject = new ZetelsModel();
                 newObject.GetTitel = ListHeadlines[i];
                 newObject.GetBeschrijving = ListInhoud[i];
                 newObject.GetBron = "Maurice de Hond";

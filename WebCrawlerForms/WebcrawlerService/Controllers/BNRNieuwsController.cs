@@ -5,12 +5,12 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class WetsvoorstellenCrawler: BaseCrawler
+    public class BNRNieuwsController: BaseCrawler
     {
         public void Crawl()
         {
-            Wetsvoorstellen wet = new Wetsvoorstellen();
-            wet.GetAllSources();
+            BNRNieuwsModel bnr = new BNRNieuwsModel();
+            bnr.GetAllSources();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class NOSNieuws: GenericObject
+    public class NOSNieuwsModel: GenericObject
     {
         private string _naam;
         public string Naam { get { return _naam; } set { _naam = value; } }
@@ -54,7 +54,7 @@ namespace WebcrawlerService
 
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
-                GenericObject go = new NOSNieuws();
+                GenericObject go = new NOSNieuwsModel();
                 go.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
                 List<string> ListVideo = GetVideos();
@@ -68,8 +68,7 @@ namespace WebcrawlerService
                 Tijd.Add(ListTime[i].Split('T')[1]);
                 Tijd[i] = Tijd[i].Split('+')[0];
                 ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i];
-                //ListTime[i] = "2-3-2015 22:26:04";
-                go.GetTijd = Convert.ToDateTime(ListTime[i]);
+                go.GetTijd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(Convert.ToDateTime(ListTime[i]), "W. Europe Standard Time");
                 go.GetLink = ListHeadlinesLink[i];
 
                 for (int j = 0; j < ListVideo.Count; j++)

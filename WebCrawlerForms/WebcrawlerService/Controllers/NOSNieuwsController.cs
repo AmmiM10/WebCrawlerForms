@@ -5,11 +5,11 @@ using System.Web;
 
 namespace WebcrawlerService
 {
-    public class NOSNieuwsCrawler: BaseCrawler
+    public class NOSNieuwsController: BaseCrawler
     {
         public void Crawl()
         {
-            NOSNieuws nos = new NOSNieuws();
+            NOSNieuwsModel nos = new NOSNieuwsModel();
             nos.GetAllSources();
         }
     }

@@ -63,74 +63,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agenda.cs" />
-    <Compile Include="AgendapuntenController.cs" />
-    <Compile Include="Artikel.cs">
+    <Compile Include="MisschienVerwijderen\Agenda.cs" />
+    <Compile Include="Controllers\AgendapuntenController.cs" />
+    <Compile Include="MisschienVerwijderen\Artikel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Artikel.Designer.cs">
+    <Compile Include="MisschienVerwijderen\Artikel.Designer.cs">
       <DependentUpon>Artikel.cs</DependentUpon>
     </Compile>
-    <Compile Include="BNRAdapter.cs" />
-    <Compile Include="BronInterface.cs" />
+    <Compile Include="MisschienVerwijderen\BNRAdapter.cs" />
+    <Compile Include="MisschienVerwijderen\BronInterface.cs" />
+    <Compile Include="Converter.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="DBPolitiekNieuws.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBPolitiekNieuws.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\NieuwsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\NieuwsForm.Designer.cs">
+      <DependentUpon>NieuwsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Forms\ZetelsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Forms\ZetelsForm.Designer.cs">
+      <DependentUpon>ZetelsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Forms\WetsvoorstellenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Forms\WetsvoorstellenForm.Designer.cs">
+      <DependentUpon>WetsvoorstellenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="Forms\AgendapuntenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="Forms\AgendapuntenForm.Designer.cs">
+      <DependentUpon>AgendapuntenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenericObject.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="MisschienVerwijderen\GenericObject.cs" />
+    <Compile Include="MisschienVerwijderen\Helper.cs" />
     <Compile Include="IGenericObject.cs" />
-    <Compile Include="NieuwsItemsController.cs" />
-    <Compile Include="NOSAdapter.cs" />
+    <Compile Include="Controllers\NieuwsItemsController.cs" />
+    <Compile Include="MisschienVerwijderen\NOSAdapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQL.cs" />
-    <Compile Include="Tekst.cs" />
-    <Compile Include="Media.cs" />
-    <Compile Include="Wetsvoorstellen.cs" />
-    <Compile Include="WetsvoorstellenController.cs" />
-    <Compile Include="Zetels.cs" />
-    <Compile Include="ZetelsController.cs" />
-    <EmbeddedResource Include="Artikel.resx">
+    <Compile Include="MisschienVerwijderen\SQL.cs" />
+    <Compile Include="MisschienVerwijderen\Tekst.cs" />
+    <Compile Include="MisschienVerwijderen\Media.cs" />
+    <Compile Include="MisschienVerwijderen\Wetsvoorstellen.cs" />
+    <Compile Include="Controllers\WetsvoorstellenController.cs" />
+    <Compile Include="MisschienVerwijderen\Zetels.cs" />
+    <Compile Include="Controllers\ZetelsController.cs" />
+    <EmbeddedResource Include="MisschienVerwijderen\Artikel.resx">
       <DependentUpon>Artikel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NieuwsForm.resx">
+      <DependentUpon>NieuwsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ZetelsForm.resx">
+      <DependentUpon>ZetelsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WetsvoorstellenForm.resx">
+      <DependentUpon>WetsvoorstellenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AgendapuntenForm.resx">
+      <DependentUpon>AgendapuntenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,7 +187,6 @@
     <Content Include="Database1.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="vvd.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -221,6 +221,7 @@
       <Name>WebcrawlerService</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

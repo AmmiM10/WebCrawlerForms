@@ -11,19 +11,19 @@ namespace WebcrawlerService
     {
         public void CrawlAllSources()
         {
-            /*BaseCrawler NOSNieuwsObject = new NOSNieuwsCrawler();
-            NOSNieuwsObject.Crawl();*/
+            BaseCrawler NOSNieuwsObject = new NOSNieuwsController();
+            NOSNieuwsObject.Crawl();
 
-            BaseCrawler BNRNieuwsObject = new BNRNieuwsCrawler();
+            BaseCrawler BNRNieuwsObject = new BNRNieuwsController();
             BNRNieuwsObject.Crawl();
 
-            BaseCrawler ZetelObject = new ZetelCrawler();
+            BaseCrawler ZetelObject = new ZetelController();
             ZetelObject.Crawl();
 
-            BaseCrawler AgendaObject = new AgendapuntenCrawler();
+            BaseCrawler AgendaObject = new AgendapuntenController();
             AgendaObject.Crawl();
 
-            BaseCrawler WetsvoorstellenObject = new WetsvoorstellenCrawler();
+            BaseCrawler WetsvoorstellenObject = new WetsvoorstellenController();
             WetsvoorstellenObject.Crawl();
         }
     }
