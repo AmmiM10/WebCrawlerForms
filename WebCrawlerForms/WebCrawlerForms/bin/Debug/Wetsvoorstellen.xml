@@ -1,0 +1,25 @@
+<item>
+	
+<titel>Wetsvoorstellen</titel>
+	
+<categorie>Wetsvoorstellen</categorie>
+	
+<headlines><h3><a href="(.+?)</a></headlines>
+	
+<headlinesLinks><h3><a href="(.+?)"</headlinesLinks>
+	
+<video> </video>
+<videoExtra> </videoExtra>
+	
+<videoLinks> </videoLinks>
+
+<videoLinksExtra> </videoLinksExtra>	
+<tekst><h3><a href="(.+?)</a></tekst>
+	
+<time><p class="date">(.+?)</p></time>
+	
+<eigenLink>http://www.tweedekamer.nl/kamerstukken/wetsvoorstellen?qry=%2A&fld_tk_categorie=Kamerstukken&fld_tk_subcategorie=Wetsvoorstellen&Type=Wetsvoorstellen&srt=date%3Adesc%3Adate&fld_prl_status=Aanhangig&fld_tk_subsubcategorie=Wetsvoorstellen+regering&dpp=15&clusterName=Wetsvoorstellen+regering</eigenLink>
+	
+<siteLink>http://www.tweedekamer.nl/kamerstukken/wetsvoorstellen?qry=%2A&fld_tk_categorie=Kamerstukken&fld_tk_subcategorie=Wetsvoorstellen&Type=Wetsvoorstellen&srt=date%3Adesc%3Adate&fld_prl_status=Aanhangig&fld_tk_subsubcategorie=Wetsvoorstellen+regering&dpp=15&clusterName=Wetsvoorstellen+regering</siteLink>
+
+</item>

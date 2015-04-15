@@ -1,0 +1,25 @@
+<item>
+	
+<titel>Agendapunten</titel>
+	
+<categorie>Agendapunten</categorie>
+	
+<headlines><p class="subject">(.+?)s*</p></headlines>
+	
+<headlinesLinks><a class="goto-agenda" href="(.+?)"</headlinesLinks>
+	
+<video> </video>
+<videoExtra> </videoExtra>
+	
+<videoLinks> </videoLinks>
+
+<videoLinksExtra> </videoLinksExtra>	
+<tekst><h3><a href="(.+?)</a></tekst>
+	
+<time> </time>
+	
+<eigenLink>http://www.tweedekamer.nl/vergaderingen/commissievergaderingen</eigenLink>
+	
+<siteLink>http://www.tweedekamer.nl/vergaderingen/commissievergaderingen</siteLink>
+
+</item>

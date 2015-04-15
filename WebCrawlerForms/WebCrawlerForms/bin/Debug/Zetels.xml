@@ -1,0 +1,25 @@
+<item>
+	
+<titel> </titel>
+	
+<categorie>Zetels</categorie>
+	
+<headlines><li class="dehond"><div class="bar" style="height:(.+?)</div></headlines>
+	
+<headlinesLinks>title="Peilingen (.+?)" alt</headlinesLinks>
+	
+<video> </video>
+<videoExtra> </videoExtra>
+	
+<videoLinks> </videoLinks>
+
+<videoLinksExtra> </videoLinksExtra>	
+<tekst> </tekst>
+	
+<time>Maurice de Hond<span>(.+?)</span></time>
+	
+<eigenLink>http://frontbencher.nl/peilingen/</eigenLink>
+	
+<siteLink>http://frontbencher.nl/peilingen/</siteLink>
+
+</item>
