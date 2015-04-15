@@ -56,6 +56,7 @@ namespace WebcrawlerService
                     string score = m.Groups[1].Value;
                     score = HttpUtility.HtmlDecode(score);
                     score = Regex.Replace(score, "<.*?>", string.Empty);
+                    if(score.Contains('>')) score = Regex.Split(score, "\">")[1];
 
                     byte[] bytes = Encoding.Default.GetBytes(score);
                     score = Encoding.UTF8.GetString(bytes);

@@ -21,7 +21,9 @@ namespace WebcrawlerService
         private string headlines;
         private string headlinesLinks;
         private string video;
+        private string videoExtra;
         private string videoLinks;
+        private string videoLinksExtra;
         private string tekst;
         private string time;
         private string link;
@@ -42,7 +44,9 @@ namespace WebcrawlerService
             headlines = Regex.Split(sb.ToString(), "<headlines>(.+?)</headlines>")[1];
             headlinesLinks = Regex.Split(sb.ToString(), "<headlinesLinks>(.+?)</headlinesLinks>")[1];
             video = Regex.Split(sb.ToString(), "<video>(.+?)</video>")[1];
+            videoExtra = Regex.Split(sb.ToString(), "<videoExtra>(.+?)</videoExtra>")[1];
             videoLinks = Regex.Split(sb.ToString(), "<videoLinks>(.+?)</videoLinks>")[1];
+            videoLinksExtra = Regex.Split(sb.ToString(), "<videoLinksExtra>(.+?)</videoLinksExtra>")[1];
             tekst = Regex.Split(sb.ToString(), "<tekst>(.+?)</tekst>")[1];
             time = Regex.Split(sb.ToString(), "<time>(.+?)</time>")[1];
             link = Regex.Split(sb.ToString(), "<eigenLink>(.+?)</eigenLink>")[1];
@@ -62,9 +66,21 @@ namespace WebcrawlerService
             return new CrawlContent().getItems(link, headlinesLinks);
         }
 
-        private List<string> GetTime()
+        private List<string> GetTime(int aantal)
         {
-            return new CrawlContent().getItems(link, time);
+            if (time == " ")
+            {
+                List<string> tijden = new List<string>();
+                for (int i = 0; i < aantal; i++)
+                {
+                    tijden.Add(DateTime.Now.Date.ToString());
+                }
+                return tijden;
+            }
+            else
+            {
+                return new CrawlContent().getItems(link, time);
+            }
         }
 
         private List<string> GetVideos()
@@ -74,7 +90,7 @@ namespace WebcrawlerService
 
         private string GetVideo(string url)
         {
-            return new CrawlContent().getVideo(siteLink + url, new List<string> { video });
+            return new CrawlContent().getVideo(videoLinksExtra + url, new List<string> { video });;
         }
 
         private string GetTekst()
@@ -88,37 +104,46 @@ namespace WebcrawlerService
 
             List<string> ListHeadlines = GetHeadlines();
             List<string> ListHeadlinesLink = GetHeadlineLinks();
-            List<string> ListTime = GetTime();
+            List<string> ListTime = GetTime(ListHeadlines.Count);
+            if (ListTime.Count == 1)
+            {
+                for (int j = 0; j < ListHeadlines.Count; j++)
+                {
+                    ListTime.Add(ListTime[0]);
+                }
+            }
             List<string> Tijd = new List<string>();
-
             for (int i = 0; i < ListHeadlines.Count; i++)
             {
                 GenericObject go = new GenericModel();
                 go.GetTitel = ListHeadlines[i];
                 PropLink = ListHeadlinesLink[i];
-                List<string> ListVideo = GetVideos();
-                go.GetBeschrijving = GetTekst();
+                if (video != " ")
+                {
+                    List<string> ListVideo = GetVideos();
+                    for (int j = 0; j < ListVideo.Count; j++)
+                    {
+                        if (ListVideo[j].Length > 30)
+                        {
+                            ListVideo.Remove(ListVideo[j]);
+                            j--;
+                        }
+                        else
+                        {
+                            go.GetMedia += videoExtra + GetVideo(ListVideo[j]) + ";";
+                        }
+                    }
+                }
+
+                if (titel == " ") { go.GetBeschrijving = GetTime(ListHeadlines.Count)[0]; go.GetBron = "Zetels"; }
+                else { go.GetBeschrijving = GetTekst(); go.GetBron = titel; }
                 if (go.GetBeschrijving == null)
                 {
                     go.GetBeschrijving = "";
                 }
 
-                go.GetBron = titel;
-
-                Tijd.Add(ListTime[i].Split('T')[1]);
-                Tijd[i] = Tijd[i].Split('+')[0];
-                ListTime[i] = ListTime[i].Split('T')[0] + " " + Tijd[i];
                 go.GetTijd = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(Convert.ToDateTime(ListTime[i]), "W. Europe Standard Time");
-                go.GetLink = ListHeadlinesLink[i];
-
-                for (int j = 0; j < ListVideo.Count; j++)
-                {
-                    if (j == 5)
-                    {
-                        j = ListVideo.Count;
-                    }
-                    go.GetMedia += GetVideo(ListVideo[j]) + ";";
-                }
+                go.GetLink = ListHeadlinesLink[i];                
                 go.GetCategorie = ParseEnum<Categorie>(categorie);
                 ListAllObjecten.Add(go);
             }

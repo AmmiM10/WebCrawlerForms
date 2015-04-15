@@ -7,7 +7,7 @@ namespace WebcrawlerService
 {
     public class GenericController: BaseCrawler
     {
-        private List<string> allSources = new List<string> { "BNR.xml", "NOS.xml" };
+        private List<string> allSources = new List<string> {"Zetels.xml", "Agendapunten.xml", "Wetsvoorstellen.xml", "NOS.xml", "BNR.xml" };
 
         public void Crawl()
         {

@@ -271,7 +271,7 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // Form1
+            // NieuwsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -296,7 +296,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "NieuwsForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Webcrawler";
             this.Load += new System.EventHandler(this.Form1_Load);

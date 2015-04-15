@@ -1,12 +1,25 @@
 <item>
-	<titel>BNR</titel>
-	<categorie>Nieuws</categorie>
-	<headlines><item>\s*<title>(.+?)</title></headlines>
-	<headlinesLinks></title>\s*<link>(.+?)</link></headlinesLinks>
-	<video>http://www.bnr.nl/feeds/audio/(.+?).mp3</video>
-	<videoLinks>articleId=(.+?)'</videoLinks>
-	<tekst>itemprop="articleBody">\s*(.+?)</span</tekst>
-	<time><pubDate>(.+?)</pubDate></time>
-	<eigenLink>http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456</eigenLink>
-	<siteLink> </siteLink>
+	
+<titel>BNR</titel>
+	
+<categorie>Nieuws</categorie>
+	
+<headlines><item>\s*<title>(.+?)</title></headlines>
+	
+<headlinesLinks></title>\s*<link>\s*http://www.bnr.nl/nieuws/(.+?)\s*</link></headlinesLinks>
+	
+<video>http://www.bnr.nl/feeds/audio/(.+?).mp3</video>
+<videoExtra>http://www.bnr.nl/feeds/audio/</videoExtra>
+	
+<videoLinks>articleId=(.+?)'</videoLinks>
+
+<videoLinksExtra>http://www.bnr.nl/?service=player&type=fragment&articleId=</videoLinksExtra>	
+<tekst>itemprop="articleBody">\s*(.+?)</span</tekst>
+	
+<time></description>\s*<pubDate>(.+?)</pubDate></time>
+	
+<eigenLink>http://www.bnr.nl/nieuws/politiek/?widget=rssfeed&view=feed&contentId=1227456</eigenLink>
+	
+<siteLink>http://www.bnr.nl/nieuws/</siteLink>
+
 </item>
