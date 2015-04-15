@@ -53,13 +53,16 @@ namespace WebcrawlerService
 
                 DataTable dt = Select("SELECT Id FROM Categorieen WHERE Naam = '" + classObject.GetCategorie + "'");
 
-                string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Bron, Media) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`").Replace('"', '`') + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetBron + "', '"+ classObject.GetMedia +"')");
+                string insert_string = ("INSERT INTO Objecten (Categorie, Titel, Beschrijving, Link, Bron, Media, Tijd) VALUES ('" + Convert.ToInt32(dt.Rows[0][0]) + "', '" + classObject.GetTitel.Replace("'", "`").Replace('"', '`') + "', '" + classObject.GetBeschrijving.Replace("'", "`") + "', '" + classObject.GetLink + "', '" + classObject.GetBron + "', '"+ classObject.GetMedia + "', @Tijd)");
 
                 try
                 {
                     connection.Open();
                     command.Connection = connection;
                     command.CommandText = insert_string;
+
+                    command.Parameters.AddWithValue("@Tijd", classObject.GetTijd);
+
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
                 }

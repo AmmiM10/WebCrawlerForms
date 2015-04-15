@@ -98,7 +98,7 @@ namespace WebcrawlerService
             return new CrawlContent().GetTekst(siteLink + _link, tekst);
         }
 
-        public void GetAllSources()
+        private void GetAllSources()
         {
             List<IGenericObject> ListAllObjecten = new List<IGenericObject>();
 
