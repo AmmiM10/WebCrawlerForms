@@ -7,7 +7,7 @@ namespace WebCrawlerForms
 {
     public enum Categorie
     {
-        Nieuws, Zetels, Agendapunten, Wetsvoorstellen
+        Nieuws, Zetels, Wetsvoorstellen, Agendapunten
     }
 
     public interface IGenericObject
@@ -19,6 +19,6 @@ namespace WebCrawlerForms
         string GetMedia { get; set; }
         string GetLink { get; set; }
         string GetDag { get; set; }
-        string GetTijd { get; set; }
+        DateTime GetTijd { get; set; }
     }
 }

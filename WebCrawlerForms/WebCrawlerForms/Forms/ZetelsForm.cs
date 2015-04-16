@@ -25,10 +25,10 @@ namespace WebCrawlerForms
         {
             List<IGenericObject> zetelsitems = zc.GetZetelsItems();
             //TekenAs();
-            TekenLabels(zetelsitems);
+            paper.DrawLine(new Pen(new SolidBrush(Color.White)), 10, 10, 100,100);
+            //TekenLabels(zetelsitems);
             //TekenZetels(zetelsitems);
         }
-
 
         public void TekenLabels(List<IGenericObject> partijen)
         {

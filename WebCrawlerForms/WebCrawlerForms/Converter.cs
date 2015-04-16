@@ -24,7 +24,7 @@ namespace WebCrawlerForms
                     newObject.GetLink = dt.Rows[i][3].ToString();
                     newObject.GetMedia = dt.Rows[i][4].ToString();
                     newObject.GetBron = dt.Rows[i][5].ToString();
-                    newObject.GetTijd = dt.Rows[i][8].ToString();
+                    newObject.GetTijd = Convert.ToDateTime(dt.Rows[i][8]);
                     items.Add(newObject);
                 }
             }

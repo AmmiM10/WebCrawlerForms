@@ -47,6 +47,7 @@
             this.listBox1.Size = new System.Drawing.Size(589, 184);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // label1
             // 
@@ -59,7 +60,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Wetsvoorstellen";
             // 
-            // Form3
+            // WetsvoorstellenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -68,7 +69,7 @@
             this.ClientSize = new System.Drawing.Size(619, 245);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
-            this.Name = "Form3";
+            this.Name = "WetsvoorstellenForm";
             this.Text = "Wetsvoorstellen";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);

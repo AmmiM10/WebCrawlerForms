@@ -28,12 +28,17 @@ namespace WebCrawlerForms
             List<string> titels = new List<string>();
             for (int i = 0; i < items.Count; i++)
             {
-                titels.Add(items[i].GetTitel);
+                titels.Add(items[i].GetTijd.Day + "-" + items[i].GetTijd.Month + " | " + items[i].GetTitel);
             }
             listBox1.DataSource = titels;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             if (status)
             {

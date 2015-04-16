@@ -9,7 +9,7 @@
 <headlinesLinks><li class="list-time__item"><a href="(.+?)" class="link-block"></headlinesLinks>
 	
 <video>/><source src="(.+?)"</video>
-<videoExtra> </videoExtra>
+<videoExtra>http://nos.nl</videoExtra>
 	
 <videoLinks><div class="video-play"><a href="(.+?)" class="video-play__link js-ajax" </videoLinks>
 

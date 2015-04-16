@@ -123,14 +123,15 @@ namespace WebcrawlerService
                     List<string> ListVideo = GetVideos();
                     for (int j = 0; j < ListVideo.Count; j++)
                     {
-                        if (ListVideo[j].Length > 30)
+                        if (ListVideo[j].Length > 100)
                         {
                             ListVideo.Remove(ListVideo[j]);
                             j--;
                         }
                         else
                         {
-                            go.GetMedia += videoExtra + GetVideo(ListVideo[j]) + ";";
+                            if(titel == "BNR") go.GetMedia += videoExtra + GetVideo(ListVideo[j]) + ";";
+                            else go.GetMedia += GetVideo(videoExtra + ListVideo[j]) + ";";
                         }
                     }
                 }

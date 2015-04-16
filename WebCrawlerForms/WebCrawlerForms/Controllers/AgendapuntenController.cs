@@ -20,8 +20,8 @@ namespace WebCrawlerForms
         public string GetLink { get { return link; } set { link = value; } }
         private string dag;
         public string GetDag { get { return dag; } set { dag = value; } }
-        private string tijd;
-        public string GetTijd { get { return tijd; } set { tijd = value; } }
+        private DateTime tijd;
+        public DateTime GetTijd { get { return tijd; } set { tijd = value; } }
         private Categorie categorie;
         public Categorie GetCategorie { get { return categorie; } set { categorie = value; } }
 

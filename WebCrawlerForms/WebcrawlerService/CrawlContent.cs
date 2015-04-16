@@ -30,6 +30,7 @@ namespace WebcrawlerService
                     score = Regex.Replace(score, "<p>", Environment.NewLine);
                     score = Regex.Replace(score, "</p>", Environment.NewLine);
                     score = Regex.Replace(score, "<.*?>", string.Empty);
+                    if (score.Contains('>')) score = Regex.Split(score, ">")[1];
 
                     byte[] bytes = Encoding.Default.GetBytes(score);
                     webtekst = Encoding.UTF8.GetString(bytes);

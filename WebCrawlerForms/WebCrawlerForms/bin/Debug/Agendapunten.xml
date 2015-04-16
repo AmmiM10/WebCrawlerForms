@@ -14,12 +14,12 @@
 <videoLinks> </videoLinks>
 
 <videoLinksExtra> </videoLinksExtra>	
-<tekst><h3><a href="(.+?)</a></tekst>
+<tekst><span class="original-title element-hidden">(.+?)</span></tekst>
 	
 <time> </time>
 	
 <eigenLink>http://www.tweedekamer.nl/vergaderingen/commissievergaderingen</eigenLink>
 	
-<siteLink>http://www.tweedekamer.nl/vergaderingen/commissievergaderingen</siteLink>
+<siteLink>http://www.tweedekamer.nl</siteLink>
 
 </item>
