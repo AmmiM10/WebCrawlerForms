@@ -10,6 +10,7 @@ using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
 using WebcrawlerService;
+using WebCrawlerForms.Forms;
 
 namespace WebCrawlerForms
 {
@@ -236,8 +237,8 @@ namespace WebCrawlerForms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ZetelsForm zetelsform = new ZetelsForm();
-            zetelsform.Show();
+            ZetelForm zetelform = new ZetelForm();
+            zetelform.Show();
         }
 
         private void button8_Click(object sender, EventArgs e)
