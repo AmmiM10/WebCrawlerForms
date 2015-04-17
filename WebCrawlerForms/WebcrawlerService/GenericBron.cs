@@ -14,6 +14,8 @@ namespace WebcrawlerService
             BaseCrawler genericObject = new GenericController();
             genericObject.Crawl();
 
+            //Oude manier van specifiek crawlen
+
             //BaseCrawler NOSNieuwsObject = new NOSNieuwsController();
             //NOSNieuwsObject.Crawl();
 

@@ -63,16 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MisschienVerwijderen\Agenda.cs" />
-    <Compile Include="Controllers\AgendapuntenController.cs" />
-    <Compile Include="MisschienVerwijderen\Artikel.cs">
+    <Compile Include="Forms\ZetelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MisschienVerwijderen\Artikel.Designer.cs">
-      <DependentUpon>Artikel.cs</DependentUpon>
+    <Compile Include="Forms\ZetelForm.Designer.cs">
+      <DependentUpon>ZetelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MisschienVerwijderen\BNRAdapter.cs" />
-    <Compile Include="MisschienVerwijderen\BronInterface.cs" />
+    <Compile Include="Controllers\AgendapuntenController.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="DBPolitiekNieuws.Designer.cs">
@@ -86,12 +83,6 @@
     <Compile Include="Forms\NieuwsForm.Designer.cs">
       <DependentUpon>NieuwsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ZetelsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ZetelsForm.Designer.cs">
-      <DependentUpon>ZetelsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\WetsvoorstellenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,28 +95,17 @@
     <Compile Include="Forms\AgendapuntenForm.Designer.cs">
       <DependentUpon>AgendapuntenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MisschienVerwijderen\GenericObject.cs" />
-    <Compile Include="MisschienVerwijderen\Helper.cs" />
     <Compile Include="IGenericObject.cs" />
     <Compile Include="Controllers\NieuwsItemsController.cs" />
-    <Compile Include="MisschienVerwijderen\NOSAdapter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MisschienVerwijderen\SQL.cs" />
-    <Compile Include="MisschienVerwijderen\Tekst.cs" />
-    <Compile Include="MisschienVerwijderen\Media.cs" />
-    <Compile Include="MisschienVerwijderen\Wetsvoorstellen.cs" />
     <Compile Include="Controllers\WetsvoorstellenController.cs" />
-    <Compile Include="MisschienVerwijderen\Zetels.cs" />
     <Compile Include="Controllers\ZetelsController.cs" />
-    <EmbeddedResource Include="MisschienVerwijderen\Artikel.resx">
-      <DependentUpon>Artikel.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ZetelForm.resx">
+      <DependentUpon>ZetelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NieuwsForm.resx">
       <DependentUpon>NieuwsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ZetelsForm.resx">
-      <DependentUpon>ZetelsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WetsvoorstellenForm.resx">
       <DependentUpon>WetsvoorstellenForm.cs</DependentUpon>

@@ -36,6 +36,7 @@ namespace WebCrawlerForms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Deze functie behoort eigenlijk alleen toe aan de service, maar staat nu hier voor makkelijker testen");
             WebcrawlerService.Webcrawler test = new WebcrawlerService.Webcrawler();
             test.CrawlContent();
             MessageBox.Show("Klaar");
